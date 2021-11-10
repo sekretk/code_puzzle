@@ -1,12 +1,49 @@
 import express from "express"
+import path from "path"
+import fs from 'fs'
 
 const app = express()
 const port = 3000
 
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
+// app.get('/', (req, res) => {
+//   res.send('Hello World!')
+// })
+
+// Parse URL-encoded bodies (as sent by HTML forms)
+app.use(express.urlencoded());
+
+// Parse JSON bodies (as sent by API clients)
+app.use(express.json());
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
+})
+
+const getRandStr = () => Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5);
+
+type PollAttempt = {
+  id: string,
+  lines: Array<string>
+}
+
+type Poll = {
+  description: string,
+  blocks: Array<string>,
+  answers: Array<Array<string>>,
+  result: string
+}
+
+type PollWithID = Poll & { id: string }
+
+const polls: Array<PollWithID> = (JSON.parse(fs.readFileSync(path.join(__dirname, 'polls.json'), 'utf-8')) as Array<Poll>).map(poll => ({...poll, id: getRandStr() }));
+
+app.get('/polls', function(req, res){
+  res.setHeader('Content-Type', 'application/json');
+  res.end(JSON.stringify(polls));
+});
+
+app.post('/result', function(req, res) {
+  const attempt = req.body as PollAttempt;
+  const foundPoll = polls.find(poll => poll.id === attempt.id);
+  res.end(foundPoll?.result)
 })

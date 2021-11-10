@@ -1,25 +1,20 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { Item } from './model/item';
+import DraggableList from './DraggableList';
+
+const items: Array<Item> = [
+  { name: 'compact', commented: false },
+  { name: 'takeWhile', commented: false },
+  { name: 'filter', commented: true },
+  { name: 'skip(1)', commented: false },
+  { name: 'shareReply', commented: true }
+]
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <DraggableList items={items} />
   );
 }
 
