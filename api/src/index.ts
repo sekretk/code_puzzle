@@ -37,9 +37,16 @@ type PollWithID = Poll & { id: string }
 
 const polls: Array<PollWithID> = (JSON.parse(fs.readFileSync(path.join(__dirname, 'polls.json'), 'utf-8')) as Array<Poll>).map(poll => ({...poll, id: getRandStr() }));
 
-app.get('/polls', function(req, res){
+app.get('/allpolls', function(req, res){
   res.setHeader('Content-Type', 'application/json');
   res.end(JSON.stringify(polls));
+});
+
+app.get('/rndpoll', function(req, res){
+  res.setHeader('Content-Type', 'application/json');
+  const rndPoll = polls[Math.floor(Math.random()*polls.length)];
+
+  res.end(JSON.stringify({...rndPoll,answers: undefined, result: undefined }));
 });
 
 app.post('/result', function(req, res) {

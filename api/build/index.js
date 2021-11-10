@@ -18,7 +18,7 @@ var express_1 = __importDefault(require("express"));
 var path_1 = __importDefault(require("path"));
 var fs_1 = __importDefault(require("fs"));
 var app = (0, express_1.default)();
-var port = 3000;
+var port = 9999;
 // app.get('/', (req, res) => {
 //   res.send('Hello World!')
 // })
@@ -31,9 +31,14 @@ app.listen(port, function () {
 });
 var getRandStr = function () { return Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5); };
 var polls = JSON.parse(fs_1.default.readFileSync(path_1.default.join(__dirname, 'polls.json'), 'utf-8')).map(function (poll) { return (__assign(__assign({}, poll), { id: getRandStr() })); });
-app.get('/polls', function (req, res) {
+app.get('/allpolls', function (req, res) {
     res.setHeader('Content-Type', 'application/json');
     res.end(JSON.stringify(polls));
+});
+app.get('/rndpoll', function (req, res) {
+    res.setHeader('Content-Type', 'application/json');
+    var rndPoll = polls[Math.floor(Math.random() * polls.length)];
+    res.end(JSON.stringify(__assign(__assign({}, rndPoll), { answers: undefined, result: undefined })));
 });
 app.post('/result', function (req, res) {
     var attempt = req.body;

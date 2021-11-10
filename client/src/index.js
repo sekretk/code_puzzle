@@ -11,4 +11,8 @@ const items = [
   { name: 'shareReply', commented: true }
 ]
 
+const fetchedPolls = await fetch('http://boysthings.top:9999/polls');
+
+const polls = await fetchedPolls.json();
+
 render(<DraggableList items={items} />, document.getElementById('root'))
