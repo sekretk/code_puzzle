@@ -22,6 +22,8 @@ var port = 9999;
 // app.get('/', (req, res) => {
 //   res.send('Hello World!')
 // })
+var cors = require('cors');
+app.use(cors());
 // Parse URL-encoded bodies (as sent by HTML forms)
 app.use(express_1.default.urlencoded());
 // Parse JSON bodies (as sent by API clients)
