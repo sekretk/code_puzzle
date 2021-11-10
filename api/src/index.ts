@@ -9,6 +9,10 @@ const port = 9999
 //   res.send('Hello World!')
 // })
 
+var cors = require('cors')
+
+app.use(cors())
+
 // Parse URL-encoded bodies (as sent by HTML forms)
 app.use(express.urlencoded());
 

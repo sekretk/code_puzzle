@@ -24,7 +24,7 @@ const ItemElement = ({ key, item: { name, commented }, onToggle }) => {
     </div>
   )
 }
-export default function DraggableList({ items }) {
+export default function DraggableList({ items, pollId, text }) {
   const [itemsVal, setItems] = useState(items.map((x, id) => ({ ...x, id })))
   const order = useRef(items.map((_, index) => index)) // Store indicies as a local ref, this represents the item order
   const [springs, setSprings] = useSprings(itemsVal.length, fn(order.current)) // Create springs, each corresponds to an item, controlling its transform, scale, etc.
