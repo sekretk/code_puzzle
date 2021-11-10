@@ -3,7 +3,7 @@ import path from "path"
 import fs from 'fs'
 
 const app = express()
-const port = 3000
+const port = 9999
 
 // app.get('/', (req, res) => {
 //   res.send('Hello World!')
