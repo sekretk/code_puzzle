@@ -18,5 +18,5 @@ const poll = await fetchedPolls.json();
 
 const items = poll.blocks.map(block => ({name: block, commented: Math.random() < 0.5}))
 
-render(<DraggableList pollId={poll.id} text={poll.description} items={items} />, document.getElementById('root'))
+render(<DraggableList pollId={poll.id} text={poll.description} items={[...items]} />, document.getElementById('root'))
 })();

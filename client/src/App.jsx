@@ -19,8 +19,8 @@ const ItemElement = ({ key, item: { name, commented }, onToggle }) => {
 
   return (
     <div className="item">
-      <button onMouseDown={onToggleClick}>togglecomment</button>
-      <p className={commented ? 'commented' : ''}>{name}</p>
+      <button onMouseDown={onToggleClick} className="item__button">{commented ? 'uncomment' : 'comment'}</button>
+      <p className={['item__code', commented ? ' commented' : ''].join('')}>{name}</p>
     </div>
   )
 }
@@ -43,19 +43,22 @@ export default function DraggableList({ items, pollId, text }) {
 
   return (
     <div>
-      <div className="content" style={{ height: itemsVal.length * 50 }}>
-        {springs.map(({ zIndex, shadow, y, scale }, i) => (
-          <animated.div
-            {...bind(i)}
-            key={i}
-            style={{
-              zIndex,
-              boxShadow: shadow.interpolate((s) => `rgba(0, 0, 0, 0.15) 0px ${s}px ${2 * s}px 0px`),
-              transform: interpolate([y, scale], (y, s) => `translate3d(0,${y}px,0) scale(${s})`)
-            }}>
-            <ItemElement item={itemsVal[i]} onToggle={onItemToggle(i)} />
-          </animated.div>
-        ))}
+      <div className="content">
+        <div className="content__wrapper">
+          {springs.map(({ zIndex, shadow, y, scale }, i) => (
+            <animated.div
+              {...bind(i)}
+              className="content__item"
+              key={i}
+              style={{
+                zIndex,
+                boxShadow: shadow.interpolate((s) => `rgba(0, 0, 0, 0.15) 0px ${s}px ${2 * s}px 0px`),
+                transform: interpolate([y, scale], (y, s) => `translate3d(0,${y}px,0) scale(${s})`)
+              }}>
+              <ItemElement item={itemsVal[i]} onToggle={onItemToggle(i)} />
+            </animated.div>
+          ))}
+        </div>
       </div>
     </div>
   )
