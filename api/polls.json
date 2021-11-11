@@ -1,6 +1,6 @@
 [
   {
-    "description": "[Easy] Отсортировать и закомментировать ненужное. Получить компилируемый вызов в последней строке функции \r\nconst comb: (subject: Animal) => void = () => {};",
+    "description": "[Easy] Отсортировать и закомментировать ненужное. Получить компилируемый вызов в последней строке функции const comb: (subject: Animal) => void = () => {};",
     "blocks": [
       {
         "id": 1,
@@ -26,7 +26,7 @@
     "answers": [
       [
         1,2,3,5
-      ],
+      ]
     ],
     "result": "https://www.typescriptlang.org/play?#code/C4TwDgpgBAwgFgewE4BMCGw1QLxQN5QA2EAdgObBwBcUJArgLYBGESUAvgNwCwAUKJCgBBEgEsGaQjnxQmSCBBQ0AzsCSjyHHv3DQAChGDSR4yVABkMkmgYQVajWQ58+AYwQlVUd8xoAKZTomACsIV2AaEwlCAEocAD4oADcEURRpPzjsRLwuF14fJj9cqDRlKANgGO1C4vZS8vhkdExqoA"
   },

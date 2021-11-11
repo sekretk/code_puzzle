@@ -44,6 +44,6 @@ app.get('/rndpoll', function (req, res) {
 });
 app.post('/result', function (req, res) {
     var attempt = req.body;
-    var foundPoll = polls.find(function (poll) { return poll.id === attempt.id; });
+    var foundPoll = polls.find(function (poll) { return poll.id === attempt.id && poll.answers.some(function (answer) { return JSON.stringify(attempt.lines) === JSON.stringify(answer); }); });
     res.end(foundPoll === null || foundPoll === void 0 ? void 0 : foundPoll.result);
 });
