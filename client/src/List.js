@@ -68,6 +68,7 @@ export default function List({ items, pollId, text }) {
             {Boolean(result) && <div className="result">
                 <button onClick={onNext}>Дальше</button>
                 <p>{result}</p>
+                <p>Any text</p>
             </div>}
             
         </>);
