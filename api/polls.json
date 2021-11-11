@@ -122,7 +122,7 @@
     "result": "https://www.typescriptlang.org/play?#code/C4TwDgpgBA4hxQLxQN5VJAXFA5HYOANFAK4BOANtgM7BkCWAdgOZQC+AsAFAbQAKAe1pJU6cBGw5BtIlAAmAQ2AKadJs2LkqUWgxbsA3NwD0x3lAAiECvGjI0vSVZvAIsrar2s2RrqfMAShAAjiL4UAA+UNIIUc62voEhYfCR0ULAvtwAxgKMwowQAG4QZADCABYQ2QDWIgAU1CQARgBW2IUlZACUSAB8Oi2tBlDcOXnCFQqMcjZkDWQhJBC02EHB3Z7q-ajcUPtQ9ABmUPWLwcu0AHTmiHe4MTi9aIvA5IwPOOx7B9bU0MdTudLsAbuIkPc8PAnqJXu9cDAvpwuD99p1SpVqjUzksVsBulkuAcoHCyB8cDgRmwgA"
   },
   {
-    "description": "[Intermediate] Отсортировать и закомментировать ненужное. Для типов \r\n type Animal = { make: undefined } \r\n type Dog = Animal & { bark: undefined } оставьте только компилируемый код",
+    "description": "[Intermediate] Отсортировать и закомментировать ненужное. Для типов \r\n type Animal = { make: undefined } \r\n type Dog = Animal & { bark: undefined } оставьте только компилируемый код. В TSConfig strict = true",
     "blocks": [
       {
         "id": 1,
@@ -141,6 +141,6 @@
       [ 1,2 ],
       [ 2,1 ]
     ],
-    "result": "https://www.typescriptlang.org/play?strictFunctionTypes=false#code/LAKALgngDgpgBAQQHYEsC2BDANnAvHAbzkwGsYAuOAVyQBMYAzFJGWuAX1EljgBEB7AOZ5EqTDgBkhOACMMAJxKUa9JizacQoAPTbu8AEIoAbgpQYkYAKLGYlgBIXaWGPIA8VuDAAeYO7QBnUXRsAD4RIhkTMwsAYxhHWJIAChhbS0orAEpKY34UDQBtACIo03lzJHjEkmKAXQBuLmh4GzswRzoXd08fPzog5BCscPxU9LBMrLxwvILQHW0AsArYsAAxGjWUfiQAFRaAyhWqeFJ4FDA4BgwULEXY3eW4AAsnbsyJzudXNyHxUZwZK0ISUASCaa4cJER5IAL8FwAOiwQmBQkRckU000sOeby6rk+7W+3T+YjCImSFmGlH+2Eh0LguIRMGRqOp4kR52xQA"
+    "result": "https://www.typescriptlang.org/play?strictFunctionTypes=false#code/LAKALgngDgpgBAQQHYEsC2BDANnAvHAbzkwGsYAuOAVyQBMYAzFJGWuAX1EljgBEB7AOZ5EqTDgBkhOACMMAJxKUa9JizacQoAPTbu8AEIoAbgpQYkYAKLGYlgBIXaWGPIA8VuDAAeYO7QBnUXRsAD4RIhkTMwsAYxhHWJIAChhbS0orAEpKY34UDQBtACIo03lzJHjEkmKAXQBuLmh4GzswRzoXd08fPzog5BCscPxU9LBMrLxwvILQHW0AsArYsAAxGjWUfiQAFRaAyhWqeAZ+eXi4WN2VjHLK2Ig4c-kXrbAdpDgFQSo0doBRY3JDLOAACyc3UyE06zlcbiG4lGcGStCElAEgmmuHCRBBAX4LgAdFghGihMS5IpppoCWAIVDXDD2nDuoixGERMkLMNKEjsDi8dddoSSWTBDzOVhiaQYLSgA"
   }
 ]
