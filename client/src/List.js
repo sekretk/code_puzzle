@@ -55,11 +55,11 @@ export default function List({ items, pollId, text }) {
 
     return (
         <>
-            <p>{text}</p>
+            <p className="description">{text}</p>
             <button onClick={onNext}>Дальше</button>
             <button onClick={onSubmit}>Submit</button>
             <div className="content">
-                <SortableContainer onSortEnd={onSortEnd}>
+                <SortableContainer onSortEnd={onSortEnd} useWindowAsScrollContainer={true}>
                     {itemsVal.map((value, index) => (
                         <SortableItem key={`item-${value.id}`} index={index} value={value} onToggle={onItemToggle(value.id)} />
                     ))}

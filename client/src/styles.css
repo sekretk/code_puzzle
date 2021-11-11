@@ -11,8 +11,6 @@ body {
   overflow: hidden;
   user-select: none;
   font-family: 'Raleway', sans-serif;
-  display: flex;
-  justify-content: center;
   align-items: center;
   background: #f0f0f0;
 }
@@ -33,29 +31,20 @@ body {
 
 .content {
   position: relative;
-  width: 320px;
-  height: 240px;
+  margin-left: 30px;
+  overflow-y: scroll;
 }
 
-.content > div {
-  position: absolute;
-  width: 320px;
-  height: 90px;
-  overflow: visible;
-  pointer-events: auto;
-  transform-origin: 50% 50% 0px;
-  border-radius: 5px;
-  color: white;
-  line-height: 90px;
-  padding-left: 32px;
-  font-size: 14.5px;
-  background: lightblue;
-  text-transform: uppercase;
-  letter-spacing: 2px;
+.description {
+  padding: 20px;
 }
 
 .content li {
   color: black;
+}
+
+.content ul {
+  padding: 0;
 }
 
 li.commented {
