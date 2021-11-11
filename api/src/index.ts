@@ -60,6 +60,6 @@ app.get('/rndpoll', function (req, res) {
 
 app.post('/result', function (req, res) {
   const attempt = req.body as PollAttempt;
-  const foundPoll = polls.find(poll => poll.id === attempt.id);
+  const foundPoll = polls.find(poll => poll.id === attempt.id && poll.answers.some(answer => JSON.stringify(attempt.lines) === JSON.stringify(answer)));
   res.end(foundPoll?.result)
 })

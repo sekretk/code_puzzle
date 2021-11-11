@@ -14,7 +14,7 @@ export const swapInArray = (arr, idx1, idx2) => {
 
   const poll = await fetchedPolls.json();
 
-  const items = poll.blocks.map(block => ({ name: block, commented: Math.random() < 0.5 }))
+  const items = poll.blocks.map(block => ({ ...block, commented: Math.random() < 0.5 }))
 
   // render(<DraggableList pollId={poll.id} text={poll.description} items={items} />, document.getElementById('root'))
 
