@@ -1,0 +1,1 @@
+git add api/polls.json && git commit -m"added polls" && git push
