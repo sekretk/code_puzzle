@@ -27,33 +27,38 @@ const getRandStr = () => Math.random().toString(36).replace(/[^a-z]+/g, '').subs
 
 type PollAttempt = {
   id: string,
-  lines: Array<string>
+  lines: Array<number>
+}
+
+type Line = {
+  id: number,
+  line: string
 }
 
 type Poll = {
   description: string,
   blocks: Array<string>,
-  answers: Array<Array<string>>,
+  answers: Array<Array<number>>,
   result: string
 }
 
 type PollWithID = Poll & { id: string }
 
-const polls: Array<PollWithID> = (JSON.parse(fs.readFileSync(path.join(__dirname, 'polls.json'), 'utf-8')) as Array<Poll>).map(poll => ({...poll, id: getRandStr() }));
+const polls: Array<PollWithID> = (JSON.parse(fs.readFileSync(path.join(__dirname, 'polls.json'), 'utf-8')) as Array<Poll>).map(poll => ({ ...poll, id: getRandStr() }));
 
-app.get('/allpolls', function(req, res){
+app.get('/allpolls', function (req, res) {
   res.setHeader('Content-Type', 'application/json');
   res.end(JSON.stringify(polls));
 });
 
-app.get('/rndpoll', function(req, res){
+app.get('/rndpoll', function (req, res) {
   res.setHeader('Content-Type', 'application/json');
-  const rndPoll = polls[Math.floor(Math.random()*polls.length)];
+  const rndPoll = polls[Math.floor(Math.random() * polls.length)];
 
-  res.end(JSON.stringify({...rndPoll,answers: undefined, result: undefined }));
+  res.end(JSON.stringify({ ...rndPoll, answers: undefined, result: undefined }));
 });
 
-app.post('/result', function(req, res) {
+app.post('/result', function (req, res) {
   const attempt = req.body as PollAttempt;
   const foundPoll = polls.find(poll => poll.id === attempt.id);
   res.end(foundPoll?.result)

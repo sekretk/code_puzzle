@@ -1,22 +1,27 @@
 import { render } from 'react-dom'
-import React from 'react'
+import React, { useState } from 'react'
 import './styles.css'
-import DraggableList from './App'
+import List from './List'
 
-// const items = [
-//   { name: 'compact', commented: false },
-//   { name: 'takeWhile', commented: false },
-//   { name: 'filter', commented: true },
-//   { name: 'skip(1)', commented: false },
-//   { name: 'shareReply', commented: true }
-// ]
+export const swapInArray = (arr, idx1, idx2) => {
+  const result = [...arr];
+  [result[idx1], result[idx2]] = [arr[idx2], arr[idx1]]
+  return result;
+}
 
 (async () => {
-const fetchedPolls = await fetch('http://boysthings.top:9999/rndpoll');
+  const fetchedPolls = await fetch('http://boysthings.top:9999/rndpoll');
 
-const poll = await fetchedPolls.json();
+  const poll = await fetchedPolls.json();
 
-const items = poll.blocks.map(block => ({name: block, commented: Math.random() < 0.5}))
+  const items = poll.blocks.map(block => ({ name: block, commented: Math.random() < 0.5 }))
 
-render(<DraggableList pollId={poll.id} text={poll.description} items={items} />, document.getElementById('root'))
+  // render(<DraggableList pollId={poll.id} text={poll.description} items={items} />, document.getElementById('root'))
+
+  // render(<List />, document.getElementById('root'))
+  // })();
+
+
+  render(<List pollId={poll.id} text={poll.description} items={items}/>, document.getElementById('root'))
+
 })();

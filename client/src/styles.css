@@ -54,7 +54,7 @@ body {
   letter-spacing: 2px;
 }
 
-.content > div {
+.content > li {
   background: lightgrey;
   color: black;
 }
