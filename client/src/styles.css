@@ -94,12 +94,12 @@ li {
   margin: auto;
   float: none;
 }
-/* .content > div:nth-child(2) {
-  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+
+.fader {
+  opacity: 0;
+  transition: opacity 1s; 
+  color: red;
 }
-.content > div:nth-child(3) {
-  background: linear-gradient(135deg, #5ee7df 0%, #b490ca 100%);
+.fader.fade {
+  opacity: 0;
 }
-.content > div:nth-child(4) {
-  background: linear-gradient(135deg, #c3cfe2 0%, #c3cfe2 100%);
-} */

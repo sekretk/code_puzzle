@@ -23,6 +23,8 @@ export default function List({ items, pollId, text }) {
 
     const [result, setResult] = useState(undefined);
 
+    const [incorrect, setIncorrecrt] = useState(false);
+
     const onSortEnd = ({ oldIndex, newIndex }) => {
         setItems(arrayMoveImmutable(itemsVal, oldIndex, newIndex));
     };
@@ -39,6 +41,8 @@ export default function List({ items, pollId, text }) {
         const content = await rawResponse.text();
 
         setResult(content);
+
+        setIncorrecrt(!Boolean(content))
     }
 
     const onNext = () => {
