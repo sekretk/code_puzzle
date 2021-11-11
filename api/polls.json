@@ -1,39 +1,34 @@
 [
   {
-    "description": "nulla aute excepteur 1-2 and 1-3 correct",
+    "description": "[Easy] Отсортировать и закомментировать ненужное. Получить компилируемый вызов в последней строке функции \r\nconst comb: (subject: Animal) => void = () => {};",
     "blocks": [
       {
         "id": 1,
-        "line": "line 1"
+        "line": "type Chordata = { length: number };"
       },
       {
         "id": 2,
-        "line": "line 2"
+        "line": "type Animal = { breed: string };"
       },
       {
         "id": 3,
-        "line": "line 3"
+        "line": "type Pet = Animal & { name: string }"
       },
       {
         "id": 4,
-        "line": "line 4"
+        "line": "comb({} as Pet);"
       },
       {
         "id": 5,
-        "line": "line next 5"
+        "line": "comb({} as Chordata);"
       }
     ],
     "answers": [
       [
-        1,
-        2
+        1,2,3,5
       ],
-      [
-        1,
-        3
-      ]
     ],
-    "result": "ut consequat consequat minim consequat nulla nisi sunt nulla nulla adipisicing aliquip culpa exercitation nisi amet dolor Lorem consequat fugiat"
+    "result": "https://www.typescriptlang.org/play?#code/C4TwDgpgBAwgFgewE4BMCGw1QLxQN5QA2EAdgObBwBcUJArgLYBGESUAvgNwCwAUKJCgBBEgEsGaQjnxQmSCBBQ0AzsCSjyHHv3DQAChGDSR4yVABkMkmgYQVajWQ58+AYwQlVUd8xoAKZTomACsIV2AaEwlCAEocAD4oADcEURRpPzjsRLwuF14fJj9cqDRlKANgGO1C4vZS8vhkdExqoA"
   },
   {
     "description": "velit cupidatat excepteur sit velit nostrud ex exercitation 2-3 correct",
