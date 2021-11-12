@@ -114,7 +114,7 @@
       },
       {
         "id": 6,
-        "line": "Number"
+        "line": "Decimal"
       }
     ],
     "answers": [
@@ -252,5 +252,77 @@
     },
     "sortable": true,
     "multiple": true
+  },
+  {
+    "description": "Результат выполнения операции: \n  byte a = 100;\n  byte b = 30;\n  byte c = a + b;\n System.out.println(c);",
+    "blocks": [
+      {
+        "id": 1,
+        "line": "130"
+      },
+      {
+        "id": 2,
+        "line": "-125"
+      },
+      {
+        "id": 3,
+        "line": "0"
+      },
+      {
+        "id": 4,
+        "line": "ошибка компиляции"
+      }
+    ],
+    "answers": [
+      [ 4 ]
+    ],
+    "result": {
+      "links": [ ],
+      "text": "Бинарные операции над byte и short всегда приводятся к int. Поэтому будет ошибка компиляции, т.к. нельзя неявно привести int к short без потери точности"
+    },
+    "sortable": false,
+    "multiple": false
+  },
+  {
+    "description": "class OutterClass {\n  class InnerClass {\n    public String toString() {\n      return \"Hello from inner class\";\n    }\n  }\n\n  public static void main(String ... args) {\n  ...\n  }\n}",
+    "blocks": [
+      {
+        "id": 1,
+        "line": "OutterClass.InnerClass inner = outter.new InnerClass();"
+      },
+      {
+        "id": 2,
+        "line": "System.out.println(inner);"
+      },
+      {
+        "id": 3,
+        "line": "OutterClass outter = new OutterClass();"
+      },
+      {
+        "id": 4,
+        "line": "System.out.println(InnerClass.toString());"
+      },
+      {
+        "id": 5,
+        "line": "InnerClass inner = new InnerClass();"
+      },
+      {
+        "id": 6,
+        "line": "import static OutterClass.InnerClass;"
+      },
+      {
+        "id": 7,
+        "line": "OutterClass.InnerClass inner = new OutterClass.InnerClass();"
+      }
+    ],
+    "answers": [
+      [ 1,2 ]
+    ],
+    "result": {
+      "links": [ ],
+      "text": "Бинарные операции над byte и short всегда приводятся к int. Поэтому будет ошибка компиляции, т.к. нельзя неявно привести int к short без потери точности"
+    },
+    "sortable": false,
+    "multiple": false
   }
 ]
