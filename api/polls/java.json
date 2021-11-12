@@ -126,5 +126,131 @@
     },
     "sortable": true,
     "multiple": true
+  },
+  {
+    "description": "Расположите модификаторы доступа от самого строгого (вверху) до самого открытого (внизу)",
+    "blocks": [
+      {
+        "id": 1,
+        "line": "private"
+      },
+      {
+        "id": 2,
+        "line": "default"
+      },
+      {
+        "id": 3,
+        "line": "protected"
+      },
+      {
+        "id": 4,
+        "line": "public"
+      },
+      {
+        "id": 5,
+        "line": "sealed"
+      },
+      {
+        "id": 6,
+        "line": "virtual"
+      }
+    ],
+    "answers": [
+      [ 1,2,3,4 ]
+    ],
+    "result": {
+      "links": [ ],
+      "text": ""
+    },
+    "sortable": true,
+    "multiple": true
+  },
+  {
+    "description": "Расположите алгоритмы в порядке возрастания сложности в худшем случае: от самого быстро вверху до самого медленного внизу.",
+    "blocks": [
+      {
+        "id": 1,
+        "line": "Взятие элемента массива по индексу"
+      },
+      {
+        "id": 2,
+        "line": "Двоичный поиск"
+      },
+      {
+        "id": 3,
+        "line": "Сортировка подсчетом"
+      },
+      {
+        "id": 4,
+        "line": "Сортировка слияниями"
+      },
+      {
+        "id": 5,
+        "line": "Сортировка вставкой"
+      }
+    ],
+    "answers": [
+      [ 1,2,3,4,5 ]
+    ],
+    "result": {
+      "links": [ ],
+      "text": ""
+    },
+    "sortable": true,
+    "multiple": true
+  },
+  {
+    "description": "Сортировка пузырьком. Закомментируйте лишние строки.",
+    "blocks": [
+      {
+        "id": 1,
+        "line": "static void bubbleSort(int[] arr) {"
+      },
+      {
+        "id": 2,
+        "line": "  for (int i = 0; i < arr.length; i++) {"
+      },
+      {
+        "id": 3,
+        "line": "    for (int j = 1; j < (arr.length - i); j++) {"
+      },
+      {
+        "id": 4,
+        "line": "      if (arr[j - 1] > arr[j]) {"
+      },
+      {
+        "id": 5,
+        "line": "      int temp = arr[j - 1];"
+      },
+      {
+        "id": 6,
+        "line": "      arr[j - 1] = arr[j];"
+      },
+      {
+        "id": 7,
+        "line": "      arr[j] = temp;"
+      },
+      {
+        "id": 8,
+        "line": "}}}}"
+      },
+      {
+        "id": 9,
+        "line": "    for (int j = 0; j < arr.length; j++) {"
+      },
+      {
+        "id": 10,
+        "line": "    for (int j = arr.length; j > 0; j--) {"
+      }
+    ],
+    "answers": [
+      [  1,2,3,4,5,6,7,8 ]
+    ],
+    "result": {
+      "links": [ ],
+      "text": ""
+    },
+    "sortable": true,
+    "multiple": true
   }
 ]
