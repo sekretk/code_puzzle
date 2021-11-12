@@ -2,59 +2,86 @@ import express from "express"
 import path from "path"
 import fs from 'fs'
 
-const app = express()
-const port = 9999
+const POLL_DIR = 'polls';
+const PORT = 9999;
 
-// app.get('/', (req, res) => {
-//   res.send('Hello World!')
-// })
+const app = express()
 
 var cors = require('cors')
 
 app.use(cors())
 
-// Parse URL-encoded bodies (as sent by HTML forms)
 app.use(express.urlencoded());
 
-// Parse JSON bodies (as sent by API clients)
 app.use(express.json());
 
-app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`)
+app.listen(PORT, () => {
+  console.log(`Example app listening at http://localhost:${PORT}`)
 })
 
 const getRandStr = () => Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5);
 
-type PollAttempt = {
-  id: string,
-  lines: Array<string>
+type Attempt = {
+  question: string,
+  lines: Array<number>
 }
 
-type Poll = {
+type Link = {
+  text: string,
+  link: string
+}
+
+type Line = {
+  id: number,
+  line: string
+}
+
+type Result = {
+  links: Array<Link>,
+  text: string
+}
+
+type Question = {
   description: string,
-  blocks: Array<string>,
-  answers: Array<Array<string>>,
-  result: string
+  blocks: Array<Line>,
+  answers: Array<Array<number>>,
+  result: Result,
+  sortable: boolean,
+  multiple: boolean
 }
 
-type PollWithID = Poll & { id: string }
+type QuestionWithID = Question & { id: string }
 
-const polls: Array<PollWithID> = (JSON.parse(fs.readFileSync(path.join(__dirname, 'polls.json'), 'utf-8')) as Array<Poll>).map(poll => ({...poll, id: getRandStr() }));
+const parsePoll = (fileName: string) => 
+  (JSON.parse(fs.readFileSync(path.join(__dirname, POLL_DIR, fileName), 'utf-8')) as Array<Question>).map(question => ({...question, id: getRandStr()}));
 
-app.get('/allpolls', function(req, res){
+const findAnswer = 
+  (attempt: Attempt) => 
+    (question: QuestionWithID) => 
+      question.id === attempt.question && question.answers.some(answer => JSON.stringify(attempt.lines) === JSON.stringify(answer));
+
+const polls: Map<string, Array<QuestionWithID>> = 
+  fs.readdirSync(path.join(__dirname, POLL_DIR))
+  .reduce((acc, cur) => acc.set(cur.replace('.json', ''), parsePoll(cur)), new Map<string, Array<QuestionWithID>>());
+
+app.get('/allpolls', function (req, res) {
   res.setHeader('Content-Type', 'application/json');
   res.end(JSON.stringify(polls));
 });
 
-app.get('/rndpoll', function(req, res){
+app.get('/rndpoll/:poll', function (req, res) {
   res.setHeader('Content-Type', 'application/json');
-  const rndPoll = polls[Math.floor(Math.random()*polls.length)];
+  const poll = req.params["poll"];
+  
+  const rndPoll = polls.get(poll)?.[Math.floor(Math.random() * (polls.get(poll)?.length??0))];
 
-  res.end(JSON.stringify({...rndPoll,answers: undefined, result: undefined }));
+  res.end(JSON.stringify({ ...rndPoll, answers: undefined, result: undefined }));
 });
 
-app.post('/result', function(req, res) {
-  const attempt = req.body as PollAttempt;
-  const foundPoll = polls.find(poll => poll.id === attempt.id);
-  res.end(foundPoll?.result)
+app.post('/result/:poll', function (req, res) {
+  const attempt = req.body as Attempt;
+  const poll = req.params["poll"];
+  const foundPoll = polls.get(poll)?.find(findAnswer(attempt));
+  console.log(attempt, polls.get(poll))
+  res.end(JSON.stringify(foundPoll?.result))
 })

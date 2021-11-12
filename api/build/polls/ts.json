@@ -1,0 +1,189 @@
+[
+    {
+      "description": "[Easy] Отсортировать и закомментировать ненужное. Получить компилируемый вызов в последней строке функции const comb: (subject: Animal) => void = () => {};",
+      "blocks": [
+        {
+          "id": 1,
+          "line": "type Chordata = { length: number };"
+        },
+        {
+          "id": 2,
+          "line": "type Animal = Chordata & { breed: string };"
+        },
+        {
+          "id": 3,
+          "line": "type Pet = Animal & { name: string }"
+        },
+        {
+          "id": 4,
+          "line": "comb({} as Pet);"
+        },
+        {
+          "id": 5,
+          "line": "comb({} as Chordata);"
+        }
+      ],
+      "answers": [
+        [
+          1,2,3,4
+        ]
+      ],
+      "result": {
+        "links": [
+          { "text": "playground",
+            "link": "https://www.typescriptlang.org/play?#code/C4TwDgpgBAwgFgewE4BMCGw1QLxQN5QA2EAdgObBwBcUJArgLYBGESUAvgNwCwAUKJCgBBEgEsGaQjliJUGLADJ8UJkggQUNAM7Ako8hx79w0AAoRg0keMlQlBEmgYRtu-WQ58+AYwQkdUL7MNAAUWnRMAFYQ3sA01hKEAJQ4AHxQAG4IoijSISnY6XhcXrxBTCHFUGhaUObASUbllezVtfDI6JiNQA"
+          }
+        ],
+        "text": "You right!"
+      },
+      "sortable": true,
+      "multiple": true
+    },
+    {
+      "description": "[Easy] Отсортировать и закомментировать ненужное. Есть функция: const format: (item: number) => void = () => {}; Необходимо получить компилируемый код",
+      "blocks": [
+        {
+          "id": 2,
+          "line": "const issuer: string | number = 'value';"
+        },
+        {
+          "id": 3,
+          "line": "isNumber(issuer) && format(issuer);"
+        },
+        {
+          "id": 4,
+          "line": "const isNumber = (item: unknown) => typeof item === 'number';"
+        },
+        {
+          "id": 5,
+          "line": "const isNumber = (item: unknown): item is number => typeof item === 'number';"
+        }
+      ],
+      "answers": [
+        [2,4,3],
+        [4,2,3]
+      ],
+      "result": {
+        "links": [
+          { "text": "playground",
+            "link": "https://www.typescriptlang.org/play?#code/MYewdgzgLgBAZiATgWwIZQFwwBQEsoCmyWYArsgEYGICUMAvAHwwBuIuAJgznUzAN4BfANwBYAFASA9FICSUCDFQwoATwAOBGAHNSqRFwAWUKOogYZAd2sA6NZojBEudVAA2qMNptJtUjiDAEFKGnhwUICAA1lIATFJg+ogglrheNsbIbgDEpBBp2gC09gSF6ogEHLjA6AQQEqCQsLgQAHLkVIjceITEMKRgUWApYDRY+EQwLTBklNQMzCUgcFO9DPT0MADks51bYuIyjdBTbR3zmz1EWANDI7yLGgTLq5MbmzvniPsSDeAnLQgpGoWGgzi8MAAPjMvtwtixUG5gT9xC12nNEHgIEDqHQAGR4+BINBQLE42jCIA"
+          }
+        ],
+        "text": "You right!"
+      },
+      "sortable": true,
+      "multiple": true
+    },
+    {
+      "description": "[Easy] Отсортировать и закомментировать ненужное. Получить в итоге код который при добавлении в тип Method ",
+      "blocks": [
+        {
+          "id": 1,
+          "line": "type Method = 'Post' | 'Get';"
+        },
+        {
+          "id": 2,
+          "line": "const handler = (request: {type: Method}): string => {"
+        },
+        {
+          "id": 3,
+          "line": "case 'Post': return 'P';"
+        },
+        {
+          "id": 4,
+          "line": "case 'Get': return 'G';"
+        },
+        {
+          "id": 5,
+          "line": "default: return 'NaN'"
+        }
+      ],
+      "answers": [
+        [ 1,2,3,4 ],
+        [ 1,3,2,4 ]
+      ],
+      "result": {
+        "links": [
+          { "text": "playground",
+            "link": "https://www.typescriptlang.org/play?#code/PTAuE8AcFMAIFlqgBYHsAmsC8sDkAFVAZ1F1gB88BxJMy3AEWgBslpcBuAWACgIYESNJhwFipCtVrcevAMaoAdiVjIAhovSsATtlgAKbdACOAV2gkAXLADe-aNcQoMAXwCU1ktoCWigObYAHy2vLBhsEQA7t6gcsgGRmYWoAB09m4hPOHZsHJqRHBiJLjWRqCm2op4+JyhOWF5BVKkpUgVVbhUtVn1sCDo0ABmaqbMoK3llXgAcmrTuHVhLrwuQA"
+          }
+        ],
+        "text": "You right!"
+      },
+      "sortable": true,
+      "multiple": true
+    },
+    {
+      "description": "[Intermediate] Отсортировать и закомментировать ненужное. type Get = { type: 'Get', url: string } \r\n type Post = { type: 'Post', data: string, url: string }; \r\n type Req = Get | Post; \r\nНеобходимо получить код который не будет проходить TypeCheck пр добавлении к Req типа type Delete = { type: 'Delete', url: string }; ",
+      "blocks": [
+        {
+          "id": 1,
+          "line": "const handler = (request: Req): string => {"
+        },
+        {
+          "id": 2,
+          "line": "if (request.type === 'Post') { return 'P' }"
+        },
+        {
+          "id": 3,
+          "line": "else if (request.type === 'Get') { return 'G' }"
+        },
+        {
+          "id": 4,
+          "line": "neverCheck(request);"
+        },
+        {
+          "id": 5,
+          "line": "return ''; }"
+        },
+        {
+          "id": 6,
+          "line": "const neverCheck = (subj: never) => subj; "
+        }
+      ],
+      "answers": [
+        [ 6,1,2,3,4,5 ],
+        [ 1,2,3,4,5,6 ],
+        [ 1,2,3,6,4,5 ]
+      ],
+      "result": {
+        "links": [
+          { "text": "playground",
+            "link": "https://www.typescriptlang.org/play?#code/C4TwDgpgBA4hxQLxQN5VJAXFA5HYOANFAK4BOANtgM7BkCWAdgOZQC+AsAFAbQAKAe1pJU6cBGw5BtIlAAmAQ2AKadJs2LkqUWgxbsA3NwD0x3lAAiECvGjI0vSVZvAIsrar2s2RrqfMAShAAjiL4UAA+UNIIUc62voEhYfCR0ULAvtwAxgKMwowQAG4QZADCABYQ2QDWIgAU1CQARgBW2IUlZACUSAB8Oi2tBlDcOXnCFQqMcjZkDWQhJBC02EHB3Z7q-ajcUPtQ9ABmUPWLwcu0AHTmiHe4MTi9aIvA5IwPOOx7B9bU0MdTudLsAbuIkPc8PAnqJXu9cDAvpwuD99p1SpVqjUzksVsBulkuAcoHCyB8cDgRmwgA"
+          }
+        ],
+        "text": "You right!"
+      }
+    },
+    {
+      "description": "[Intermediate] Отсортировать и закомментировать ненужное. Для типов \r\n type Animal = { make: undefined } \r\n type Dog = Animal & { bark: undefined } оставьте только компилируемый код. В TSConfig strict = true",
+      "blocks": [
+        {
+          "id": 1,
+          "line": "type EventHandler<E extends Animal> = (event: E) => void"
+        },
+        {
+          "id": 2,
+          "line": "const handler: EventHandler<Animal> = (dog: Dog) => { console.log(dog.bark) }"
+        },
+        {
+          "id": 3,
+          "line": "const handler: EventHandler<Animal> = (animal: Animal) => { console.log(animal.make) }"
+        }
+      ],
+      "answers": [
+        [ 1,2 ],
+        [ 2,1 ]
+      ],
+      "result": {
+        "links": [
+          { "text": "playground",
+            "link": "https://www.typescriptlang.org/play?strictFunctionTypes=false#code/LAKALgngDgpgBAQQHYEsC2BDANnAvHAbzkwGsYAuOAVyQBMYAzFJGWuAX1EljgBEB7AOZ5EqTDgBkhOACMMAJxKUa9JizacQoAPTbu8AEIoAbgpQYkYAKLGYlgBIXaWGPIA8VuDAAeYO7QBnUXRsAD4RIhkTMwsAYxhHWJIAChhbS0orAEpKY34UDQBtACIo03lzJHjEkmKAXQBuLmh4GzswRzoXd08fPzog5BCscPxU9LBMrLxwvILQHW0AsArYsAAxGjWUfiQAFRaAyhWqeAZ+eXi4WN2VjHLK2Ig4c-kXrbAdpDgFQSo0doBRY3JDLOAACyc3UyE06zlcbiG4lGcGStCElAEgmmuHCRBBAX4LgAdFghGihMS5IpppoCWAIVDXDD2nDuoixGERMkLMNKEjsDi8dddoSSWTBDzOVhiaQYLSgA"
+          }
+        ],
+        "text": "You right!"
+      },
+      "sortable": true,
+      "multiple": true
+    }
+  ]

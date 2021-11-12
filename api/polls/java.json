@@ -1,0 +1,328 @@
+[
+  {
+    "description": "Закомментируйте HTTP методы, которые являются идемпотентными.",
+    "blocks": [
+      {
+        "id": 1,
+        "line": "POST"
+      },
+      {
+        "id": 2,
+        "line": "PUT"
+      },
+      {
+        "id": 3,
+        "line": "DELETE"
+      },
+      {
+        "id": 4,
+        "line": "GET"
+      }
+    ],
+    "answers": [
+      [ 1 ]
+    ],
+    "result": {
+      "links": [ ],
+      "text": "Метод HTTP является идемпотентным, если повторный идентичный запрос, сделанный один или несколько раз подряд, имеет один и тот же эффект, не изменяющий состояние сервера, кроме сбора статистики или подобных операций. Корректно реализованные методы GET, HEAD, PUT и DELETE идемпотентны, но не метод POST."
+    },
+    "sortable": false,
+    "multiple": true
+  },
+  {
+    "description": "Какой результат выведет данный фрагмент кода? \npublic static void main(String... args) {\n System.out.println(2.00 - 1.10);\n}",
+    "blocks": [
+      {
+        "id": 1,
+        "line": "0.8999999999999999"
+      },
+      {
+        "id": 2,
+        "line": "0.9"
+      },
+      {
+        "id": 3,
+        "line": "2.00 - 1.10"
+      },
+      {
+        "id": 4,
+        "line": "StringFormatException "
+      }
+    ],
+    "answers": [
+      [ 1 ]
+    ],
+    "result": {
+      "links": [ ],
+      "text": ""
+    },
+    "sortable": false,
+    "multiple": false
+  },
+  {
+    "description": "Результат выполнения операции\nSystem.out.println(1 + 2 + \"\" + 3 + 4);",
+    "blocks": [
+      {
+        "id": 1,
+        "line": "1234"
+      },
+      {
+        "id": 2,
+        "line": "334"
+      },
+      {
+        "id": 3,
+        "line": "10"
+      },
+      {
+        "id": 4,
+        "line": "37"
+      }
+    ],
+    "answers": [
+      [ 2 ]
+    ],
+    "result": {
+      "links": [ ],
+      "text": "Вычисление операции идёт слева направо. Сначала 1 + 2 сложится как целые, а потом к итоговому 3 будет прибавлена строка, от чего 3 превратиться в строку \"3\" и к этой строке произойдет конкатенация значений 3 и 4"
+    },
+    "sortable": false,
+    "multiple": false
+  },
+  {
+    "description": "Расположите типы данных в порядке возрастания максимально допустимого значения (сверху вниз)",
+    "blocks": [
+      {
+        "id": 1,
+        "line": "Byte"
+      },
+      {
+        "id": 2,
+        "line": "Short"
+      },
+      {
+        "id": 3,
+        "line": "Integer"
+      },
+      {
+        "id": 4,
+        "line": "Long"
+      },
+      {
+        "id": 5,
+        "line": "BigInteger"
+      },
+      {
+        "id": 6,
+        "line": "Decimal"
+      }
+    ],
+    "answers": [
+      [ 1,2,3,4,5 ]
+    ],
+    "result": {
+      "links": [ ],
+      "text": "Byte - Short - Integer - Long - BigInteger. Number в Java нет"
+    },
+    "sortable": true,
+    "multiple": true
+  },
+  {
+    "description": "Расположите модификаторы доступа от самого строгого (вверху) до самого открытого (внизу)",
+    "blocks": [
+      {
+        "id": 1,
+        "line": "private"
+      },
+      {
+        "id": 2,
+        "line": "default"
+      },
+      {
+        "id": 3,
+        "line": "protected"
+      },
+      {
+        "id": 4,
+        "line": "public"
+      },
+      {
+        "id": 5,
+        "line": "sealed"
+      },
+      {
+        "id": 6,
+        "line": "virtual"
+      }
+    ],
+    "answers": [
+      [ 1,2,3,4 ]
+    ],
+    "result": {
+      "links": [ ],
+      "text": ""
+    },
+    "sortable": true,
+    "multiple": true
+  },
+  {
+    "description": "Расположите алгоритмы в порядке возрастания сложности в худшем случае: от самого быстро вверху до самого медленного внизу.",
+    "blocks": [
+      {
+        "id": 1,
+        "line": "Взятие элемента массива по индексу"
+      },
+      {
+        "id": 2,
+        "line": "Двоичный поиск"
+      },
+      {
+        "id": 3,
+        "line": "Сортировка подсчетом"
+      },
+      {
+        "id": 4,
+        "line": "Сортировка слияниями"
+      },
+      {
+        "id": 5,
+        "line": "Сортировка вставкой"
+      }
+    ],
+    "answers": [
+      [ 1,2,3,4,5 ]
+    ],
+    "result": {
+      "links": [ ],
+      "text": ""
+    },
+    "sortable": true,
+    "multiple": true
+  },
+  {
+    "description": "Сортировка пузырьком. Закомментируйте лишние строки.",
+    "blocks": [
+      {
+        "id": 1,
+        "line": "static void bubbleSort(int[] arr) {"
+      },
+      {
+        "id": 2,
+        "line": "  for (int i = 0; i < arr.length; i++) {"
+      },
+      {
+        "id": 3,
+        "line": "    for (int j = 1; j < (arr.length - i); j++) {"
+      },
+      {
+        "id": 4,
+        "line": "      if (arr[j - 1] > arr[j]) {"
+      },
+      {
+        "id": 5,
+        "line": "      int temp = arr[j - 1];"
+      },
+      {
+        "id": 6,
+        "line": "      arr[j - 1] = arr[j];"
+      },
+      {
+        "id": 7,
+        "line": "      arr[j] = temp;"
+      },
+      {
+        "id": 8,
+        "line": "}}}}"
+      },
+      {
+        "id": 9,
+        "line": "    for (int j = 0; j < arr.length; j++) {"
+      },
+      {
+        "id": 10,
+        "line": "    for (int j = arr.length; j > 0; j--) {"
+      }
+    ],
+    "answers": [
+      [  1,2,3,4,5,6,7,8 ]
+    ],
+    "result": {
+      "links": [ ],
+      "text": ""
+    },
+    "sortable": true,
+    "multiple": true
+  },
+  {
+    "description": "Результат выполнения операции: \n  byte a = 100;\n  byte b = 30;\n  byte c = a + b;\n System.out.println(c);",
+    "blocks": [
+      {
+        "id": 1,
+        "line": "130"
+      },
+      {
+        "id": 2,
+        "line": "-125"
+      },
+      {
+        "id": 3,
+        "line": "0"
+      },
+      {
+        "id": 4,
+        "line": "ошибка компиляции"
+      }
+    ],
+    "answers": [
+      [ 4 ]
+    ],
+    "result": {
+      "links": [ ],
+      "text": "Бинарные операции над byte и short всегда приводятся к int. Поэтому будет ошибка компиляции, т.к. нельзя неявно привести int к short без потери точности"
+    },
+    "sortable": false,
+    "multiple": false
+  },
+  {
+    "description": "class OutterClass {\n  class InnerClass {\n    public String toString() {\n      return \"Hello from inner class\";\n    }\n  }\n\n  public static void main(String ... args) {\n  ...\n  }\n}",
+    "blocks": [
+      {
+        "id": 1,
+        "line": "OutterClass.InnerClass inner = outter.new InnerClass();"
+      },
+      {
+        "id": 2,
+        "line": "System.out.println(inner);"
+      },
+      {
+        "id": 3,
+        "line": "OutterClass outter = new OutterClass();"
+      },
+      {
+        "id": 4,
+        "line": "System.out.println(InnerClass.toString());"
+      },
+      {
+        "id": 5,
+        "line": "InnerClass inner = new InnerClass();"
+      },
+      {
+        "id": 6,
+        "line": "import static OutterClass.InnerClass;"
+      },
+      {
+        "id": 7,
+        "line": "OutterClass.InnerClass inner = new OutterClass.InnerClass();"
+      }
+    ],
+    "answers": [
+      [ 1,2 ]
+    ],
+    "result": {
+      "links": [ ],
+      "text": "Бинарные операции над byte и short всегда приводятся к int. Поэтому будет ошибка компиляции, т.к. нельзя неявно привести int к short без потери точности"
+    },
+    "sortable": false,
+    "multiple": false
+  }
+]
