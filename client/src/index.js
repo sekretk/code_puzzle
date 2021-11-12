@@ -14,6 +14,16 @@ export const swapInArray = (arr, idx1, idx2) => {
 
   const poll = window.location.pathname.replace('/', '');
 
+  if (!Boolean(poll)) {
+    const res = await fetch(url + '/polls');
+    const allPolls = await res.json();
+    const listOfPolls = (<ul>
+      {allPolls.map((poll) => <li><a href={poll}>{poll}</a></li>)}
+      </ul>)
+    render(listOfPolls, document.getElementById('root'));
+    return
+  }
+
   const fetchedQuestion = await fetch(url + '/rndpoll/'+poll);
 
   let question = await fetchedQuestion.json();

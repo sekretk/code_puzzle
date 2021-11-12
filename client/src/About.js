@@ -24,7 +24,7 @@ export default function Result({ links, text }) {
                 Приложение предлагает решить задачу.
                 Для пропуска нужно начать Далее.
                 Для отправки на проверку Отправить.
-                Для комментирования/раскомментирования строки нужно нажать на "-/+"
+                Для комментирования/раскомментирования строки нужно нажать на "//"
                 Допустимы следующие флаги на задачах:
             </p>
 
@@ -36,7 +36,7 @@ export default function Result({ links, text }) {
             </span>
 
             <span className="badge multiple">
-                <span class="badge_icon material-icons material-icons-outlined">
+                <span className="badge_icon material-icons material-icons-outlined">
                     checklist_rtl
                 </span>
                 Несколько вариантов

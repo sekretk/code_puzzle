@@ -38,9 +38,9 @@ var findAnswer = function (attempt) {
 };
 var polls = fs_1.default.readdirSync(path_1.default.join(__dirname, POLL_DIR))
     .reduce(function (acc, cur) { return acc.set(cur.replace('.json', ''), parsePoll(cur)); }, new Map());
-app.get('/allpolls', function (req, res) {
+app.get('/polls', function (req, res) {
     res.setHeader('Content-Type', 'application/json');
-    res.end(JSON.stringify(polls));
+    res.end(JSON.stringify(Array.from(polls.keys())));
 });
 app.get('/rndpoll/:poll', function (req, res) {
     var _a, _b, _c;

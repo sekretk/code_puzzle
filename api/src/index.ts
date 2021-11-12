@@ -64,9 +64,9 @@ const polls: Map<string, Array<QuestionWithID>> =
   fs.readdirSync(path.join(__dirname, POLL_DIR))
   .reduce((acc, cur) => acc.set(cur.replace('.json', ''), parsePoll(cur)), new Map<string, Array<QuestionWithID>>());
 
-app.get('/allpolls', function (req, res) {
+app.get('/polls', function (req, res) {
   res.setHeader('Content-Type', 'application/json');
-  res.end(JSON.stringify(polls));
+  res.end(JSON.stringify(Array.from(polls.keys())));
 });
 
 app.get('/rndpoll/:poll', function (req, res) {
