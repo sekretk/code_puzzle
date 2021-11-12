@@ -1,6 +1,6 @@
 [
     {
-      "description": "[Easy] Отсортировать и закомментировать ненужное. \nПолучить компилируемый вызов в последней строке функции \nconst comb: (subject: Animal) => void = () => {};",
+      "description": "Получить компилируемый вызов в последней строке функции \nconst comb: (subject: Animal) => void = () => {};",
       "blocks": [
         {
           "id": 1,
@@ -40,7 +40,7 @@
       "multiple": true
     },
     {
-      "description": "[Easy] Отсортировать и закомментировать ненужное.\nЕсть функция: const format: (item: number) => void = () => {}; Необходимо получить компилируемый код",
+      "description": "Есть функция: const format: (item: number) => void = () => {}; Необходимо получить компилируемый код",
       "blocks": [
         {
           "id": 2,
@@ -75,7 +75,7 @@
       "multiple": true
     },
     {
-      "description": "[Easy] Отсортировать и закомментировать ненужное.\nПолучить в итоге код который при добавлении в тип Method ещё одного варианта будет Type Check Error",
+      "description": "Получить в итоге код который при добавлении в тип Method ещё одного варианта будет Type Check Error",
       "blocks": [
         {
           "id": 1,
@@ -124,7 +124,7 @@
       "multiple": true
     },
     {
-      "description": "[Intermediate] Отсортировать и закомментировать ненужное.\ntype Get = { type: 'Get', url: string } \n type Post = { type: 'Post', data: string, url: string }; \r\n type Req = Get | Post; \r\nНеобходимо получить код который не будет проходить TypeCheck при добавлении к Req типа \ntype Delete = { type: 'Delete', url: string }; ",
+      "description": "Для типов: \ntype Get = { type: 'Get', url: string } \n type Post = { type: 'Post', data: string, url: string }; \n type Req = Get | Post; \nНеобходимо получить код который не будет проходить TypeCheck при добавлении к Req типа \ntype Delete = { type: 'Delete', url: string }; ",
       "blocks": [
         {
           "id": 1,
@@ -177,7 +177,7 @@
       "multiple": true
     },
     {
-      "description": "[Intermediate] Отсортировать и закомментировать ненужное. Для типов \n type Animal = { make: undefined } \n type Dog = Animal & { bark: undefined } оставьте только компилируемый код. \nВ TSConfig strict = true",
+      "description": "Для типов \n type Animal = { make: undefined } \n type Dog = Animal & { bark: undefined } оставьте только компилируемый код. \nВ TSConfig strict = true",
       "blocks": [
         {
           "id": 1,
@@ -205,6 +205,88 @@
         "text": "С ключом strictFunctionTypes поведение становится контравариантым вместо умолчательного бивариантного для параметров функции"
       },
       "sortable": true,
+      "multiple": true
+    },
+    {
+      "description": "Для типа\ntype Issuer = { a: number, b: string, c: boolean };\nКакая конструкция оствит тип { a: number, b: string }?",
+      "blocks": [
+        {
+          "id": 1,
+          "line": "type Subj = Pick<Issuer, 'a' | 'b'>"
+        },
+        {
+          "id": 2,
+          "line": "type Subj = Extract<Issuer, 'a' | 'b'>"
+        },
+        {
+          "id": 3,
+          "line": "type Subj = Exclude<Issuer, 'c'>"
+        },
+        {
+          "id": 4,
+          "line": "type Subj = Omit<Issuer, 'c'>"
+        }
+      ],
+      "answers": [
+        [ 1,4 ]
+      ],
+      "result": {
+        "links": [
+          { 
+            "text": "playground",
+            "link": "https://www.typescriptlang.org/play?#code/C4TwDgpgBAkgznArhATlAvFA3lAhgLigDtEBbAI1QBopzC5gUBLIgcxoGNDyB7HgGwi4iUAL4BuALAAoGQHo5oSFADKicgCsMUAApMOAawA88JNSgByXBagAfS+QsA+eXKjv3APQD8rpdDVNbQBRAA9GXA5gEwRkFBorG3sLRxdpBX9VdS1MMI5+RAATCBizeMsOZxlMwJyoAHlSJmjTOITKtIUPKB8gA"
+          }
+        ],
+        "text": "Для такой трансформации подходят utility types: Omit и Pick"
+      },
+      "sortable": false,
+      "multiple": true
+    },
+    {
+      "description": "Для типа\ntype Issuer = 'A'|'B'|'C';\nКакая конструкция оствит тип 'getA' | 'getB'?",
+      "blocks": [
+        {
+          "id": 1,
+          "line": "`get${Exclude<Issuer, 'C'>}`"
+        },
+        {
+          "id": 2,
+          "line": "`get${Extract<Issuer, 'A' | 'B'>}`"
+        },
+        {
+          "id": 3,
+          "line": "`get${Pick<Issuer, 'A' | 'B'>}`"
+        },
+        {
+          "id": 4,
+          "line": "`get${Omit<Issuer, 'C'>}`"
+        },
+        {
+          "id": 5,
+          "line": "'get' + Exclude<Issuer, 'C'>"
+        },
+        {
+          "id": 6,
+          "line": "'get' + Extract<Issuer, 'A' | 'B'>"
+        }
+      ],
+      "answers": [
+        [ 1,2 ]
+      ],
+      "result": {
+        "links": [
+          { 
+            "text": "playground",
+            "link": "https://www.typescriptlang.org/play?#code/C4TwDgpgBAkgznArhATlAvFA5AQSwHywCECsBhLAbgFgAoOgegdEigGVEAjAKwygAMA5hGAASAN4AFAJYBjANYAeeElQAabHij5sJAHwBffowZQzZgHoB+Ey2gcefISIkBRAB7AUAQ1nBlCMgoGrhY2rpYhsa0TOaWNrR27Fy8mM5i4h6yADaIACYQAarB2BRRJnHWtuD2KU7CGQDyALbS-ipBIWVGFebWQA"
+          },
+          { 
+            "text": "Template Literal Types",
+            "link": "https://www.typescriptlang.org/docs/handbook/2/template-literal-types.html"
+          }
+        ],
+        "text": "Для такой трансформации подходят utility types: Exclude и Extract. А для построения с get используется Template Literal Types"
+      },
+      "sortable": false,
       "multiple": true
     }
   ]
