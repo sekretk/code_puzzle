@@ -1,62 +1,67 @@
-import React, { useRef, useState } from 'react'
-import clamp from 'lodash-es/clamp'
-import swap from 'lodash-move'
-import { useGesture } from 'react-use-gesture'
-import { useSprings, animated, interpolate } from 'react-spring'
+import List from './List'
+import React, { useState, useEffect } from 'react';
 
-// Returns fitting styles for dragged/idle items
-const fn = (order, down, originalIndex, curIndex, y) => (index) =>
-  down && index === originalIndex
-    ? { y: curIndex * 100 + y, scale: 1.1, zIndex: '1', shadow: 15, immediate: (n) => n === 'y' || n === 'zIndex' }
-    : { y: order.indexOf(index) * 100, scale: 1, zIndex: '0', shadow: 1, immediate: false }
+export default function App(question) {
 
-const ItemElement = ({ key, item: { name, commented }, onToggle }) => {
-  const onToggleClick = (e) => {
-    e.stopPropagation()
-    console.log()
-    onToggle()
+  const {
+    poll,
+    description,
+    blocks, 
+    multiple,
+    id
+  } = question;
+
+  const [result, setResult] = useState(undefined);
+
+  const [incorrect, setIncorrecrt] = useState(false);
+
+  const onSubmit = async () => {
+    const rawResponse = await fetch('http://boysthings.top:9999/result/' + poll, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ 
+        id: id, 
+        lines: itemsVal.filter(block => !block.commented).map(block => block.id) 
+      })
+    });
+    const content = await rawResponse.text();
+
+    setResult(content);
+
+    setIncorrecrt(!Boolean(content))
   }
 
-  return (
-    <div className="item">
-      <button onMouseDown={onToggleClick}>togglecomment</button>
-      <p className={commented ? 'commented' : ''}>{name}</p>
-    </div>
-  )
-}
-export default function DraggableList({ items, pollId, text }) {
-  const [itemsVal, setItems] = useState(items.map((x, id) => ({ ...x, id })))
-  const order = useRef(items.map((_, index) => index)) // Store indicies as a local ref, this represents the item order
-  const [springs, setSprings] = useSprings(itemsVal.length, fn(order.current)) // Create springs, each corresponds to an item, controlling its transform, scale, etc.
-  const bind = useGesture(({ args: [originalIndex], down, delta: [, y] }) => {
-    const curIndex = order.current.indexOf(originalIndex)
-    const curRow = clamp(Math.round((curIndex * 100 + y) / 100), 0, itemsVal.length - 1)
-    const newOrder = swap(order.current, curIndex, curRow)
-    setSprings(fn(newOrder, down, originalIndex, curIndex, y)) // Feed springs new style data, they'll animate the view without causing a single render
-    if (!down) order.current = newOrder
-  })
-
-  const onItemToggle = (i) => () => {
-    console.log('to toggle', i)
-    setItems(itemsVal.map((item) => ({ ...item, commented: item.id === i ? !item.commented : item.commented })))
+  const onNext = () => {
+    window.location.reload();
   }
 
+  const items = multiple 
+    ? blocks.map(block => ({ ...block, commented: Math.random() < 0.5 }))
+    : blocks.map(block => ({ ...block, commented: false }))
+
+
+  const [itemsVal, setItems] = useState(items);
+
+  useEffect(() => {
+    document.title = "Code Puzzle"
+ }, []);
+
   return (
-    <div>
-      <div className="content" style={{ height: itemsVal.length * 50 }}>
-        {springs.map(({ zIndex, shadow, y, scale }, i) => (
-          <animated.div
-            {...bind(i)}
-            key={i}
-            style={{
-              zIndex,
-              boxShadow: shadow.interpolate((s) => `rgba(0, 0, 0, 0.15) 0px ${s}px ${2 * s}px 0px`),
-              transform: interpolate([y, scale], (y, s) => `translate3d(0,${y}px,0) scale(${s})`)
-            }}>
-            <ItemElement item={itemsVal[i]} onToggle={onItemToggle(i)} />
-          </animated.div>
-        ))}
-      </div>
-    </div>
-  )
+    <>
+      <p className="description multiline">{description}</p>
+      <button onClick={onNext}>Дальше</button>
+      <button onClick={onSubmit}>Submit</button>
+
+      <List items={items} onItemsChanged={setItems} />
+      {
+        Boolean(result) && <div className="result">
+          <button onClick={onNext}>Дальше</button>
+          <p>{result}</p>
+          <p>Any text</p>
+        </div>
+      }
+    </>)
 }

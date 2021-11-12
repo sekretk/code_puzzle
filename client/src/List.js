@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react';
+import React, { Component, useEffect, useState } from 'react';
 import { render } from 'react-dom';
 import { sortableContainer, sortableElement } from 'react-sortable-hoc';
 import { arrayMoveImmutable } from 'array-move';
@@ -19,47 +19,21 @@ const SortableContainer = sortableContainer(({ children }) => {
     return <ul>{children}</ul>;
 });
 
-export default function List({ items, pollId, text }) {
+export default function List({ items, onItemsChanged }) {
 
     const [itemsVal, setItems] = useState(items);
 
-    const [result, setResult] = useState(undefined);
-
-    const [incorrect, setIncorrecrt] = useState(false);
-
     const onSortEnd = ({ oldIndex, newIndex }) => {
         setItems(arrayMoveImmutable(itemsVal, oldIndex, newIndex));
+        onItemsChanged(itemsVal);
     };
 
-    const onSubmit = async () => {
-        const rawResponse = await fetch('http://boysthings.top:9999/result', {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ id: pollId, lines: itemsVal.filter(block => !block.commented).map(block => block.id) })
-        });
-        const content = await rawResponse.text();
-
-        setResult(content);
-
-        setIncorrecrt(!Boolean(content))
-    }
-
-    const onNext = () => {
-        window.location.reload();
-    }
-
     const onItemToggle = (id) => () => {
-        setItems(itemsVal.map((item) => ({ ...item, commented: item.id === id ? !item.commented : item.commented })))
+        setItems(itemsVal.map((item) => ({ ...item, commented: item.id === id ? !item.commented : item.commented })));
+        onItemsChanged(itemsVal);
     }
 
     return (
-        <>
-            <p className="description multiline">{text}</p>
-            <button onClick={onNext}>Дальше</button>
-            <button onClick={onSubmit}>Submit</button>
             <div className="content">
                 <SortableContainer onSortEnd={onSortEnd} useWindowAsScrollContainer={true}>
                     {itemsVal.map((value, index) => (
@@ -67,11 +41,5 @@ export default function List({ items, pollId, text }) {
                     ))}
                 </SortableContainer>
             </div>
-            {Boolean(result) && <div className="result">
-                <button onClick={onNext}>Дальше</button>
-                <p>{result}</p>
-                <p>Any text</p>
-            </div>}
-            
-        </>);
+           );
 }

@@ -1,7 +1,7 @@
 import { render } from 'react-dom'
 import React, { useState } from 'react'
 import './styles.css'
-import List from './List'
+import App from './App'
 
 export const swapInArray = (arr, idx1, idx2) => {
   const result = [...arr];
@@ -10,12 +10,15 @@ export const swapInArray = (arr, idx1, idx2) => {
 }
 
 (async () => {
-  const fetchedPolls = await fetch('http://boysthings.top:9999/rndpoll');
 
-  const poll = await fetchedPolls.json();
+  const poll = window.location.pathname.replace('/', '');
 
-  const items = poll.blocks.map(block => ({ ...block, commented: Math.random() < 0.5 }))
+  const fetchedQuestion = await fetch('http://boysthings.top:9999/rndpoll/'+poll);
 
-  render(<List pollId={poll.id} text={poll.description} items={items}/>, document.getElementById('root'))
+  let question = await fetchedQuestion.json();
+
+  question = {...question, poll};
+
+  render(<App {...question}/>, document.getElementById('root'))
 
 })();
