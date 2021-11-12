@@ -47,7 +47,7 @@ type Question = {
   answers: Array<Array<number>>,
   result: Result,
   sortable: boolean,
-  multiple: boolean
+  multiple: boolean,
 }
 
 type QuestionWithID = Question & { id: string }
@@ -55,10 +55,18 @@ type QuestionWithID = Question & { id: string }
 const parsePoll = (fileName: string) => 
   (JSON.parse(fs.readFileSync(path.join(__dirname, POLL_DIR, fileName), 'utf-8')) as Array<Question>).map(question => ({...question, id: getRandStr()}));
 
+const isRightArray = (sortable: boolean) => (attempt: number[]) => (answer: number[]) => 
+  sortable 
+    ? JSON.stringify(attempt) === JSON.stringify(answer)
+    : JSON.stringify(attempt.sort()) === JSON.stringify(answer.sort())
+
+const checkAnswers = (sortable: boolean) => (attempt: number[]) => (answers: number[][]) => 
+  answers.some(isRightArray(sortable)(attempt)) ;
+
 const findAnswer = 
   (attempt: Attempt) => 
     (question: QuestionWithID) => 
-      question.id === attempt.question && question.answers.some(answer => JSON.stringify(attempt.lines) === JSON.stringify(answer));
+      question.id === attempt.question && checkAnswers(question.sortable)(attempt.lines)(question.answers);
 
 const polls: Map<string, Array<QuestionWithID>> = 
   fs.readdirSync(path.join(__dirname, POLL_DIR))

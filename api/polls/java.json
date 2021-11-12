@@ -208,27 +208,27 @@
       },
       {
         "id": 2,
-        "line": "  for (int i = 0; i < arr.length; i++) {"
+        "line": "for (int i = 0; i < arr.length; i++) {"
       },
       {
         "id": 3,
-        "line": "    for (int j = 1; j < (arr.length - i); j++) {"
+        "line": "for (int j = 1; j < (arr.length - i); j++) {"
       },
       {
         "id": 4,
-        "line": "      if (arr[j - 1] > arr[j]) {"
+        "line": "if (arr[j - 1] > arr[j]) {"
       },
       {
         "id": 5,
-        "line": "      int temp = arr[j - 1];"
+        "line": "int temp = arr[j - 1];"
       },
       {
         "id": 6,
-        "line": "      arr[j - 1] = arr[j];"
+        "line": "arr[j - 1] = arr[j];"
       },
       {
         "id": 7,
-        "line": "      arr[j] = temp;"
+        "line": "arr[j] = temp;"
       },
       {
         "id": 8,
@@ -236,11 +236,11 @@
       },
       {
         "id": 9,
-        "line": "    for (int j = 0; j < arr.length; j++) {"
+        "line": "for (int j = 0; j < arr.length; j++) {"
       },
       {
         "id": 10,
-        "line": "    for (int j = arr.length; j > 0; j--) {"
+        "line": "for (int j = arr.length; j > 0; j--) {"
       }
     ],
     "answers": [
@@ -322,7 +322,7 @@
       "links": [ ],
       "text": ""
     },
-    "sortable": false,
+    "sortable": true,
     "multiple": true
   }
 ]
