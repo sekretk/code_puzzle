@@ -12,7 +12,7 @@ export default function Result({ links, text }) {
         <>
             <a href="https://www.devexperts.com/">
                 <img alt="devexperts.com" src="/static/logo.svg"
-                    width="150" height="40" />
+                    width="150" height="30" />
             </a>
 
             <p>Международная карьера в Fintech:</p>

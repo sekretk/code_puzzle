@@ -56,7 +56,7 @@ export default function App(question) {
 
   const items = multiple
     ? blocks.map(block => ({ ...block, commented: Math.random() < 0.5 }))
-    : blocks.map(block => ({ ...block, commented: block === blocks[0] }))
+    : blocks.map(block => ({ ...block, commented: block !== blocks[0] }))
 
 
   const [itemsVal, setItems] = useState(items);
@@ -109,7 +109,7 @@ export default function App(question) {
       }
       {
         Boolean(result) && <div className="result">
-          <button onClick={onNext}>Дальше</button>
+          <button className="next" onClick={onNext}>Дальше</button>
           <Result {...result} />
         </div>
       }
