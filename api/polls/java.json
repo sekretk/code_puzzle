@@ -324,5 +324,125 @@
     },
     "sortable": true,
     "multiple": true
+  },
+  {
+    "description": "Результат выполнения:\nclass MyClass {\n  public static int value = 42;\n}\n\n    class Main {\n  public static void main(String ... args) {\n    MyClass myObj = null;\n    System.out.println(myObj.value);\n  }\n}",
+    "blocks": [
+      {
+        "id": 1,
+        "line": "Брошено исключение NullPointerException"
+      },
+      {
+        "id": 2,
+        "line": "0"
+      },
+      {
+        "id": 3,
+        "line": "42"
+      },
+      {
+        "id": 4,
+        "line": "null"
+      }
+    ],
+    "answers": [
+      [ 3 ]
+    ],
+    "result": {
+      "links": [ ],
+      "text": "При обращении к статическому члену класса через переменную, компилятор вместо переменной подставит вызов на классе, даже если переменная null. Поэтому вызов вернёт значение статического члена класса"
+    },
+    "sortable": false,
+    "multiple": false
+  },
+  {
+    "description": "Результат вызова метода myMethod():public static int myMethod() throws RuntimeException {\n try {\n    throw new RuntimeException();\n  } catch(Exception e) {\n    return 1;\n  } finally {\n    return 2;\n  }\n}",
+    "blocks": [
+      {
+        "id": 1,
+        "line": "Брошено исключение RuntimeException"
+      },
+      {
+        "id": 2,
+        "line": "1"
+      },
+      {
+        "id": 3,
+        "line": "2"
+      },
+      {
+        "id": 4,
+        "line": "ошибка компиляции"
+      }
+    ],
+    "answers": [
+      [ 3 ]
+    ],
+    "result": {
+      "links": [ ],
+      "text": "finally всегда вызывается последним, поэтому будет возвращен результат, заданный в finally"
+    },
+    "sortable": false,
+    "multiple": false
+  },
+  {
+    "description": "Результат операцииclass MyClass {\n  public int i = 10;\n\n  public void MyClass() {\n    this.i = 20;\n  }\n\n  public static void main(String ... args) {\n    MyClass a = new MyClass();\n    System.out.println(a.i);\n  }\n}",
+    "blocks": [
+      {
+        "id": 1,
+        "line": "10"
+      },
+      {
+        "id": 2,
+        "line": "20"
+      },
+      {
+        "id": 3,
+        "line": "0"
+      },
+      {
+        "id": 4,
+        "line": "ошибка компиляции"
+      }
+    ],
+    "answers": [
+      [ 1 ]
+    ],
+    "result": {
+      "links": [ ],
+      "text": "public void MyClass()  - это не конструктор, а обычный метод, который просто называется как класс. Поэтому при создании объекта a будет выполнен конструктор по-умолчанию, который не будет изменять значение переменной i"
+    },
+    "sortable": false,
+    "multiple": false
+  },
+  {
+    "description": "Результат выполнения:interface N {\n  public int f(int arg);\n  public String toString();\n}\npublic class C {\n  public static void call_f(N n) {\n    System.out.println(n.f(2));\n  }\n\n  public static void main(String[] args) {\n    call_f(v -> v << v);\n  }\n}",
+    "blocks": [
+      {
+        "id": 1,
+        "line": "2"
+      },
+      {
+        "id": 2,
+        "line": "4"
+      },
+      {
+        "id": 3,
+        "line": "8"
+      },
+      {
+        "id": 4,
+        "line": "ошибка компиляции"
+      }
+    ],
+    "answers": [
+      [ 3 ]
+    ],
+    "result": {
+      "links": [ ],
+      "text": "1. Интерфейс N - это функциональный интерфейс, т.к. методы из класса Object (в данном случае - toString()) не учитываются при определении функционального интерфейса. \n2. Метод call_f принимает на вход переменную n, реализующую интерфейс N. При вызове метода call_f, как параметр передается лямбда реализующая интерфейс N. Поэтому при вызове n.f(2) произойдет вызов лямбды, которая выполнит двоичный сдвиг переданного парметра на два разряда влево (2 << 2), что эквивалентно умножению на 4. Соответственно, итоговый вариант равен 8"
+    },
+    "sortable": false,
+    "multiple": false
   }
 ]

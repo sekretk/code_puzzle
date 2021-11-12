@@ -128,7 +128,9 @@ li {
 }
 
 .alert {
-  color: red
+  color: red;
+  display: flex;
+  justify-content: center;
 }
 
 .alert-hidden {

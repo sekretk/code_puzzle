@@ -3,9 +3,9 @@ import NonDraggableList from './NonDraggableList'
 import Result from './Result'
 import About from './About'
 import React, { useState, useEffect } from 'react';
-import {url} from './utils';
+import { url } from './utils';
 import { reasons } from './reasons';
-import {NotificationContainer, NotificationManager} from 'react-notifications';
+import { NotificationContainer, NotificationManager } from 'react-notifications';
 
 import 'react-notifications/dist/react-notifications.css';
 
@@ -14,7 +14,7 @@ const listPresenter = {
   false: (props) => <NonDraggableList {...props} />,
 }
 
-const addReasonToLocalStorage = reason => window.localStorage.setItem('reasons', JSON.stringify({...JSON.parse(window.localStorage.getItem('reasons')), [reason]: 1}));
+const addReasonToLocalStorage = reason => window.localStorage.setItem('reasons', JSON.stringify({ ...JSON.parse(window.localStorage.getItem('reasons')), [reason]: 1 }));
 
 export default function App(question) {
 
@@ -45,8 +45,8 @@ export default function App(question) {
   };
 
   const showAchieve = () => {
-    if(window.localStorage.getItem('achieve') === '1') {
-      setAchieve({text: 'Упорство', description: 'Тебе удалось раздобыть все сообщения о неправильных ответах'})
+    if (window.localStorage.getItem('achieve') === '1') {
+      setAchieve({ text: 'Упорство', description: 'Тебе удалось раздобыть все сообщения о неправильных ответах' })
       window.localStorage.setItem('achieve', '0');
     }
   };
@@ -74,7 +74,7 @@ export default function App(question) {
     setIncorrect(!Boolean(content))
 
     if (!content) {
-      const reason = reasons[Math.floor(Math.random()*reasons.length)]
+      const reason = reasons[Math.floor(Math.random() * reasons.length)]
       setReason(reason);
       addReasonToLocalStorage(reason);
       checkForAchieve();
@@ -83,7 +83,7 @@ export default function App(question) {
   }
 
   useEffect(() => {
-    if(achieve) {
+    if (achieve) {
       NotificationManager.success(achieve.description, achieve.text);
     }
   }, achieve);
@@ -99,16 +99,23 @@ export default function App(question) {
 
   const [itemsVal, setItems] = useState(items);
 
-  useEffect(() => {
-    document.title = "Code Puzzle"
-  }, []);
-
   const list = listPresenter[sortable]({ items, onItemsChanged: setItems, multiple });
 
   const onNeedAbout = () => {
     window.localStorage.removeItem('acquainted');
     window.location.reload();
   }
+
+  useEffect(() => {
+    if (incorrect) {
+      const timeout = setTimeout(() => {
+        setIncorrect(false);
+      }, 1000);
+
+      return () => clearTimeout(timeout)
+    }
+  }
+    , [incorrect]);
 
   return (
     <>
@@ -134,11 +141,7 @@ export default function App(question) {
       <p className="description multiline">{description}</p>
       <button className="next" onClick={onNext}>Дальше</button>
       <button className="submit" onClick={onSubmit}>Отправить</button>
-      <div className={`alert ${incorrect ? 'alert-shown' : 'alert-hidden'}`}
-        onTransitionEnd={() => {
-          console.log('onTransitionEnd');
-          setIncorrect(false)
-        }}>
+      <div className={`alert ${incorrect ? 'alert-shown' : 'alert-hidden'}`}>
         <strong>{reason}</strong>
       </div>
 
