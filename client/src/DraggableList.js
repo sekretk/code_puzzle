@@ -8,7 +8,7 @@ const SortableItem = sortableElement(({ value, onToggle }) => {
     const { line, commented } = value;
     return (<li className={commented ? 'commented' : ''}>
         <div className="item">
-            <button onMouseDown={onToggle}>com</button>
+            <button className="comment" onMouseDown={onToggle}>//</button>
             <p className="multiline">{line}</p>
             <FontAwesomeIcon icon="fa-solid fa-grip-dots-vertical" />
         </div>
@@ -19,7 +19,7 @@ const SortableContainer = sortableContainer(({ children }) => {
     return <ul>{children}</ul>;
 });
 
-export default function List({ items, onItemsChanged }) {
+export default function DraggableList({ items, multiple, onItemsChanged }) {
 
     const [itemsVal, setItems] = useState(items);
 

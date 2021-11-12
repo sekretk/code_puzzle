@@ -1,5 +1,11 @@
-import List from './List'
+import DraggableList from './DraggableList'
+import NonDraggableList from './NonDraggableList'
 import React, { useState, useEffect } from 'react';
+
+const listPresenter = {
+  true: (props) => <DraggableList {...props}/>,
+  false: (props) => <NonDraggableList {...props}/>,
+}
 
 export default function App(question) {
 
@@ -8,12 +14,13 @@ export default function App(question) {
     description,
     blocks, 
     multiple,
+    sortable,
     id
   } = question;
 
   const [result, setResult] = useState(undefined);
 
-  const [incorrect, setIncorrecrt] = useState(false);
+  const [incorrect, setIncorrect] = useState(false);
 
   const onSubmit = async () => {
     const rawResponse = await fetch('http://boysthings.top:9999/result/' + poll, {
@@ -31,7 +38,7 @@ export default function App(question) {
 
     setResult(content);
 
-    setIncorrecrt(!Boolean(content))
+    setIncorrect(!Boolean(content))
   }
 
   const onNext = () => {
@@ -49,18 +56,30 @@ export default function App(question) {
     document.title = "Code Puzzle"
  }, []);
 
+ const list = listPresenter[sortable]({items, onItemsChanged: setItems, multiple});
+
   return (
     <>
       <p className="description multiline">{description}</p>
-      <button onClick={onNext}>Дальше</button>
-      <button onClick={onSubmit}>Submit</button>
+      <button className="next" onClick={onNext}>Дальше</button>
+      <button className="submit" onClick={onSubmit}>Submit</button>
+      <div className={`alert ${incorrect ? 'alert-shown' : 'alert-hidden'}`}
+          onTransitionEnd={() => {
+            console.log('onTransitionEnd');
+            setIncorrect(false)}}>
+        <strong>Извините. Не принято!</strong>
+      </div>   
 
-      <List items={items} onItemsChanged={setItems} />
+      {
+        list
+      }
       {
         Boolean(result) && <div className="result">
           <button onClick={onNext}>Дальше</button>
+          <p>Ура! Вы разгадали!</p>
           <p>{result}</p>
-          <p>Any text</p>
+          <p>google doc!</p>
+          <p>dx link?</p>
         </div>
       }
     </>)
