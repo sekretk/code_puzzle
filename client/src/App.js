@@ -1,6 +1,7 @@
 import DraggableList from './DraggableList'
 import NonDraggableList from './NonDraggableList'
 import Result from './Result'
+import About from './About'
 import React, { useState, useEffect } from 'react';
 import {url} from './utils';
 
@@ -23,6 +24,8 @@ export default function App(question) {
   const [result, setResult] = useState(undefined);
 
   const [incorrect, setIncorrect] = useState(false);
+
+  const needAbout = !Boolean(window.localStorage.getItem('acquainted'));
 
   const onSubmit = async () => {
 
@@ -64,9 +67,15 @@ export default function App(question) {
 
  const list = listPresenter[sortable]({items, onItemsChanged: setItems, multiple});
 
+ const onNeedAbout = () => {
+  window.localStorage.removeItem('acquainted');
+  window.location.reload();
+ }
+
   return (
     <>
       <p className="description multiline">{description}</p>
+      <button className="help" onClick={onNeedAbout}>Правила</button>
       <button className="next" onClick={onNext}>Дальше</button>
       <button className="submit" onClick={onSubmit}>Submit</button>
       <div className={`alert ${incorrect ? 'alert-shown' : 'alert-hidden'}`}
@@ -83,6 +92,11 @@ export default function App(question) {
         Boolean(result) && <div className="result">
           <button onClick={onNext}>Дальше</button>
           <Result {...result}/>
+        </div>
+      }
+      {
+        Boolean(needAbout) && <div className="about">
+          <About/>
         </div>
       }
     </>)

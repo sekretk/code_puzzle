@@ -89,6 +89,20 @@ li {
   float: none;
 }
 
+.about {
+  background: lightblue;
+  width: 100%;
+  height: 100%;
+  padding: 16px;
+  top:0;
+  position: fixed;
+  z-index:1002;
+  overflow: auto;
+  text-align: center;
+  margin: auto;
+  float: none;
+}
+
 .alert {
   color: red
 }
