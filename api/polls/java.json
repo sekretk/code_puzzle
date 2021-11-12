@@ -122,7 +122,7 @@
     ],
     "result": {
       "links": [ ],
-      "text": "Byte - Short - Integer - Long - BigInteger. Number в Java нет"
+      "text": "Byte - Short - Integer - Long - BigInteger. Decimal в Java нет"
     },
     "sortable": true,
     "multiple": true

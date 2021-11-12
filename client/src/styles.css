@@ -132,17 +132,19 @@ li {
 }
 
 .alert-hidden {
+  visibility: hidden;
   opacity: 0;
-  
+  transition: visibility 0s 2s, opacity 2s linear;
 }
 
 .alert-show {
+  visibility: visible;
   opacity: 1;
-  transition: all 250ms linear 2s;
+  transition: opacity 2s linear;
 }
 
 .multiline {
-  white-space: pre-line;
+  white-space: break-spaces;
 }
 
 button.help {
@@ -410,6 +412,7 @@ button.go {
 
 .item .line {
   white-space: break-spaces;
+  font-size: 0.8em;
 }
 
 .notification-container .title {
