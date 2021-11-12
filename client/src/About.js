@@ -11,7 +11,7 @@ export default function Result({ links, text }) {
     return (
         <>
             <a href="https://www.devexperts.com/">
-                <img alt="devexperts.com" src="/logo.svg"
+                <img alt="devexperts.com" src="/static/logo.svg"
                     width="150" height="70" />
             </a>
 
