@@ -47,7 +47,6 @@ app.get('/rndpoll/:poll', function (req, res) {
     res.setHeader('Content-Type', 'application/json');
     var poll = req.params["poll"];
     var rndPoll = (_a = polls.get(poll)) === null || _a === void 0 ? void 0 : _a[Math.floor(Math.random() * ((_c = (_b = polls.get(poll)) === null || _b === void 0 ? void 0 : _b.length) !== null && _c !== void 0 ? _c : 0))];
-    console.log(polls, poll, rndPoll);
     res.end(JSON.stringify(__assign(__assign({}, rndPoll), { answers: undefined, result: undefined })));
 });
 app.post('/result/:poll', function (req, res) {
@@ -55,5 +54,6 @@ app.post('/result/:poll', function (req, res) {
     var attempt = req.body;
     var poll = req.params["poll"];
     var foundPoll = (_a = polls.get(poll)) === null || _a === void 0 ? void 0 : _a.find(findAnswer(attempt));
+    console.log(attempt, polls.get(poll));
     res.end(JSON.stringify(foundPoll === null || foundPoll === void 0 ? void 0 : foundPoll.result));
 });

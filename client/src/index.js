@@ -2,6 +2,7 @@ import { render } from 'react-dom'
 import React, { useState } from 'react'
 import './styles.css'
 import App from './App'
+import {url} from './utils'
 
 export const swapInArray = (arr, idx1, idx2) => {
   const result = [...arr];
@@ -13,7 +14,7 @@ export const swapInArray = (arr, idx1, idx2) => {
 
   const poll = window.location.pathname.replace('/', '');
 
-  const fetchedQuestion = await fetch('http://boysthings.top:9999/rndpoll/'+poll);
+  const fetchedQuestion = await fetch(url + '/rndpoll/'+poll);
 
   let question = await fetchedQuestion.json();
 

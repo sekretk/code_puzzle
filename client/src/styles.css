@@ -227,3 +227,7 @@ button.comment {
   border: none;
   font-weight: 800;
 }
+
+.multiple button.comment {
+  background: red;
+}

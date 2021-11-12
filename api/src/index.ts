@@ -75,8 +75,6 @@ app.get('/rndpoll/:poll', function (req, res) {
   
   const rndPoll = polls.get(poll)?.[Math.floor(Math.random() * (polls.get(poll)?.length??0))];
 
-  console.log(polls, poll, rndPoll)
-
   res.end(JSON.stringify({ ...rndPoll, answers: undefined, result: undefined }));
 });
 
@@ -84,5 +82,6 @@ app.post('/result/:poll', function (req, res) {
   const attempt = req.body as Attempt;
   const poll = req.params["poll"];
   const foundPoll = polls.get(poll)?.find(findAnswer(attempt));
+  console.log(attempt, polls.get(poll))
   res.end(JSON.stringify(foundPoll?.result))
 })

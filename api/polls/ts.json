@@ -148,12 +148,15 @@
       ],
       "result": {
         "links": [
-          { "text": "playground",
+          { 
+            "text": "playground",
             "link": "https://www.typescriptlang.org/play?#code/C4TwDgpgBA4hxQLxQN5VJAXFA5HYOANFAK4BOANtgM7BkCWAdgOZQC+AsAFAbQAKAe1pJU6cBGw5BtIlAAmAQ2AKadJs2LkqUWgxbsA3NwD0x3lAAiECvGjI0vSVZvAIsrar2s2RrqfMAShAAjiL4UAA+UNIIUc62voEhYfCR0ULAvtwAxgKMwowQAG4QZADCABYQ2QDWIgAU1CQARgBW2IUlZACUSAB8Oi2tBlDcOXnCFQqMcjZkDWQhJBC02EHB3Z7q-ajcUPtQ9ABmUPWLwcu0AHTmiHe4MTi9aIvA5IwPOOx7B9bU0MdTudLsAbuIkPc8PAnqJXu9cDAvpwuD99p1SpVqjUzksVsBulkuAcoHCyB8cDgRmwgA"
           }
         ],
         "text": "You right!"
-      }
+      },
+      "sortable": true,
+      "multiple": true
     },
     {
       "description": "[Intermediate] Отсортировать и закомментировать ненужное. Для типов \r\n type Animal = { make: undefined } \r\n type Dog = Animal & { bark: undefined } оставьте только компилируемый код. В TSConfig strict = true",

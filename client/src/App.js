@@ -1,6 +1,8 @@
 import DraggableList from './DraggableList'
 import NonDraggableList from './NonDraggableList'
+import Result from './Result'
 import React, { useState, useEffect } from 'react';
+import {url} from './utils';
 
 const listPresenter = {
   true: (props) => <DraggableList {...props}/>,
@@ -23,15 +25,16 @@ export default function App(question) {
   const [incorrect, setIncorrect] = useState(false);
 
   const onSubmit = async () => {
-    const rawResponse = await fetch('http://boysthings.top:9999/result/' + poll, {
+
+    const rawResponse = await fetch(url + '/result/' + poll, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({ 
-        id: id, 
-        lines: itemsVal.filter(block => !block.commented).map(block => block.id) 
+        question: id, 
+        lines: itemsVal.filter(block => !block.commented).map(block => block.id)
       })
     });
     const content = await rawResponse.text();
@@ -76,10 +79,7 @@ export default function App(question) {
       {
         Boolean(result) && <div className="result">
           <button onClick={onNext}>Дальше</button>
-          <p>Ура! Вы разгадали!</p>
-          <p>{result}</p>
-          <p>google doc!</p>
-          <p>dx link?</p>
+          <Result {...result}/>
         </div>
       }
     </>)
