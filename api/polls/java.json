@@ -1,100 +1,128 @@
 [
   {
-    "description": "some1",
+    "description": "Закомментируйте HTTP методы, которые являются идемпотентными.",
     "blocks": [
       {
         "id": 1,
-        "line": "some1 \n some 1"
+        "line": "POST"
       },
       {
         "id": 2,
-        "line": "some1 \n some 1"
+        "line": "PUT"
+      },
+      {
+        "id": 3,
+        "line": "DELETE"
+      },
+      {
+        "id": 4,
+        "line": "GET"
       }
     ],
     "answers": [
       [ 1 ]
     ],
     "result": {
-      "links": [
-        "link1",
-        "link2"
-      ],
-      "text": "congrats"
-    },
-    "sortable": true,
-    "multiple": false
-  },
-  {
-    "description": "some2",
-    "blocks": [
-      {
-        "id": 1,
-        "line": "some1 \n some 1"
-      },
-      {
-        "id": 2,
-        "line": "some1 \n some 1"
-      }
-    ],
-    "answers": [
-      [ 1 ]
-    ],
-    "result": {
-      "links": [
-        "link1",
-        "link2"
-      ],
-      "text": "congrats"
+      "links": [ ],
+      "text": "Метод HTTP является идемпотентным, если повторный идентичный запрос, сделанный один или несколько раз подряд, имеет один и тот же эффект, не изменяющий состояние сервера, кроме сбора статистики или подобных операций. Корректно реализованные методы GET, HEAD, PUT и DELETE идемпотентны, но не метод POST."
     },
     "sortable": false,
     "multiple": true
   },
   {
-    "description": "some2",
+    "description": "Какой результат выведет данный фрагмент кода? \npublic static void main(String... args) {\n System.out.println(2.00 - 1.10);\n}",
     "blocks": [
       {
         "id": 1,
-        "line": "some1 \n some 1"
+        "line": "0.8999999999999999"
       },
       {
         "id": 2,
-        "line": "some1 \n some 1"
+        "line": "0.9"
+      },
+      {
+        "id": 3,
+        "line": "2.00 - 1.10"
+      },
+      {
+        "id": 4,
+        "line": "StringFormatException "
       }
     ],
     "answers": [
       [ 1 ]
     ],
     "result": {
-      "links": [
-        "link1",
-        "link2"
-      ],
-      "text": "congrats"
+      "links": [ ],
+      "text": ""
     },
     "sortable": false,
     "multiple": false
   },
   {
-    "description": "some2",
+    "description": "Результат выполнения операции\nSystem.out.println(1 + 2 + \"\" + 3 + 4);",
     "blocks": [
       {
         "id": 1,
-        "line": "some1 \n some 1"
+        "line": "1234"
       },
       {
         "id": 2,
-        "line": "some1 \n some 1"
+        "line": "334"
+      },
+      {
+        "id": 3,
+        "line": "10"
+      },
+      {
+        "id": 4,
+        "line": "37"
       }
     ],
     "answers": [
-      [ 1 ]
+      [ 2 ]
     ],
     "result": {
-      "links": [
-        "link1",
-        "link2"
-      ],
-      "text": "congrats"
+      "links": [ ],
+      "text": "Вычисление операции идёт слева направо. Сначала 1 + 2 сложится как целые, а потом к итоговому 3 будет прибавлена строка, от чего 3 превратиться в строку "3" и к этой строке произойдет конкатенация значений 3 и 4"
+    },
+    "sortable": false,
+    "multiple": false
+  },
+  {
+    "description": "Расположите типы данных в порядке возрастания максимально допустимого значения (сверху вниз)",
+    "blocks": [
+      {
+        "id": 1,
+        "line": "Byte"
+      },
+      {
+        "id": 2,
+        "line": "Short"
+      },
+      {
+        "id": 3,
+        "line": "Integer"
+      },
+      {
+        "id": 4,
+        "line": "Long"
+      },
+      {
+        "id": 5,
+        "line": "BigInteger"
+      },
+      {
+        "id": 6,
+        "line": "Number"
+      }
+    ],
+    "answers": [
+      [ 1,2,3,4,5 ]
+    ],
+    "result": {
+      "links": [ ],
+      "text": "Byte - Short - Integer - Long - BigInteger. Number в Java нет"
     },
     "sortable": true,
     "multiple": true
