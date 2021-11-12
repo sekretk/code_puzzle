@@ -2,16 +2,29 @@ import React, { Component, useEffect, useState } from 'react';
 import { render } from 'react-dom';
 import { sortableContainer, sortableElement } from 'react-sortable-hoc';
 import { arrayMoveImmutable } from 'array-move';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { selectMapper } from './utils'
 
 const SortableItem = sortableElement(({ value, onToggle }) => {
     const { line, commented } = value;
     return (<li className={commented ? 'commented' : ''}>
         <div className="item">
-            <button className="comment" onMouseDown={onToggle}>//</button>
+            <button className="comment" onMouseDown={onToggle}>
+                {
+                    Boolean(commented) ? (
+                        <span className="material-icons material-icons-outlined">
+                            add
+                        </span>
+                    ) : (
+                        <span className="material-icons material-icons-outlined">
+                            remove
+                        </span>
+                    )
+                }
+            </button>
             <p className="multiline">{line}</p>
-            <span>...</span>
+            <span className="drag material-icons material-icons-outlined">
+                drag_indicator
+            </span>
         </div>
     </li>)
 });

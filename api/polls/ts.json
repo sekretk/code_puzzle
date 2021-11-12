@@ -1,6 +1,6 @@
 [
     {
-      "description": "[Easy] Отсортировать и закомментировать ненужное. \nПолучить компилируемый вызов в последней строке функции\nconst comb: (subject: Animal) => void = () => {};",
+      "description": "[Easy] Отсортировать и закомментировать ненужное. \nПолучить компилируемый вызов в последней строке функции \nconst comb: (subject: Animal) => void = () => {};",
       "blocks": [
         {
           "id": 1,
@@ -177,7 +177,7 @@
       "multiple": true
     },
     {
-      "description": "[Intermediate] Отсортировать и закомментировать ненужное. Для типов \r\n type Animal = { make: undefined } \r\n type Dog = Animal & { bark: undefined } оставьте только компилируемый код. В TSConfig strict = true",
+      "description": "[Intermediate] Отсортировать и закомментировать ненужное. Для типов \n type Animal = { make: undefined } \n type Dog = Animal & { bark: undefined } оставьте только компилируемый код. \nВ TSConfig strict = true",
       "blocks": [
         {
           "id": 1,

@@ -3,11 +3,11 @@ import NonDraggableList from './NonDraggableList'
 import Result from './Result'
 import About from './About'
 import React, { useState, useEffect } from 'react';
-import {url} from './utils';
+import { url } from './utils';
 
 const listPresenter = {
-  true: (props) => <DraggableList {...props}/>,
-  false: (props) => <NonDraggableList {...props}/>,
+  true: (props) => <DraggableList {...props} />,
+  false: (props) => <NonDraggableList {...props} />,
 }
 
 export default function App(question) {
@@ -15,7 +15,7 @@ export default function App(question) {
   const {
     poll,
     description,
-    blocks, 
+    blocks,
     multiple,
     sortable,
     id
@@ -35,8 +35,8 @@ export default function App(question) {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ 
-        question: id, 
+      body: JSON.stringify({
+        question: id,
         lines: itemsVal.filter(block => !block.commented).map(block => block.id)
       })
     });
@@ -54,36 +54,55 @@ export default function App(question) {
     window.location.reload();
   }
 
-  const items = multiple 
+  const items = multiple
     ? blocks.map(block => ({ ...block, commented: Math.random() < 0.5 }))
-    : blocks.map(block => ({ ...block, commented: false }))
+    : blocks.map(block => ({ ...block, commented: block === blocks[0] }))
 
 
   const [itemsVal, setItems] = useState(items);
 
   useEffect(() => {
     document.title = "Code Puzzle"
- }, []);
+  }, []);
 
- const list = listPresenter[sortable]({items, onItemsChanged: setItems, multiple});
+  const list = listPresenter[sortable]({ items, onItemsChanged: setItems, multiple });
 
- const onNeedAbout = () => {
-  window.localStorage.removeItem('acquainted');
-  window.location.reload();
- }
+  const onNeedAbout = () => {
+    window.localStorage.removeItem('acquainted');
+    window.location.reload();
+  }
 
   return (
     <>
+      <div className="legend">
+        {
+          Boolean(sortable) &&
+          <span className="legend-badge sort">
+            <span className="badge_icon material-icons material-icons-outlined">
+              sort
+            </span>
+          </span>
+        }
+        {
+          Boolean(multiple) &&
+          <span className="legend-badge multiple">
+            <span class="badge_icon material-icons material-icons-outlined">
+              checklist_rtl
+            </span>
+          </span>
+        }
+        <button className="help" onClick={onNeedAbout}>Правила</button>
+      </div>
       <p className="description multiline">{description}</p>
-      <button className="help" onClick={onNeedAbout}>Правила</button>
       <button className="next" onClick={onNext}>Дальше</button>
-      <button className="submit" onClick={onSubmit}>Submit</button>
+      <button className="submit" onClick={onSubmit}>Отправить</button>
       <div className={`alert ${incorrect ? 'alert-shown' : 'alert-hidden'}`}
-          onTransitionEnd={() => {
-            console.log('onTransitionEnd');
-            setIncorrect(false)}}>
+        onTransitionEnd={() => {
+          console.log('onTransitionEnd');
+          setIncorrect(false)
+        }}>
         <strong>Извините. Не принято!</strong>
-      </div>   
+      </div>
 
       {
         list
@@ -91,12 +110,12 @@ export default function App(question) {
       {
         Boolean(result) && <div className="result">
           <button onClick={onNext}>Дальше</button>
-          <Result {...result}/>
+          <Result {...result} />
         </div>
       }
       {
         Boolean(needAbout) && <div className="about">
-          <About/>
+          <About />
         </div>
       }
     </>)

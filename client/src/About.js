@@ -15,11 +15,34 @@ export default function Result({ links, text }) {
                     width="150" height="40" />
             </a>
 
-            <p>Международная карьера в Fintech.
-                Подробнее о наших продуктах и команде:</p>
+            <p>Международная карьера в Fintech:</p>
             <p><a href="https://devexperts.com/about-devexperts/" target="_blank">Подробнее о наших продуктах и команде</a></p>
             <p><a href="https://careers.devexperts.com/vacancies/?country=ru&remote=true" target="_blank">Наши вакансии</a></p>
-            <button onClick={onGo}>Поехали!</button>
+
+
+            <p>
+                Приложение предлагает решить задачу.
+                Для пропуска нужно начать Далее.
+                Для отправки на проверку Отправить.
+                Для комментирования/раскомментирования строки нужно нажать на "-/+"
+                Допустимы следующие типы заданий:
+            </p>
+
+            <span className="badge sort">
+                <span className="badge_icon material-icons material-icons-outlined">
+                    sort
+                </span>
+                Необходимо отсортировать
+            </span>
+
+            <span className="badge multiple">
+                <span class="badge_icon material-icons material-icons-outlined">
+                    checklist_rtl
+                </span>
+                Несколько вариантов
+            </span>
+
+            <button className="go" onClick={onGo}>Начать!</button>
         </>
     );
 }

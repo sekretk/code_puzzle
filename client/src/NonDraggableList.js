@@ -5,7 +5,19 @@ const UngraggableItem = ({ value, onToggle }) => {
     const { line, commented } = value;
     return (<li className={commented ? 'commented' : ''}>
         <div className="item">
-            <button className="comment" onMouseDown={onToggle}>//</button>
+            <button className="comment" onMouseDown={onToggle}>
+                {
+                    Boolean(commented) ? (
+                        <span className="material-icons material-icons-outlined">
+                            add
+                        </span>
+                    ) : (
+                        <span className="material-icons material-icons-outlined">
+                            remove
+                        </span>
+                    )
+                }
+            </button>
             <p className="multiline">{line}</p>
         </div>
     </li>)
