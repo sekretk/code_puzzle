@@ -21,7 +21,7 @@ const SortableItem = sortableElement(({ value, onToggle }) => {
                     )
                 }
             </button>
-            <p className="multiline">{line}</p>
+            <p className="line">{line}</p>
             <span className="drag material-icons material-icons-outlined">
                 drag_indicator
             </span>

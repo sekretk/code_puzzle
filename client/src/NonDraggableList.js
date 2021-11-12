@@ -18,7 +18,7 @@ const UngraggableItem = ({ value, onToggle }) => {
                     )
                 }
             </button>
-            <p className="multiline">{line}</p>
+            <p className="line">{line}</p>
         </div>
     </li>)
 };
