@@ -21,7 +21,7 @@
   "devDependencies": {},
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build && cp favicon.ico build/favicon.ico && cp logo.svg build/logo.svg",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
