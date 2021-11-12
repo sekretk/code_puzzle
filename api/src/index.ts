@@ -26,16 +26,28 @@ type Attempt = {
   lines: Array<number>
 }
 
+type Link = {
+  text: string,
+  link: string
+}
+
 type Line = {
   id: number,
   line: string
 }
 
+type Result = {
+  links: Array<Link>,
+  text: string
+}
+
 type Question = {
   description: string,
-  blocks: Array<string>,
+  blocks: Array<Line>,
   answers: Array<Array<number>>,
-  result: string
+  result: Result,
+  sortable: boolean,
+  multiple: boolean
 }
 
 type QuestionWithID = Question & { id: string }
@@ -50,7 +62,7 @@ const findAnswer =
 
 const polls: Map<string, Array<QuestionWithID>> = 
   fs.readdirSync(path.join(__dirname, POLL_DIR))
-  .reduce((acc, cur) => acc.set(cur, parsePoll(cur)), new Map<string, Array<QuestionWithID>>());
+  .reduce((acc, cur) => acc.set(cur.replace('.json', ''), parsePoll(cur)), new Map<string, Array<QuestionWithID>>());
 
 app.get('/allpolls', function (req, res) {
   res.setHeader('Content-Type', 'application/json');
@@ -60,7 +72,10 @@ app.get('/allpolls', function (req, res) {
 app.get('/rndpoll/:poll', function (req, res) {
   res.setHeader('Content-Type', 'application/json');
   const poll = req.params["poll"];
+  
   const rndPoll = polls.get(poll)?.[Math.floor(Math.random() * (polls.get(poll)?.length??0))];
+
+  console.log(polls, poll, rndPoll)
 
   res.end(JSON.stringify({ ...rndPoll, answers: undefined, result: undefined }));
 });
@@ -69,5 +84,5 @@ app.post('/result/:poll', function (req, res) {
   const attempt = req.body as Attempt;
   const poll = req.params["poll"];
   const foundPoll = polls.get(poll)?.find(findAnswer(attempt));
-  res.end(foundPoll?.result)
+  res.end(JSON.stringify(foundPoll?.result))
 })

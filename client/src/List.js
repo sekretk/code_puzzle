@@ -2,13 +2,15 @@ import React, { Component, useState } from 'react';
 import { render } from 'react-dom';
 import { sortableContainer, sortableElement } from 'react-sortable-hoc';
 import { arrayMoveImmutable } from 'array-move';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const SortableItem = sortableElement(({ value, onToggle }) => {
     const { line, commented } = value;
     return (<li className={commented ? 'commented' : ''}>
         <div className="item">
             <button onMouseDown={onToggle}>com</button>
-            <p>{line}</p>
+            <p className="multiline">{line}</p>
+            <FontAwesomeIcon icon="fa-solid fa-grip-dots-vertical" />
         </div>
     </li>)
 });
@@ -55,7 +57,7 @@ export default function List({ items, pollId, text }) {
 
     return (
         <>
-            <p className="description">{text}</p>
+            <p className="description multiline">{text}</p>
             <button onClick={onNext}>Дальше</button>
             <button onClick={onSubmit}>Submit</button>
             <div className="content">

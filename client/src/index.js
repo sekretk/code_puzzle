@@ -16,12 +16,6 @@ export const swapInArray = (arr, idx1, idx2) => {
 
   const items = poll.blocks.map(block => ({ ...block, commented: Math.random() < 0.5 }))
 
-  // render(<DraggableList pollId={poll.id} text={poll.description} items={items} />, document.getElementById('root'))
-
-  // render(<List />, document.getElementById('root'))
-  // })();
-
-
   render(<List pollId={poll.id} text={poll.description} items={items}/>, document.getElementById('root'))
 
 })();

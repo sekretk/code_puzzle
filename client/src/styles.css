@@ -13,6 +13,7 @@ body {
   font-family: 'Raleway', sans-serif;
   align-items: center;
   background: #f0f0f0;
+  overflow-y: visible;
 }
 
 .draggable-main {
@@ -91,4 +92,8 @@ li {
 }
 .fader.fade {
   opacity: 0;
+}
+
+.multiline {
+  white-space: pre-line;
 }
