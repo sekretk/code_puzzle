@@ -2,7 +2,6 @@ import React, { Component, useEffect, useState } from 'react';
 import { render } from 'react-dom';
 import { sortableContainer, sortableElement } from 'react-sortable-hoc';
 import { arrayMoveImmutable } from 'array-move';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { selectMapper } from './utils'
 
 const SortableItem = sortableElement(({ value, onToggle }) => {
@@ -11,7 +10,9 @@ const SortableItem = sortableElement(({ value, onToggle }) => {
         <div className="item content__item">
             <button className="comment code" onMouseDown={onToggle}>//</button>
             <p className="multiline item__code code">{line}</p>
-            <span>...</span>
+            <span className="drag material-icons material-icons-outlined">
+                drag_indicator
+            </span>
         </div>
     </li>)
 });

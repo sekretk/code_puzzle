@@ -320,9 +320,9 @@
     ],
     "result": {
       "links": [ ],
-      "text": "Бинарные операции над byte и short всегда приводятся к int. Поэтому будет ошибка компиляции, т.к. нельзя неявно привести int к short без потери точности"
+      "text": ""
     },
     "sortable": false,
-    "multiple": false
+    "multiple": true
   }
 ]

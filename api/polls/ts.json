@@ -1,6 +1,6 @@
 [
     {
-      "description": "[Easy] Отсортировать и закомментировать ненужное. Получить компилируемый вызов в последней строке функции const comb: (subject: Animal) => void = () => {};",
+      "description": "[Easy] Отсортировать и закомментировать ненужное. \nПолучить компилируемый вызов в последней строке функции \nconst comb: (subject: Animal) => void = () => {};",
       "blocks": [
         {
           "id": 1,
@@ -40,7 +40,7 @@
       "multiple": true
     },
     {
-      "description": "[Easy] Отсортировать и закомментировать ненужное. Есть функция: const format: (item: number) => void = () => {}; Необходимо получить компилируемый код",
+      "description": "[Easy] Отсортировать и закомментировать ненужное.\nЕсть функция: const format: (item: number) => void = () => {}; Необходимо получить компилируемый код",
       "blocks": [
         {
           "id": 2,
@@ -56,7 +56,7 @@
         },
         {
           "id": 5,
-          "line": "const isNumber = (item: unknown): item is number => typeof item === 'number';"
+          "line": "const isNumber = (item: unknown): item is number \n  => typeof item === 'number';"
         }
       ],
       "answers": [
@@ -75,7 +75,7 @@
       "multiple": true
     },
     {
-      "description": "[Easy] Отсортировать и закомментировать ненужное. Получить в итоге код который при добавлении в тип Method ",
+      "description": "[Easy] Отсортировать и закомментировать ненужное.\nПолучить в итоге код который при добавлении в тип Method ещё одного варианта будет Type Check Error",
       "blocks": [
         {
           "id": 1,
@@ -87,20 +87,30 @@
         },
         {
           "id": 3,
-          "line": "case 'Post': return 'P';"
+          "line": "  switch (request.type) {"
         },
         {
           "id": 4,
-          "line": "case 'Get': return 'G';"
+          "line": "    case 'Post': return 'P';"
         },
         {
           "id": 5,
-          "line": "default: return 'NaN'"
+          "line": "    case 'Get': return 'G';"
+        },
+        {
+          "id": 6,
+          "line": "    default: return 'NaN'"
+        },
+        {
+          "id": 7,
+          "line": "  }"
         }
       ],
       "answers": [
-        [ 1,2,3,4 ],
-        [ 1,3,2,4 ]
+        [ 1,2,3,4,5,7 ],
+        [ 1,2,3,5,4,7 ],
+        [ 2,3,5,4,5,7,1 ],
+        [ 2,3,5,5,4,7,1 ]
       ],
       "result": {
         "links": [
@@ -108,13 +118,13 @@
             "link": "https://www.typescriptlang.org/play?#code/PTAuE8AcFMAIFlqgBYHsAmsC8sDkAFVAZ1F1gB88BxJMy3AEWgBslpcBuAWACgIYESNJhwFipCtVrcevAMaoAdiVjIAhovSsATtlgAKbdACOAV2gkAXLADe-aNcQoMAXwCU1ktoCWigObYAHy2vLBhsEQA7t6gcsgGRmYWoAB09m4hPOHZsHJqRHBiJLjWRqCm2op4+JyhOWF5BVKkpUgVVbhUtVn1sCDo0ABmaqbMoK3llXgAcmrTuHVhLrwuQA"
           }
         ],
-        "text": "You right!"
+        "text": "Техникак называется Exhaustive Check"
       },
       "sortable": true,
       "multiple": true
     },
     {
-      "description": "[Intermediate] Отсортировать и закомментировать ненужное. type Get = { type: 'Get', url: string } \r\n type Post = { type: 'Post', data: string, url: string }; \r\n type Req = Get | Post; \r\nНеобходимо получить код который не будет проходить TypeCheck пр добавлении к Req типа type Delete = { type: 'Delete', url: string }; ",
+      "description": "[Intermediate] Отсортировать и закомментировать ненужное.\ntype Get = { type: 'Get', url: string } \n type Post = { type: 'Post', data: string, url: string }; \r\n type Req = Get | Post; \r\nНеобходимо получить код который не будет проходить TypeCheck при добавлении к Req типа \ntype Delete = { type: 'Delete', url: string }; ",
       "blocks": [
         {
           "id": 1,
@@ -122,29 +132,37 @@
         },
         {
           "id": 2,
-          "line": "if (request.type === 'Post') { return 'P' }"
+          "line": "  if (request.type === 'Post') { return 'P' }"
         },
         {
           "id": 3,
-          "line": "else if (request.type === 'Get') { return 'G' }"
+          "line": "  else if (request.type === 'Get') { return 'G' }"
         },
         {
           "id": 4,
-          "line": "neverCheck(request);"
+          "line": "  neverCheck(request);"
         },
         {
           "id": 5,
-          "line": "return ''; }"
+          "line": "  return '';"
         },
         {
           "id": 6,
+          "line": "}"
+        },
+        {
+          "id": 7,
           "line": "const neverCheck = (subj: never) => subj; "
+        },
+        {
+          "id": 8,
+          "line": "  else if (request.type === 'Put') { return 'PT' }"
         }
       ],
       "answers": [
-        [ 6,1,2,3,4,5 ],
-        [ 1,2,3,4,5,6 ],
-        [ 1,2,3,6,4,5 ]
+        [ 7,1,2,3,4,5,6 ],
+        [ 1,2,3,4,5,6,7 ],
+        [ 1,2,3,7,4,5,6 ]
       ],
       "result": {
         "links": [
@@ -159,7 +177,7 @@
       "multiple": true
     },
     {
-      "description": "[Intermediate] Отсортировать и закомментировать ненужное. Для типов \r\n type Animal = { make: undefined } \r\n type Dog = Animal & { bark: undefined } оставьте только компилируемый код. В TSConfig strict = true",
+      "description": "[Intermediate] Отсортировать и закомментировать ненужное. Для типов \n type Animal = { make: undefined } \n type Dog = Animal & { bark: undefined } оставьте только компилируемый код. \nВ TSConfig strict = true",
       "blocks": [
         {
           "id": 1,
