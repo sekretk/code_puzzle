@@ -7,21 +7,9 @@ import { selectMapper } from './utils'
 const SortableItem = sortableElement(({ value, onToggle }) => {
     const { line, commented } = value;
     return (<li className={commented ? 'commented' : ''}>
-        <div className="item">
-            <button className="comment" onMouseDown={onToggle}>
-                {
-                    Boolean(commented) ? (
-                        <span className="material-icons material-icons-outlined">
-                            add
-                        </span>
-                    ) : (
-                        <span className="material-icons material-icons-outlined">
-                            remove
-                        </span>
-                    )
-                }
-            </button>
-            <p className="line">{line}</p>
+        <div className="item content__item">
+            <button className="comment code" onMouseDown={onToggle}>//</button>
+            <p className="multiline item__code code">{line}</p>
             <span className="drag material-icons material-icons-outlined">
                 drag_indicator
             </span>

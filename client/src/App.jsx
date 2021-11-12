@@ -3,12 +3,18 @@ import NonDraggableList from './NonDraggableList'
 import Result from './Result'
 import About from './About'
 import React, { useState, useEffect } from 'react';
-import { url } from './utils';
+import {url} from './utils';
+import { reasons } from './reasons';
+import {NotificationContainer, NotificationManager} from 'react-notifications';
+
+import 'react-notifications/dist/react-notifications.css';
 
 const listPresenter = {
   true: (props) => <DraggableList {...props} />,
   false: (props) => <NonDraggableList {...props} />,
 }
+
+const addReasonToLocalStorage = reason => window.localStorage.setItem('reasons', JSON.stringify({...JSON.parse(window.localStorage.getItem('reasons')), [reason]: 1}));
 
 export default function App(question) {
 
@@ -25,7 +31,25 @@ export default function App(question) {
 
   const [incorrect, setIncorrect] = useState(false);
 
+  const [reason, setReason] = useState(undefined);
+
+  const [achieve, setAchieve] = useState(undefined);
+
   const needAbout = !Boolean(window.localStorage.getItem('acquainted'));
+
+  const checkForAchieve = () => {
+    const lsReasons = Object.keys(JSON.parse(window.localStorage.getItem('reasons')));
+    if (lsReasons.length === reasons.length && !window.localStorage.getItem('achieve')) {
+      window.localStorage.setItem('achieve', '1');
+    }
+  };
+
+  const showAchieve = () => {
+    if(window.localStorage.getItem('achieve') === '1') {
+      setAchieve({text: 'Упорство', description: 'Тебе удалось раздобыть все сообщения о неправильных ответах'})
+      window.localStorage.setItem('achieve', '0');
+    }
+  };
 
   const onSubmit = async () => {
 
@@ -48,7 +72,21 @@ export default function App(question) {
     setResult(content);
 
     setIncorrect(!Boolean(content))
+
+    if (!content) {
+      const reason = reasons[Math.floor(Math.random()*reasons.length)]
+      setReason(reason);
+      addReasonToLocalStorage(reason);
+      checkForAchieve();
+      showAchieve();
+    }
   }
+
+  useEffect(() => {
+    if(achieve) {
+      NotificationManager.success(achieve.description, achieve.text);
+    }
+  }, achieve);
 
   const onNext = () => {
     window.location.reload();
@@ -101,7 +139,7 @@ export default function App(question) {
           console.log('onTransitionEnd');
           setIncorrect(false)
         }}>
-        <strong>Извините. Не принято!</strong>
+        <strong>{reason}</strong>
       </div>
 
       {
@@ -118,5 +156,7 @@ export default function App(question) {
           <About />
         </div>
       }
+
+      <NotificationContainer />
     </>)
 }

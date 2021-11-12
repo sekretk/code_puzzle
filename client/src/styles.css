@@ -1,16 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400,700&display=swap');
+
 * {
   box-sizing: border-box;
+}
+
+#root {
+  padding: 0 2%;
 }
 
 html,
 body {
   margin: 0;
   padding: 0;
-  height: 100%;
+  height: 100vh;
   width: 100%;
-  overflow: hidden;
   user-select: none;
-  font-family: 'Raleway', sans-serif;
+  font-family: 'Montserrat', 'Raleway', sans-serif;
   align-items: center;
   background: #f0f0f0;
   overflow-y: visible;
@@ -24,7 +29,7 @@ body {
   width: 100%;
   overflow: hidden;
   user-select: none;
-  font-family: 'Raleway', sans-serif;
+  font-family: 'Consolas', 'Monaco', 'Raleway', sans-serif;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -37,12 +42,11 @@ body {
 
 .content {
   position: relative;
-  margin-left: 30px;
   overflow-y: scroll;
 }
 
 .description {
-  padding: 3px 20px 3px 20px;
+  padding: 20px 0;
 }
 
 .content li {
@@ -54,11 +58,16 @@ body {
 }
 
 li.commented {
-  background: lightgrey;
+  background: #dbebce;
+}
+
+.code {
+  font-family: 'Consolas', 'Monaco', 'Raleway', sans-serif;
 }
 
 .commented p {
   color: green;
+  font-style: italic;
 }
 
 .commented button {
@@ -66,6 +75,7 @@ li.commented {
 }
 
 .item {
+  padding-left: 1em;
   line-height: 30px;
   display: flex;
   align-items: flex-start;
@@ -79,6 +89,7 @@ li.commented {
 
 .item button {
   align-self: center;
+  margin-right: 1em;
 }
 
 li {
@@ -93,6 +104,7 @@ li {
   height: 100%;
   padding: 16px;
   top:0;
+  left: 0;
   position: fixed;
   z-index:1002;
   overflow: auto;
@@ -165,7 +177,7 @@ button.help {
 
 button.next  {
   width: 100%;
-  margin: 3px;
+  margin: 3px 0;
   appearance: none;
   background-color: #FAFBFC;
   border: 1px solid rgba(27, 31, 35, 0.15);
@@ -175,7 +187,7 @@ button.next  {
   color: #24292E;
   cursor: pointer;
   display: inline-block;
-  font-family: -apple-system, system-ui, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  font-family: 'Montserrat', -apple-system, system-ui, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
   font-size: 14px;
   font-weight: 500;
   line-height: 20px;
@@ -225,7 +237,7 @@ button.next:-webkit-details-marker {
 /* CSS */
 button.submit {
   width: 100%;
-  margin: 3px;
+  margin: 3px 0;
   appearance: none;
   background-color: #2ea44f;
   border: 1px solid rgba(27, 31, 35, .15);
@@ -276,6 +288,10 @@ button.submit:active {
   box-shadow: rgba(20, 70, 32, .2) 0 1px 0 inset;
 }
 
+button {
+  cursor: pointer;
+}
+
 
 button.comment {
   background-color: transparent;
@@ -283,6 +299,26 @@ button.comment {
   font-weight: 800;
 }
 
+.multiple button.comment {
+  background: #dbebce;
+  padding: 5px;
+}
+
+.help {
+  border: none;
+  background: none;
+  text-decoration: underline;
+  cursor: pointer;
+  padding-left: 0;
+}
+
+.df {
+  display: flex;
+}
+
+.undraggable {
+  padding: 0;
+}
 .badge{
   background: #009688;
   color: #fff;
@@ -374,4 +410,14 @@ button.go {
 
 .item .line {
   white-space: break-spaces;
+}
+
+.notification-container .title {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.notification-container .message {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
 }
