@@ -273,3 +273,7 @@ button.comment {
 .df {
   display: flex;
 }
+
+.undraggable {
+  padding: 0;
+}
