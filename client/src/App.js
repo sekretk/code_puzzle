@@ -37,7 +37,10 @@ export default function App(question) {
         lines: itemsVal.filter(block => !block.commented).map(block => block.id)
       })
     });
-    const content = await rawResponse.text();
+
+    const text = await rawResponse.text();
+
+    const content = Boolean(text) ? JSON.parse(text) : undefined;
 
     setResult(content);
 
