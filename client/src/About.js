@@ -19,12 +19,13 @@ export default function Result({ links, text }) {
             <p><a href="https://devexperts.com/about-devexperts/" target="_blank">Подробнее о наших продуктах и команде</a></p>
             <p><a href="https://careers.devexperts.com/vacancies/?country=ru&remote=true" target="_blank">Наши вакансии</a></p>
 
-
-            <p>
+            <br />\
+            <h3>Правила игры:</h3>
+            <p className="rules">
                 Приложение предлагает решить задачу.
                 Для пропуска нужно начать Далее.
                 Для отправки на проверку Отправить.
-                Для комментирования/раскомментирования строки нужно нажать на "//"
+                Для комментирования/раскомментирования строки нужно нажать на "//".
                 Допустимы следующие флаги на задачах:
             </p>
 
