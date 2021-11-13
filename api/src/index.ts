@@ -72,6 +72,8 @@ const polls: Map<string, Array<QuestionWithID>> =
   fs.readdirSync(path.join(__dirname, POLL_DIR))
   .reduce((acc, cur) => acc.set(cur.replace('.json', ''), parsePoll(cur)), new Map<string, Array<QuestionWithID>>());
 
+console.log('Started with grabbed polls:', polls);
+
 app.get('/polls', function (req, res) {
   res.setHeader('Content-Type', 'application/json');
   res.end(JSON.stringify(Array.from(polls.keys())));
@@ -90,6 +92,10 @@ app.post('/result/:poll', function (req, res) {
   const attempt = req.body as Attempt;
   const poll = req.params["poll"];
   const foundPoll = polls.get(poll)?.find(findAnswer(attempt));
+
+  console.log(`Asked for result Poll: ${poll}, Attepmt: ${attempt}, Found answer: ${foundPoll}`);
+
+
   console.log(attempt, polls.get(poll))
   res.end(JSON.stringify(foundPoll?.result))
 })
