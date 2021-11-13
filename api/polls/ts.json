@@ -330,7 +330,7 @@
         ],
         "text": "'A' extends 'A' | 'B' extends string extends any"
       },
-      "sortable": false,
+      "sortable": true,
       "multiple": true
     },
     {
