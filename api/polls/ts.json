@@ -252,7 +252,7 @@
       "multiple": true
     },
     {
-      "description": "Для типа\ntype Issuer = 'A' | 'B' | 'C';\nКакая конструкция оствит тип 'getA' | 'getB'?",
+      "description": "Для типа\ntype Issuer = 'A' | 'B' | 'C';\nКакая конструкция сформирует тип 'getA' | 'getB'?",
       "blocks": [
         {
           "id": 1,
