@@ -211,7 +211,7 @@
             "link": "https://www.typescriptlang.org/play?strictFunctionTypes=false#code/LAKALgngDgpgBAQQHYEsC2BDANnAvHAbzkwGsYAuOAVyQBMYAzFJGWuAX1EljgBEB7AOZ5EqTDgBkhOACMMAJxKUa9JizacQoAPTbu8AEIoAbgpQYkYAKLGYlgBIXaWGPIA8VuDAAeYO7QBnUXRsAD4RIhkTMwsAYxhHWJIAChhbS0orAEpKY34UDQBtACIo03lzJHjEkmKAXQBuLmh4GzswRzoXd08fPzog5BCscPxU9LBMrLxwvILQHW0AsArYsAAxGjWUfiQAFRaAyhWqeAZ+eXi4WN2VjHLK2Ig4c-kXrbAdpDgFQSo0doBRY3JDLOAACyc3UyE06zlcbiG4lGcGStCElAEgmmuHCRBBAX4LgAdFghGihMS5IpppoCWAIVDXDD2nDuoixGERMkLMNKEjsDi8dddoSSWTBDzOVhiaQYLSgA"
           }
         ],
-        "text": "С ключом strictFunctionTypes поведение становится контравариантым вместо умолчательного бивариантного для параметров функции"
+        "text": "С ключом strictFunctionTypes поведение становится контравариантным вместо умолчательного бивариантного для параметров функции"
       },
       "sortable": true,
       "multiple": true
