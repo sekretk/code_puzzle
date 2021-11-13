@@ -9,7 +9,15 @@ const SortableItem = sortableElement(({ value, onToggle }) => {
     return (<li className={commented ? 'commented' : ''}>
         <div className="item content__item">
             <button className="comment code" onMouseDown={onToggle}>//</button>
-            <p className="multiline item__code code">{line}</p>
+            {
+                Boolean(commented)
+                    ? (
+                        <strike>
+                            <p className="multiline item__code code">{line}</p>
+                        </strike>
+                    )
+                    : <p className="multiline item__code code">{line}</p>
+            }
             <span className="drag material-icons material-icons-outlined">
                 drag_indicator
             </span>

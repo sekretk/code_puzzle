@@ -34,48 +34,53 @@
             "link": "https://www.typescriptlang.org/play?#code/C4TwDgpgBAwgFgewE4BMCGw1QLxQN5QA2EAdgObBwBcUJArgLYBGESUAvgNwCwAUKJCgBBEgEsGaQjliJUGLADJ8UJkggQUNAM7Ako8hx79w0AAoRg0keMlQlBEmgYRtu-WQ58+AYwQkdUL7MNAAUWnRMAFYQ3sA01hKEAJQ4AHxQAG4IoijSISnY6XhcXrxBTCHFUGhaUObASUbllezVtfDI6JiNQA"
           }
         ],
-        "text": "You right!"
+        "text": "Тут было просто"
       },
       "sortable": true,
       "multiple": true
     },
     {
-      "description": "Есть функция: const format: (item: number) => void = () => {}; Необходимо получить компилируемый код",
+      "description": "Для функции:\n const format: (item: number) => void = () => {};\nНеобходимо получить компилируемый код",
       "blocks": [
         {
-          "id": 2,
+          "id": 1,
           "line": "const issuer: string | number = 'value';"
         },
         {
-          "id": 3,
+          "id": 2,
           "line": "isNumber(issuer) && format(issuer);"
         },
         {
-          "id": 4,
+          "id": 3,
           "line": "const isNumber = (item: unknown) => typeof item === 'number';"
         },
         {
-          "id": 5,
-          "line": "const isNumber = (item: unknown): item is number \n  => typeof item === 'number';"
+          "id": 4,
+          "line": "const isNumber = (item: unknown): item is number\n  => typeof item === 'number';"
         }
       ],
       "answers": [
-        [2,4,3],
-        [4,2,3]
+        [1,4,2],
+        [4,1,2]
       ],
       "result": {
         "links": [
-          { "text": "playground",
+          { 
+            "text": "playground",
             "link": "https://www.typescriptlang.org/play?#code/MYewdgzgLgBAZiATgWwIZQFwwBQEsoCmyWYArsgEYGICUMAvAHwwBuIuAJgznUzAN4BfANwBYAFASA9FICSUCDFQwoATwAOBGAHNSqRFwAWUKOogYZAd2sA6NZojBEudVAA2qMNptJtUjiDAEFKGnhwUICAA1lIATFJg+ogglrheNsbIbgDEpBBp2gC09gSF6ogEHLjA6AQQEqCQsLgQAHLkVIjceITEMKRgUWApYDRY+EQwLTBklNQMzCUgcFO9DPT0MADks51bYuIyjdBTbR3zmz1EWANDI7yLGgTLq5MbmzvniPsSDeAnLQgpGoWGgzi8MAAPjMvtwtixUG5gT9xC12nNEHgIEDqHQAGR4+BINBQLE42jCIA"
+          },
+          { 
+            "text": "type guards",
+            "link": "https://www.typescriptlang.org/docs/handbook/2/narrowing.html#using-type-predicates"
           }
         ],
-        "text": "You right!"
+        "text": ""
       },
       "sortable": true,
       "multiple": true
     },
     {
-      "description": "Получить в итоге код который при добавлении в тип Method ещё одного варианта будет Type Check Error",
+      "description": "Получить в итоге код который при добавлении в тип Method ещё одного варианта будет генерировать Type Check Error",
       "blocks": [
         {
           "id": 1,
@@ -124,7 +129,7 @@
       "multiple": true
     },
     {
-      "description": "Для типов: \ntype Get = { type: 'Get', url: string } \n type Post = { type: 'Post', data: string, url: string }; \n type Req = Get | Post; \nНеобходимо получить код который не будет проходить TypeCheck при добавлении к Req типа \ntype Delete = { type: 'Delete', url: string }; ",
+      "description": "Для типов: \ntype Get = { type: 'Get', url: string } \ntype Post = { type: 'Post', data: string, url: string }; \ntype Req = Get | Post; \nНеобходимо получить код который не будет проходить TypeCheck при добавлении к Req типа \ntype Delete = { type: 'Delete', url: string }; ",
       "blocks": [
         {
           "id": 1,
@@ -169,9 +174,13 @@
           { 
             "text": "playground",
             "link": "https://www.typescriptlang.org/play?#code/C4TwDgpgBA4hxQLxQN5VJAXFA5HYOANFAK4BOANtgM7BkCWAdgOZQC+AsAFAbQAKAe1pJU6cBGw5BtIlAAmAQ2AKadJs2LkqUWgxbsA3NwD0x3lAAiECvGjI0vSVZvAIsrar2s2RrqfMAShAAjiL4UAA+UNIIUc62voEhYfCR0ULAvtwAxgKMwowQAG4QZADCABYQ2QDWIgAU1CQARgBW2IUlZACUSAB8Oi2tBlDcOXnCFQqMcjZkDWQhJBC02EHB3Z7q-ajcUPtQ9ABmUPWLwcu0AHTmiHe4MTi9aIvA5IwPOOx7B9bU0MdTudLsAbuIkPc8PAnqJXu9cDAvpwuD99p1SpVqjUzksVsBulkuAcoHCyB8cDgRmwgA"
+          },
+          { 
+            "text": "narrowing",
+            "link": "https://www.typescriptlang.org/docs/handbook/2/narrowing.html#control-flow-analysis"
           }
         ],
-        "text": "You right!"
+        "text": "Такая техника называется Exhaustive Check. Typescript Control flow analysis позволяет проверить какой тип может выполниться после всех ветвлений"
       },
       "sortable": true,
       "multiple": true
@@ -243,7 +252,7 @@
       "multiple": true
     },
     {
-      "description": "Для типа\ntype Issuer = 'A'|'B'|'C';\nКакая конструкция оствит тип 'getA' | 'getB'?",
+      "description": "Для типа\ntype Issuer = 'A' | 'B' | 'C';\nКакая конструкция оствит тип 'getA' | 'getB'?",
       "blocks": [
         {
           "id": 1,

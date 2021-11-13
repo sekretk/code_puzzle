@@ -94,10 +94,9 @@ export default function App(question) {
 
   const items = multiple
     ? blocks.map(block => ({ ...block, commented: Math.random() < 0.5 }))
-    : blocks.map(block => ({ ...block, commented: block !== blocks[0] }))
+    : blocks.map(block => ({ ...block, commented: block !== blocks[0] }));
 
-
-  const [itemsVal, setItems] = useState(items);
+  const [itemsVal, setItems] = useState(items.sort(() => (Math.random() > .5) ? 1 : -1));
 
   const list = listPresenter[sortable]({ items, onItemsChanged: setItems, multiple });
 
