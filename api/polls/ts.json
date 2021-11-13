@@ -286,7 +286,7 @@
         "links": [
           { 
             "text": "playground",
-            "link": "https://www.typescriptlang.org/play?#code/C4TwDgpgBAkgznArhATlAvFA5AQSwHywCECsBhLAbgFgAoOgegdEigGVEAjAKwygAMA5hGAASAN4AFAJYBjANYAeeElQAabHij5sJAHwBffowZQzZgHoB+Ey2gcefISIkBRAB7AUAQ1nBlCMgoGrhY2rpYhsa0TOaWNrR27Fy8mM5i4h6yADaIACYQAarB2BRRJnHWtuD2KU7CGQDyALbS-ipBIWVGFebWQA"
+            "link": "https://www.typescriptlang.org/play?#code/C4TwDgpgBAkgznArhATlAvFA5AQy1AH2wCN8isBjLAWACg6B6B0SKAZUWICsMoADAOYRgAEgDeAVTCQUFHHAgAeAKIAPCgBtEAEyXwkqADTYqAPlMBfPnRbQO3XoOHipMuQpWrgKHBWCL9ZBRjXDISLHMrRgYoWKgAPQB+IA"
           },
           { 
             "text": "Template Literal Types",
