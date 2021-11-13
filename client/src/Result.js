@@ -5,7 +5,7 @@ export default function Result({ links, text }) {
     return (
         <>
             <p>Верно!</p>
-            <p>{text}</p>
+            <p className="multiline">{text}</p>
             <ul>
                 {
                     links.map(({ text: msg, link }, index) => (

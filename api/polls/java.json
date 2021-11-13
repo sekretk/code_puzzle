@@ -162,11 +162,11 @@
       "links": [ ],
       "text": ""
     },
-    "sortable": false,
+    "sortable": true,
     "multiple": true
   },
   {
-    "description": "Расположите алгоритмы в порядке возрастания сложности в худшем случае: от самого быстро вверху до самого медленного внизу.",
+    "description": "Закомментируйте нерелевантные и расположите алгоритмы в порядке возрастания сложности в худшем случае: от самого быстро вверху до самого медленного внизу.",
     "blocks": [
       {
         "id": 1,
@@ -187,6 +187,10 @@
       {
         "id": 5,
         "line": "Сортировка вставкой"
+      },
+      {
+        "id": 6,
+        "line": "Алгоритм Дейкстры"
       }
     ],
     "answers": [
@@ -200,7 +204,7 @@
     "multiple": true
   },
   {
-    "description": "Сортировка пузырьком. Закомментируйте лишние строки.",
+    "description": "Составьте код сортировки пузырьком",
     "blocks": [
       {
         "id": 1,
@@ -254,7 +258,7 @@
     "multiple": true
   },
   {
-    "description": "Результат выполнения операции: \n  byte a = 100;\n  byte b = 30;\n  byte c = a + b;\n System.out.println(c);",
+    "description": "Результат выполнения операции: \nbyte a = 100;\byte b = 30;\nbyte c = a + b;\nSystem.out.println(c);",
     "blocks": [
       {
         "id": 1,
@@ -416,7 +420,7 @@
     "multiple": false
   },
   {
-    "description": "Результат выполнения:interface N {\n  public int f(int arg);\n  public String toString();\n}\npublic class C {\n  public static void call_f(N n) {\n    System.out.println(n.f(2));\n  }\n\n  public static void main(String[] args) {\n    call_f(v -> v << v);\n  }\n}",
+    "description": "Результат выполнения:\ninterface N {\n  public int f(int arg);\n  public String toString();\n}\npublic class C {\n  public static void call_f(N n) {\n    System.out.println(n.f(2));\n  }\n\n  public static void main(String[] args) {\n    call_f(v -> v << v);\n  }\n}",
     "blocks": [
       {
         "id": 1,
