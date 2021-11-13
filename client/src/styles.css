@@ -431,3 +431,7 @@ button.go {
 .rules {
   font-weight: 300;
 }
+
+.result-links {
+  padding: 0;
+}
