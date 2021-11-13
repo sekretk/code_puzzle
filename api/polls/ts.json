@@ -288,5 +288,118 @@
       },
       "sortable": false,
       "multiple": true
+    },
+    {
+      "description": "Расположите типы по мере вложенности друг в друга от самого общего",
+      "blocks": [
+        {
+          "id": 1,
+          "line": "any"
+        },
+        {
+          "id": 2,
+          "line": "string"
+        },
+        {
+          "id": 3,
+          "line": "'A' | 'B'"
+        },
+        {
+          "id": 4,
+          "line": "'A'"
+        }
+      ],
+      "answers": [
+        [ 1,2,3,4 ]
+      ],
+      "result": {
+        "links": [
+          { 
+            "text": "playground",
+            "link": "https://www.typescriptlang.org/play?#code/C4TwDgpgBAkgzgUQB7AgOwCYB4AqAaAJQD4oBeKHKCFdDOKAqAfimACcBXaALigDMAhgBs4EANwBYAFChIsOHC5sy85KkxY47AJZoA5nigC0IItID05qNagA9Jhauzo8RRGXl4a2lgDkAQV8AH18AIV9DLTZdPTMpSygEm3tHVnAXBSUVLxoNAIiofJDwuISk63sgA"
+          }
+        ],
+        "text": "'A' extends 'A' | 'B' extends string extends any"
+      },
+      "sortable": false,
+      "multiple": true
+    },
+    {
+      "description": "Для типа\ntype Subj = {a: number, b: string};\nЗадано построить прокси класс с ленивыми get функциями на каждое проперти. Какая конструкция описывает содержимое type Proxy<T> = {:",
+      "blocks": [
+        {
+          "id": 1,
+          "line": "[K in keyof T as `get${string & K}`]: () => T[K]"
+        },
+        {
+          "id": 2,
+          "line": "Record<`get${keyof T}`, T>"
+        },
+        {
+          "id": 3,
+          "line": "[K as `get${string & K}`]: () => T[K]"
+        },
+        {
+          "id": 4,
+          "line": "(K as `get${K}`) => () => T[K]"
+        }
+      ],
+      "answers": [
+        [ 1 ]
+      ],
+      "result": {
+        "links": [
+          { 
+            "text": "playground",
+            "link": "https://www.typescriptlang.org/play?ts=4.4.4#code/C4TwDgpgBAygrgIwFZQLxQN4EMBcUB2cAtghAE4A0UCeAzsGQJb4DmAvgNwCwAUL6JCgAFMgHsAHiAA8AFQB8aTLygqoAbQDSUZlADWEEKIBmUGVCy0oAAxYRgAEgwBVMJDIBjCxCn0mrKABkUBpybFYAungAFACUaAoymuG8bLy8APTpUALQIhLS8ooAShDuomQAJlI2do76hiYyYVTyGVk5wmKSAIwADLIK6Bhtqiqa5pY1Ds6u5J603r7MLIHBoRHRcagJSSOpPJnZ4LldIH0DisMHWaNRWhbWttMaYVsKsfGmu9dQ+-zHpkUeUkUngyDkIygAD0APxAA"
+          },
+          { 
+            "text": "Mapped Types",
+            "link": "https://www.typescriptlang.org/docs/handbook/2/mapped-types.html#key-remapping-via-as"
+          }
+        ],
+        "text": "Возможное решение делается через Mapped Types"
+      },
+      "sortable": false,
+      "multiple": false
+    },
+    {
+      "description": "Постройте компилирумый код",
+      "blocks": [
+        {
+          "id": 1,
+          "line": "const issuerArr = [42, 'John', true];"
+        },
+        {
+          "id": 2,
+          "line": "const issuerArr = [42, 'John', true] as const;"
+        },
+        {
+          "id": 3,
+          "line": "const add = <T extends number>(a: T) => {}"
+        },
+        {
+          "id": 4,
+          "line": "add(issuerArr[0])"
+        }
+      ],
+      "answers": [
+        [ 2,3,4 ]
+      ],
+      "result": {
+        "links": [
+          { 
+            "text": "playground",
+            "link": "https://www.typescriptlang.org/play?ts=4.4.4#code/PTDGHsDsGcBcAICW1oFcCmAnAgpz8BeeAbQBYAmAGngHIApcAC0hutkwwF0BuAWACgBEGAmRosufETJVaDZq3jsu8AIbR4wuH34h4+-QD0A-AKFQ4agCZXC8ADwAVeOgAesdJCsbIqALYARlgAfAAUqgBc8I4AlITB8ADeAL5m-Ko2oWIYOHjEAAycMWlAA"
+          },
+          { 
+            "text": "Mapped Types",
+            "link": "https://www.typescriptlang.org/docs/handbook/2/mapped-types.html#key-remapping-via-as"
+          }
+        ],
+        "text": "as const сделает тип issuerArr tuple [number, string, boolean] иначе это number|string|boolean[]"
+      },
+      "sortable": true,
+      "multiple": true
     }
   ]
