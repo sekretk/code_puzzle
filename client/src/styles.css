@@ -43,7 +43,7 @@ body {
 .content {
   position: relative;
   overflow-y: scroll;
-  padding-left: 3%;
+  padding-left: 6%;
 }
 
 .description {
