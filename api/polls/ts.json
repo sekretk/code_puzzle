@@ -217,7 +217,7 @@
       "multiple": true
     },
     {
-      "description": "Для типа\ntype Issuer = { a: number, b: string, c: boolean };\nКакая конструкция оствит тип { a: number, b: string }?",
+      "description": "Для типа\ntype Issuer = { a: number, b: string, c: boolean };\nКакая конструкция сформирует тип { a: number, b: string }?",
       "blocks": [
         {
           "id": 1,
