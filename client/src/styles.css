@@ -13,13 +13,15 @@ body {
   margin: 0;
   padding: 0;
   height: 100vh;
-  width: 100%;
   user-select: none;
-  font-family: 'Montserrat', 'Raleway', sans-serif;
-  align-items: center;
-  background: #f0f0f0;
-  overflow-y: visible;
-  /* margin-right: 10px; */
+  font-family: 'Inter', 'Lato', 'Fira Code';
+  background: #1F1F1F;
+  color: #DAD8D3;
+  text-align: center;
+}
+
+ul{
+  list-style-type: none;
 }
 
 .draggable-main {
@@ -42,16 +44,15 @@ body {
 
 .content {
   position: relative;
-  overflow-y: scroll;
-  padding-left: 6%;
 }
 
 .description {
-  padding: 20px 0;
+  text-align: center;
 }
 
 .content li {
-  color: black;
+  color: white;
+  background: rgba(199, 199, 204, 0.5);
 }
 
 .content ul {
@@ -59,20 +60,33 @@ body {
 }
 
 li.commented {
-  background: #dbebce;
+  background: #3C3E42;
+  color: #DC9444;
 }
 
 .code {
   font-family: 'Consolas', 'Monaco', 'Raleway', sans-serif;
+  background-color: transparent;
 }
 
 .commented p {
-  color: green;
-  font-style: italic;
+  color: #DC9444;
+  font-family: "Fira Code";
+  font-weight: 600;
+  font-size: 14px;
 }
 
 .commented button {
-  color: green;
+  color: #DC9444;
+  background: rgba(199, 199, 204, 0.5);
+}
+
+.commented button.code{
+  color: #DC9444;
+}
+
+.commented span.drag{
+  color: #DC9444;
 }
 
 .item {
@@ -80,12 +94,21 @@ li.commented {
   line-height: 30px;
   display: flex;
   align-items: flex-start;
+  background: rgba(199, 199, 204, 0.5);
+}
 
+.commented .item{
+  background: #3C3E42;
+}
+
+.commented .item button.comment{
+  color: #DC9444;
 }
 
 .item .drag{
   align-self: center;
   margin-left: auto;
+  color: white;
 }
 
 .item button {
@@ -94,13 +117,15 @@ li.commented {
 }
 
 li {
-  list-style: none;
-  border-radius: 5px;
   margin-bottom: 3px;
 }
 
+a{
+  color:#DAD8D3;
+}
+
 .result {
-  background: lightblue;
+  background: #1F1F1F;
   width: 100%;
   height: 100%;
   padding: 16px;
@@ -115,17 +140,145 @@ li {
 }
 
 .about {
-  background: lightblue;
-  width: 100%;
+  background: #1F1F1F;
   height: 100%;
-  padding: 16px;
+  width: 100%;
+  color:#DAD8D3;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   top:0;
+  right:0;
+  bottom:0;
   position: fixed;
   z-index:1002;
-  overflow: auto;
-  text-align: center;
-  margin: auto;
+  margin:0;
+  padding: 0;
   float: none;
+  overflow: auto;
+}
+
+.about-without-button{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  height: 100%;
+}
+
+.general-rules{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.wrapper{
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.head{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25%;
+}
+
+.app-head{
+  margin-bottom: 10%;
+}
+
+/*.rules{*/
+/* width: 100%;*/
+/*}*/
+
+.rules-header-text{
+  text-align: left;
+  margin: 0;
+  font-family: 'Inter';
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.rules-list{
+  color:#DAD8D3;
+  list-style-type: '✸';
+  padding-left: 12px;
+  width: 100%;
+}
+
+.rules-list-point{
+  padding-left: 15px;
+  font-family: 'Inter';
+  font-size: 16px;
+  font-weight: 400;
+  text-align: left;
+}
+
+.rules-signs{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+.rules-signs-header{
+  text-align: left;
+  margin: 0;
+  margin-bottom: 7px;
+  font-family: 'Inter';
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.task{
+  width: 100%;
+  height: 100%;
+}
+
+.task-header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 20px;
+}
+
+.badge-block{
+  display: flex;
+  text-align: left;
+}
+
+.main-app{
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+
+.main-badge{
+  min-width: 50px;
+  height: 35px;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+
+}
+
+.confirm-buttons{
+  display: flex;
+  justify-content: space-around;
 }
 
 .alert {
@@ -148,6 +301,7 @@ li {
 
 .multiline {
   white-space: break-spaces;
+
 }
 
 button.help {
@@ -156,15 +310,12 @@ button.help {
   position: relative;
   align-self: center;
   appearance: none;
-  background-color: #FAFBFC;
-  border: 1px solid rgba(27, 31, 35, 0.15);
   border-radius: 6px;
-  box-shadow: rgba(27, 31, 35, 0.04) 0 1px 0, rgba(255, 255, 255, 0.25) 0 1px 0 inset;
   box-sizing: border-box;
-  color: #24292E;
+  color: #DAD8D3;
   cursor: pointer;
   display: inline-block;
-  font-family: -apple-system, system-ui, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  font-family:  "Inter";
   font-size: 14px;
   font-weight: 500;
   line-height: 20px;
@@ -181,25 +332,23 @@ button.help {
 
 
 button.next  {
-  width: 100%;
+  width: 100px;
+  height: 50px;
   margin: 3px 0;
   appearance: none;
   background-color: #FAFBFC;
-  border: 1px solid rgba(27, 31, 35, 0.15);
   border-radius: 6px;
-  box-shadow: rgba(27, 31, 35, 0.04) 0 1px 0, rgba(255, 255, 255, 0.25) 0 1px 0 inset;
-  box-sizing: border-box;
-  color: #24292E;
+  border: none;
+  color: #EF734B;
   cursor: pointer;
   display: inline-block;
-  font-family: 'Montserrat', -apple-system, system-ui, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  font-family: Inter;
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 600;
   line-height: 20px;
   list-style: none;
   padding: 6px 16px;
   position: relative;
-  transition: background-color 0.2s cubic-bezier(0.3, 0, 0.5, 1);
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
@@ -241,18 +390,17 @@ button.next:-webkit-details-marker {
 
 /* CSS */
 button.submit {
-  width: 100%;
+  width: 100px;
+  height:50px;
   margin: 3px 0;
   appearance: none;
-  background-color: #2ea44f;
-  border: 1px solid rgba(27, 31, 35, .15);
+  background-color: #EF734B;
+  border: none;
   border-radius: 6px;
-  box-shadow: rgba(27, 31, 35, .1) 0 1px 0;
   box-sizing: border-box;
   color: #fff;
   cursor: pointer;
-  display: inline-block;
-  font-family: -apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
+  font-family: Inter;
   font-size: 14px;
   font-weight: 600;
   line-height: 20px;
@@ -265,32 +413,9 @@ button.submit {
   touch-action: manipulation;
   vertical-align: middle;
   white-space: nowrap;
-}
-
-button.submit:focus:not(:focus-visible):not(.focus-visible) {
-  box-shadow: none;
-  outline: none;
-}
-
-button.submit:hover {
-  background-color: #2c974b;
-}
-
-button.submit:focus {
-  box-shadow: rgba(46, 164, 79, .4) 0 0 0 3px;
-  outline: none;
-}
-
-button.submit:disabled {
-  background-color: #94d3a2;
-  border-color: rgba(27, 31, 35, .1);
-  color: rgba(255, 255, 255, .8);
-  cursor: default;
-}
-
-button.submit:active {
-  background-color: #298e46;
-  box-shadow: rgba(20, 70, 32, .2) 0 1px 0 inset;
+  display:flex;
+  justify-content: center;
+  align-items: center;
 }
 
 button {
@@ -299,13 +424,15 @@ button {
 
 
 button.comment {
+  color: white;
   background-color: transparent;
   border: none;
   font-weight: 800;
+
 }
 
 .multiple button.comment {
-  background: #dbebce;
+  background: transparent;
   padding: 5px;
 }
 
@@ -324,11 +451,12 @@ button.comment {
 .undraggable {
   padding: 0;
 }
+
 .badge{
-  background: #009688;
-  color: #fff;
+  color: #DAD8D3;
+  font-size: 15px;
+  font-weight: 400;
   min-width: 50px;
-  padding-right: 20px;
   height: 35px;
   border-radius: 30px;
   display: flex;
@@ -338,10 +466,11 @@ button.comment {
 }
 
 .badge .badge_icon {
-  color: #fff;
-  width: 30px;
-  height: 30px;
-  border-radius: 30px;
+  background-color: #E5E5E4;
+  color: #EF734B;
+  width: 28px;
+  height: 28px;
+  border-radius: 7px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -349,50 +478,25 @@ button.comment {
   margin-left: 5px;
 }
 
-.badge.sort{
-  background: #009688;
-}
-
-.badge.multiple{
-  background: lightcoral;
-}
-
-
-div.legend {
+.main-badge .badge_icon{
+  background-color: #E5E5E4;
+  color: #EF734B;
+  width: 28px;
+  height: 28px;
+  border-radius: 7px;
   display: flex;
-  justify-content: flex-end;
-}
-
-.legend-badge{
-  color: #fff;
-  min-width: 50px;
-  padding-right: 20px;
-  margin-right: 5px;
-  justify-content: center;
-  border-radius: 30px;
   align-items: center;
-  display: flex;
-}
-
-.legend-badge .badge_icon {
-  margin-left: 15px;
-}
-
-.legend-badge.sort {
-  background: #009688;
-}
-
-.legend-badge.multiple {
-  background: lightcoral;
+  justify-content: center;
 }
 
 button.go {
-  width: 30%;
+  width: 200px;
+  height:50px;
   margin: 3px;
   appearance: none;
-  background-color: #2ea44f;
+  background-color: #F16B3F;
   border: 1px solid rgba(27, 31, 35, .15);
-  border-radius: 6px;
+  border-radius: 8px;
   box-shadow: rgba(27, 31, 35, .1) 0 1px 0;
   box-sizing: border-box;
   color: #fff;
@@ -426,11 +530,6 @@ button.go {
   font-family: 'Montserrat', sans-serif;
   font-weight: 400;
   font-size: 14px;
-}
-
-.rules {
-  font-weight: 300;
-  text-align: left;
 }
 
 .result-links {

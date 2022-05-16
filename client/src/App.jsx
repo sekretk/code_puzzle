@@ -117,48 +117,62 @@ export default function App(question) {
     , [incorrect]);
 
   return (
-    <>
-      <div className="legend">
-        {
-          Boolean(sortable) &&
-          <span className="legend-badge sort">
-            <span className="badge_icon material-icons material-icons-outlined">
-              sort
-            </span>
-          </span>
-        }
-        {
-          Boolean(multiple) &&
-          <span className="legend-badge multiple">
-            <span className="badge_icon material-icons material-icons-outlined">
-              checklist_rtl
-            </span>
-          </span>
-        }
-        <button className="help" onClick={onNeedAbout}>Правила</button>
-      </div>
-      <p className="description multiline">{description}</p>
-      <button className="next" onClick={onNext}>Дальше</button>
-      <button className="submit" onClick={onSubmit}>Отправить</button>
-      <div className={`alert ${incorrect ? 'alert-shown' : 'alert-hidden'}`}>
-        <strong>{reason}</strong>
-      </div>
+    <div className="main-app">
+      <div className="task">
+        <div className="head app-head">
+          <a href="https://www.devexperts.com/" target="_blank">
+            <img alt="devexperts.com" src="/static/logo.svg"
+                 width="150" height="30" />
+          </a>
+          <button className="help" onClick={onNeedAbout}>Правила</button>
+        </div>
 
-      {
-        list
-      }
-      {
-        Boolean(result) && <div className="result">
+        <div className={`alert ${incorrect ? 'alert-shown' : 'alert-hidden'}`}>
+          <strong>{reason}</strong>
+        </div>
+        <div className="task-description">
+          <div className="task-header">
+            <h3>Задание</h3>
+            <div className="badge-block">
+              {
+                  Boolean(sortable) &&
+                  <span className="main-badge">
+                  <span className="badge_icon material-icons material-icons-outlined">
+                    sort
+                  </span>
+                </span>
+              }
+              {
+                  Boolean(multiple) &&
+                  <span className="main-badge">
+                  <span className="badge_icon material-icons material-icons-outlined">
+                    checklist_rtl
+                  </span>
+                </span>
+              }
+            </div>
+          </div>
+          <p className="description multiline">{description}</p>
+        </div>
+        {
+          list
+        }
+        {
+          Boolean(result) && <div className="result">
+            <button className="next" onClick={onNext}>Дальше</button>
+            <Result {...result} />
+          </div>
+        }
+        {
+          Boolean(needAbout) && <div className="about">
+            <About />
+          </div>
+        }
+        <div className="confirm-buttons">
           <button className="next" onClick={onNext}>Дальше</button>
-          <Result {...result} />
+          <button className="submit" onClick={onSubmit}>Отправить</button>
         </div>
-      }
-      {
-        Boolean(needAbout) && <div className="about">
-          <About />
-        </div>
-      }
-
-      <NotificationContainer />
-    </>)
+        <NotificationContainer />
+      </div>
+    </div>)
 }
