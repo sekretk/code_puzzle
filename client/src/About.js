@@ -18,50 +18,50 @@ export default function Result({ links, text }) {
                                 width="150" height="30" />
                         </a>
 
-                        <a href="https://careers.devexperts.com/vacancies/?country=ru&remote=true" target="_blank">Вакансии</a>
+                        <a href="https://careers.devexperts.com/vacancies/?country=ru&remote=true" target="_blank">View open positions</a>
                     </div>
                     <div className="general-rules">
                         <div className="about-rules">
-                            <h3 className="rules-header-text">Об игре</h3>
+                            <h3 className="rules-header-text">Game rules</h3>
                             <p className="rules-text">
                                 <ul className="rules-list">
                                     <li className="rules-list-point">
-                                        Вам предлагается решить задачу
+                                        We propose you to resolve a bucnh of tasks.
                                     </li>
                                     <li className="rules-list-point">
-                                        Чтобы отправить решение на проверку,<br />нажмите “Далее”
+                                        To submit your solution<br />tap "Submit"
                                     </li>
                                     <li className="rules-list-point">
-                                        Чтобы добавить комментарий,<br />нажмите “//”
+                                        For commentning a line ,<br />tap on "//"
                                     </li>
                                     <li className="rules-list-point">
-                                        Чтобы выбрать другое задание,<br />нажмите “Далее”
+                                        To skip the task,<br />tap "Continue"
                                     </li>
                                 </ul>
                             </p>
                         </div>
 
                         <div className="rules-signs">
-                            <h4 className="rules-signs-header">Условные обозначения</h4>
+                            <h4 className="rules-signs-header">Notation keys</h4>
                             <span className="badge">
                                 <span className="badge_icon material-icons material-icons-outlined">
                                     sort
                                 </span>
-                                Расположить в правильном порядке
+                                Place in a right order
                             </span>
 
                             <span className="badge">
                                 <span className="badge_icon material-icons material-icons-outlined">
                                     checklist_rtl
                                 </span>
-                                Допустимо несколько вариантов
+                                Multiple choices allowed
                             </span>
                         </div>
                     </div>
                 </div>
 
 
-                <button className="go" onClick={onGo}>Начать игру!</button>
+                <button className="go" onClick={onGo}>Start!</button>
             </div>
         </>
     );
