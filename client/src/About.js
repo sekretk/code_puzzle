@@ -10,45 +10,59 @@ export default function Result({ links, text }) {
 
     return (
         <>
-            <a href="https://www.devexperts.com/" target="_blank">
-                <img alt="devexperts.com" src="/static/logo.svg"
-                    width="150" height="30" />
-            </a>
+            <div className="wrapper">
+                <div className="about-without-button">
+                    <div className="head">
+                        <a href="https://www.devexperts.com/" target="_blank">
+                            <img alt="devexperts.com" src="/static/logo.svg"
+                                width="150" height="30" />
+                        </a>
 
-            <p>Международная карьера в Fintech:</p>
-            <p><a href="https://devexperts.com/about-devexperts/" target="_blank">Подробнее о наших продуктах и команде</a></p>
-            <p><a href="https://careers.devexperts.com/vacancies/?country=ru&remote=true" target="_blank">Наши вакансии</a></p>
+                        <a href="https://careers.devexperts.com/vacancies/?country=ru&remote=true" target="_blank">Вакансии</a>
+                    </div>
+                    <div className="general-rules">
+                        <div className="about-rules">
+                            <h3 className="rules-header-text">Об игре</h3>
+                            <p className="rules-text">
+                                <ul className="rules-list">
+                                    <li className="rules-list-point">
+                                        Вам предлагается решить задачу
+                                    </li>
+                                    <li className="rules-list-point">
+                                        Чтобы отправить решение на проверку,<br />нажмите “Далее”
+                                    </li>
+                                    <li className="rules-list-point">
+                                        Чтобы добавить комментарий,<br />нажмите “//”
+                                    </li>
+                                    <li className="rules-list-point">
+                                        Чтобы выбрать другое задание,<br />нажмите “Далее”
+                                    </li>
+                                </ul>
+                            </p>
+                        </div>
 
-            <br />
-            <h3>Правила игры:</h3>
-            <p className="rules">
-                Приложение предлагает решить задачу.<br />
-                Для пропуска нужно нажать "Далее".<br />
-                Для отправки на проверку - "Отправить".<br />
-                Для комментирования строки нужно нажать на "//".<br />
-                На основе фидбэка от 5 минутного тестирования нужно добавить:
-                <ul>
-                    <li>- Вы ВСЕГДА получаете случайное задание - так что жмите "Далее" если уже решали.</li>
-                    <li>- При старте закомментированы случайные элементы - не позволяйте этому выбору повлиять на вас!</li>
-                </ul>
-                Допустимы следующие флаги на задачах:
-            </p>
+                        <div className="rules-signs">
+                            <h4 className="rules-signs-header">Условные обозначения</h4>
+                            <span className="badge">
+                                <span className="badge_icon material-icons material-icons-outlined">
+                                    sort
+                                </span>
+                                Расположить в правильном порядке
+                            </span>
 
-            <span className="badge sort">
-                <span className="badge_icon material-icons material-icons-outlined">
-                    sort
-                </span>
-                Необходимо отсортировать
-            </span>
+                            <span className="badge">
+                                <span className="badge_icon material-icons material-icons-outlined">
+                                    checklist_rtl
+                                </span>
+                                Допустимо несколько вариантов
+                            </span>
+                        </div>
+                    </div>
+                </div>
 
-            <span className="badge multiple">
-                <span className="badge_icon material-icons material-icons-outlined">
-                    checklist_rtl
-                </span>
-                Допустимо несколько вариантов
-            </span>
 
-            <button className="go" onClick={onGo}>Начать!</button>
+                <button className="go" onClick={onGo}>Начать игру!</button>
+            </div>
         </>
     );
 }
