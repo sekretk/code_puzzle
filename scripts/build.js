@@ -10,7 +10,7 @@ const sendNotification = (message) => {
     const options = {
         hostname: 'api.telegram.org',
         port: 443,
-        path: encodeURI()`/${process.env.BOT_TOCKEN}/sendMessage?chat_id=${process.env.NOTIFY_CHAT}&text=${message}`,
+        path: encodeURI(`/${process.env.BOT_TOCKEN}/sendMessage?chat_id=${process.env.NOTIFY_CHAT}&text=${message}`),
         method: 'GET'
       }
       
@@ -35,6 +35,10 @@ const run = (command) => {
     const result = execSync(command);
     console.log('OUTPUT', result.toString());
 }
+
+sendNotification('Updated')
+
+return;
 
 run('git reset --hard');
 
