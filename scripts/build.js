@@ -36,10 +36,6 @@ const run = (command) => {
     console.log('OUTPUT', result.toString());
 }
 
-sendNotification('Updated')
-
-return;
-
 run('git reset --hard');
 
 if (execSync('git pull').toString().includes('Already up to date')) {
