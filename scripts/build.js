@@ -36,6 +36,7 @@ const run = (command) => {
     console.log('OUTPUT', result.toString());
 }
 
+chdir(__dirname);
 run('git reset --hard');
 
 if (execSync('git pull').toString().includes('Already up to date')) {
