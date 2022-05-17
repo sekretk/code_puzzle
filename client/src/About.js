@@ -18,7 +18,7 @@ export default function Result({ links, text }) {
                                 width="150" height="30" />
                         </a>
 
-                        <a href="https://careers.devexperts.com/vacancies/?country=ru&remote=true" target="_blank">View open positions</a>
+                        <a href="https://careers.devexperts.com/vacancies/?country=bg&remote=true" target="_blank">View open positions</a>
                     </div>
                     <div className="general-rules">
                         <div className="about-rules">
@@ -29,13 +29,13 @@ export default function Result({ links, text }) {
                                         We propose you to resolve a bucnh of tasks.
                                     </li>
                                     <li className="rules-list-point">
-                                        To submit your solution<br />tap "Submit"
+                                        Tap "Submit" to submit your solution
                                     </li>
                                     <li className="rules-list-point">
-                                        For commentning a line ,<br />tap on "//"
+                                        Tap on "//"  For commenting a line
                                     </li>
                                     <li className="rules-list-point">
-                                        To skip the task,<br />tap "Continue"
+                                        Tap "Continue" to skip the task
                                     </li>
                                 </ul>
                             </p>
