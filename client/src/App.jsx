@@ -124,7 +124,7 @@ export default function App(question) {
             <img alt="devexperts.com" src="/static/logo.svg"
                  width="150" height="30" />
           </a>
-          <button className="help" onClick={onNeedAbout}>Правила</button>
+          <button className="help" onClick={onNeedAbout}>Rules</button>
         </div>
 
         <div className={`alert ${incorrect ? 'alert-shown' : 'alert-hidden'}`}>
@@ -132,7 +132,7 @@ export default function App(question) {
         </div>
         <div className="task-description">
           <div className="task-header">
-            <h3>Задание</h3>
+            <h3>Task</h3>
             <div className="badge-block">
               {
                   Boolean(sortable) &&
@@ -159,7 +159,7 @@ export default function App(question) {
         }
         {
           Boolean(result) && <div className="result">
-            <button className="next" onClick={onNext}>Дальше</button>
+            <button className="next" onClick={onNext}>Next</button>
             <Result {...result} />
           </div>
         }
@@ -169,8 +169,8 @@ export default function App(question) {
           </div>
         }
         <div className="confirm-buttons">
-          <button className="next" onClick={onNext}>Дальше</button>
-          <button className="submit" onClick={onSubmit}>Отправить</button>
+          <button className="next" onClick={onNext}>Continue</button>
+          <button className="submit" onClick={onSubmit}>Submit</button>
         </div>
         <NotificationContainer />
       </div>
