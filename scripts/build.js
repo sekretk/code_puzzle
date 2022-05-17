@@ -1,7 +1,6 @@
 const { execSync } = require("child_process");
 const { chdir } = require("process");
 const path = require('path');
-require('dotenv').config();
 const https = require('https')
 const querystring = require("querystring");
 
