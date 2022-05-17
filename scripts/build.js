@@ -50,4 +50,7 @@ run('npm i');
 run('npm run build');
 chdir(path.join(__dirname, '..'));
 run('cp -r ./client/build/* /var/www/quiz.boysthings.top/html/');
-sendNotification('Updated')
+
+const lastMessage = execSync('git log -1 --pretty=%B').toString();
+
+sendNotification(`Updated with: ${lastMessage}`)
