@@ -9,10 +9,10 @@ const run = (command) => {
 }
 run('git reset --hard');
 run('git pull');
-chdir(path.join(__dirname, '..\\api'));
+chdir(path.join(__dirname, '../api'));
 run('npm i');
 run('npm run build');
-chdir(path.join(__dirname, '..\\client'));
+chdir(path.join(__dirname, '../client'));
 run('npm i');
 run('npm run build');
 chdir(path.join(__dirname, '..'));
