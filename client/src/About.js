@@ -18,7 +18,7 @@ export default function Result({ links, text }) {
                                 width="150" height="30" />
                         </a>
 
-                        <a href="https://careers.devexperts.com/vacancies/?country=ru&remote=true" target="_blank">View open positions</a>
+                        <a href="https://careers.devexperts.com/vacancies/?country=bg&remote=true" target="_blank">View open positions</a>
                     </div>
                     <div className="general-rules">
                         <div className="about-rules">
