@@ -9,11 +9,11 @@ const run = (command) => {
 }
 run('git reset --hard');
 run('git pull');
-chdir('api');
+chdir(path.join(__dirname, '..\\api'));
 run('npm i');
 run('npm run build');
-chdir(path.join(__dirname, 'client'));
+chdir(path.join(__dirname, '..\\client'));
 run('npm i');
 run('npm run build');
-chdir(__dirname);
+chdir(path.join(__dirname, '..'));
 run('cp -r ./client/build/* /var/www/quiz.boysthings.top/html/');
