@@ -32,7 +32,7 @@ const sendNotification = (message) => {
 const run = (command) => {
 console.log('RUN', command);
     const result = execSync(command);
-    console.log('OUTPUT', result.toString());
+    console.log('OUTPUT', result.toString('utf8'));
 }
 
 chdir(__dirname);
