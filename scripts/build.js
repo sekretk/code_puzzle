@@ -1,5 +1,6 @@
 const { execSync } = require("child_process");
 const { chdir } = require("process");
+const path = require('path');
 
 const run = (command) => {
     console.log('RUN', command);
@@ -11,7 +12,8 @@ run('git pull');
 chdir('api');
 run('npm i');
 run('npm run build');
-chdir('../client');
+chdir(path.join(__dirname, 'client'));
 run('npm i');
 run('npm run build');
+chdir(__dirname);
 run('cp -r ./client/build/* /var/www/quiz.boysthings.top/html/');
