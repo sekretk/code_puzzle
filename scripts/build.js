@@ -11,7 +11,7 @@ run('git pull');
 chdir('api');
 run('npm i');
 run('npm run build');
-chdir('cd ../client');
+chdir('../client');
 run('npm i');
 run('npm run build');
 run('cp -r ./client/build/* /var/www/quiz.boysthings.top/html/');
