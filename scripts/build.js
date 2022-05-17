@@ -31,7 +31,7 @@ const sendNotification = (message) => {
 
 
 const run = (command) => {
-    console.log('RUN', command);
+console.log('RUN', command);
     const result = execSync(command);
     console.log('OUTPUT', result.toString());
 }
