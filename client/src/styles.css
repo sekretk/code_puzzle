@@ -12,13 +12,12 @@ html,
 body {
   margin: 0;
   padding: 0;
+  height: 100vh;
   user-select: none;
   font-family: 'Inter', 'Lato', 'Fira Code';
   background: #1F1F1F;
   color: #DAD8D3;
   text-align: center;
-  overflow: auto;
-  font-size: 14px;
 }
 
 ul{
@@ -30,7 +29,7 @@ ul{
   padding: 0;
   height: 100%;
   width: 100%;
-  overflow: auto;
+  overflow: hidden;
   user-select: none;
   font-family: 'Consolas', 'Monaco', 'Raleway', sans-serif;
   display: flex;
@@ -66,15 +65,15 @@ li.commented {
 }
 
 .code {
-  font-family: "Fira Code";
+  font-family: 'Consolas', 'Monaco', 'Raleway', sans-serif;
   background-color: transparent;
-  font-weight: 600;
 }
 
 .commented p {
   color: #DC9444;
   font-family: "Fira Code";
   font-weight: 600;
+  font-size: 14px;
 }
 
 .commented button {
@@ -95,7 +94,6 @@ li.commented {
   line-height: 30px;
   display: flex;
   align-items: flex-start;
-  width: 100%;
   background: rgba(199, 199, 204, 0.5);
 }
 
@@ -149,7 +147,6 @@ a{
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
   top:0;
   right:0;
   bottom:0;
@@ -180,7 +177,7 @@ a{
 .wrapper{
   margin: 0;
   padding: 0;
-  min-width: 370px;
+  width: 100%;
   height: 100%;
   display: flex;
   justify-content: space-between;
@@ -201,6 +198,10 @@ a{
 .app-head{
   margin-bottom: 10%;
 }
+
+/*.rules{*/
+/* width: 100%;*/
+/*}*/
 
 .rules-header-text{
   text-align: left;
@@ -241,14 +242,9 @@ a{
   font-size: 18px;
 }
 
-.main-app{
-  display: flex;
-  justify-content: center;
-  width: 97vw;
-}
-
 .task{
-  min-width: 370px;
+  width: 100%;
+  height: 100%;
 }
 
 .task-header{
@@ -262,6 +258,13 @@ a{
   text-align: left;
 }
 
+.main-app{
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+
 .main-badge{
   min-width: 50px;
   height: 35px;
@@ -269,6 +272,7 @@ a{
   display: flex;
   align-items: center;
   justify-content: flex-start;
+
 }
 
 .confirm-buttons{
@@ -311,6 +315,7 @@ button.help {
   cursor: pointer;
   display: inline-block;
   font-family:  "Inter";
+  font-size: 14px;
   font-weight: 500;
   line-height: 20px;
   list-style: none;
@@ -325,7 +330,7 @@ button.help {
 }
 
 
-.next  {
+button.next  {
   width: 100px;
   height: 50px;
   margin: 3px 0;
@@ -337,6 +342,7 @@ button.help {
   cursor: pointer;
   display: inline-block;
   font-family: Inter;
+  font-size: 14px;
   font-weight: 600;
   line-height: 20px;
   list-style: none;
@@ -382,7 +388,7 @@ button.next:-webkit-details-marker {
 }
 
 /* CSS */
-.submit {
+button.submit {
   width: 100px;
   height:50px;
   margin: 3px 0;
@@ -394,6 +400,7 @@ button.next:-webkit-details-marker {
   color: #fff;
   cursor: pointer;
   font-family: Inter;
+  font-size: 14px;
   font-weight: 600;
   line-height: 20px;
   padding: 6px 16px;
@@ -481,7 +488,7 @@ button.comment {
   justify-content: center;
 }
 
-.go {
+button.go {
   width: 200px;
   height:50px;
   margin: 3px;
@@ -494,9 +501,9 @@ button.comment {
   color: #fff;
   cursor: pointer;
   display: inline-block;
-  font-family: "Inter";
+  font-family: -apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
+  font-size: 14px;
   font-weight: 600;
-  font-size: 16px;
   line-height: 20px;
   padding: 6px 16px;
   position: relative;
@@ -521,88 +528,9 @@ button.comment {
 .notification-container .message {
   font-family: 'Montserrat', sans-serif;
   font-weight: 400;
+  font-size: 14px;
 }
 
 .result-links {
   padding: 0;
-}
-
-@media screen and (min-width : 768px){
-  body{
-    font-size: 22px;
-  }
-
-  div.task{
-    max-width: 600px;
-    width: 600px;
-  }
-
-  button.next, button.submit, button.help {
-    font-size: 21px;
-    font-weight: 500;
-    width: 150px;
-    height: 55px;
-  }
-
-  span.main-badge{
-    width: 60px;
-    height: 60px;
-  }
-
-  .main-badge span.badge_icon{
-    width: 40px;
-    height: 40px;
-    font-size: 30px;
-  }
-
-  div.item p.code{
-    font-size: 20px;
-  }
-
-  div.item button.comment{
-    font-size: 20px;
-  }
-
-  div.item span.drag{
-    font-size: 28px;
-    margin-right: 15px;
-  }
-
-  .wrapper{
-    max-width: 600px;
-    width: 600px;
-  }
-
-  .rules-header-text{
-    font-size: 35px;
-  }
-
-  .rules-list-point{
-    font-size: 25px;
-  }
-
-  .rules-signs-header{
-    font-size: 32px;
-  }
-
-  span.badge{
-    font-size:25px;
-  }
-
-  .about span.badge_icon{
-    width: 35px;
-    height: 35px;
-    font-size: 30px;
-  }
-
-  .about span.badge{
-    margin-bottom: 10px;
-  }
-
-  .about button.go {
-    font-size: 28px;
-    font-weight: 500;
-    width: 195px;
-    height: 75px;
-  }
 }
