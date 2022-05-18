@@ -2,7 +2,8 @@ module.exports = {
     apps : [{
       name: "quiz",
       script: "node /var/repo/code_puzzle/api/build/index.js",
-    }, {
+    }, 
+    {
         name: "quiz_build",
         script: "node /var/repo/code_puzzle/scripts/build.js",
         autorestart: false,
@@ -13,5 +14,6 @@ module.exports = {
             BOT_TOCKEN: "TOKEN",
             NOTIFY_CHAT: "CHAT_ID",
         },
-      }]
+      }
+    ]
   }
