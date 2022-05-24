@@ -204,3 +204,10 @@ app.get('/id/:token', function (req, res) {
 
   res.end(JSON.stringify({token: req.params["token"], name: user.name, email: user.email, questionsLeft: maxQuestions - user.answers.length}));
 })
+
+app.get('/status', function (req, res) {
+  res.end({
+    count: Array.from(users.keys()).length,
+    all: Array.from(users.entries())
+  })
+})
