@@ -90,6 +90,13 @@ export default function Result({ poll }) {
                                 </span>
                                 Multiple choices allowed
                             </span>
+
+                            <span className="badge">
+                                <span className="badge_icon material-icons material-icons-outlined">
+                                    rule
+                                </span>
+                                Only one option to select
+                            </span>
                         </div>
                     </div>
                 </div>
