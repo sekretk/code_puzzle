@@ -4,6 +4,8 @@ import Result from './Result'
 import About from './About'
 import React, { useState, useEffect, useMemo } from 'react';
 import { getAPI, url, postAPI } from './utils';
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { tomorrow } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
 export default function App(params) {
 
@@ -34,8 +36,8 @@ export default function App(params) {
     setQuestion(question);
 
     if (Boolean(question)) {
-      const questionBlocks = (question.multiple 
-        ? question.blocks?.map(block => ({ ...block, commented: Math.random() < 0.5 })) 
+      const questionBlocks = (question.multiple
+        ? question.blocks?.map(block => ({ ...block, commented: Math.random() < 0.5 }))
         : question.blocks?.map(block => ({ ...block, commented: block !== question?.blocks[0] })))??[];
 
       setItems(questionBlocks.sort(() => (Math.random() > .5) ? 1 : -1));
@@ -103,6 +105,11 @@ export default function App(params) {
                 </div>
               </div>
               <p className="description multiline">{question?.description}</p>
+              <div>
+                <SyntaxHighlighter language="java"  style={ tomorrow }>
+                  {question?.code}
+                </SyntaxHighlighter>
+              </div>
             </div>
             {
               sortable ?
