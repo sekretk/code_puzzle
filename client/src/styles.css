@@ -155,6 +155,47 @@ a.logout {
   float: none;
 }
 
+.question-result{
+  display: flex;
+  flex-direction: column;
+
+}
+
+.head-answer{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.question-failed-passed{
+  display:flex;
+  justify-content: space-between;
+}
+
+.result-sign-text{
+  color: #EF734B;
+}
+
+.multiline .result-correct-answer{
+  text-align: left;
+}
+
+.explanation{
+  text-align: left;
+}
+
+.result-question-info{
+  text-align: left;
+}
+
+.text-passed{
+  color: #2effaf;
+}
+
+.text-failed{
+  color: #ff3333;
+}
+
 .about {
   background: #1F1F1F;
   height: 100%;

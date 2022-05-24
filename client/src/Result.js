@@ -27,22 +27,37 @@ export default function Result() {
     return (
         result.length > 0 &&
         <>
-            <p>Your results</p>
+            <h1 className={"s"}>Your results</h1>
             <p className="multiline">Passed: {result.filter(_ => _.passed)?.length??0} out of {result.length??0}</p>
             {
                 result.map(resItem => (
-                    <>
-                        <p className="multiline">Question: {resItem.description}</p>
-                        <p className="multiline">Result: {resItem.passed ? 'Passed' : 'Failed'}</p>
-                        <p className="multiline">{resItem.result.text}</p>
-                        <ul className="result-links">
-                            {
-                                resItem.result.links.map(({ text: msg, link }, index) => (
-                                    <li key={index} ><a href={link} target="_blank">{msg}</a></li>
-                                ))
-                            }
-                        </ul>
-                    </>
+                    <div className="question-result">
+                        <div className="question-failed-passed">
+                            <div className="head-answer">
+                                <p className="multiline result-question-info">
+                                    <span className="result-sign-text">
+                                        {resItem.description}
+                                    </span>
+                                </p>
+                            </div>
+                            <p className="multiline result-correct-answer">
+                                {
+                                    resItem.passed ?
+                                    <span className="text-passed"> Passed</span> : <span className="text-failed"> Failed</span>
+                                }
+                            </p>
+                        </div>
+                        <div>
+                            <p className="multiline explanation">{resItem.result.text}</p>
+                            <ul className="result-links">
+                                {
+                                    resItem.result.links.map(({ text: msg, link }, index) => (
+                                        <li key={index} ><a href={link} target="_blank">{msg}</a></li>
+                                    ))
+                                }
+                            </ul>
+                        </div>
+                    </div>
                 ))
             }
 
