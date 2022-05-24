@@ -1,12 +1,41 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { getAPI, url } from './utils';
 
-export default function Result({ links, text }) {
+export default function Result({ poll }) {
+
+    const [iam, setIam] = useState(undefined)
+
+    const token = window.localStorage.getItem('token');
 
     window.localStorage.setItem('acquainted', true);
 
-    const onGo = () => {
+    const onGo = async () => {
+        const rawResponse = await fetch(url + '/auth/' + poll);
+
+        const token = await rawResponse.text();
+        window.localStorage.setItem('token', token);
         window.location.reload();
     }
+
+    const onExit = () => {
+        window.localStorage.removeItem('token');
+        window.location.reload();
+    }
+
+    const onContinue = () => {
+        window.location.reload();
+    }
+
+    useEffect(() => {
+        if (Boolean(token)) {
+            getAPI('id/' + token)
+                .then(setIam)
+                .catch((error) => {
+                    console.log('Fetch WHOAMI error', error);
+                });
+        }
+
+    }, [])
 
     return (
         <>
@@ -20,22 +49,24 @@ export default function Result({ links, text }) {
 
                         <a href="https://careers.devexperts.com/vacancies/?country=bg&remote=true" target="_blank">View open positions</a>
                     </div>
+                    <div className="head">
+                        Hello, <span>{iam?.name}</span>!
+                        <span>{iam?.email}</span>
+                        {Boolean(token) && <a onClick={onExit}>Logout</a>}
+                    </div>
                     <div className="general-rules">
                         <div className="about-rules">
                             <h3 className="rules-header-text">Game rules</h3>
                             <p className="rules-text">
                                 <ul className="rules-list">
                                     <li className="rules-list-point">
-                                        We propose you to resolve a bucnh of tasks.
+                                        We propose you to resolve a bunch of tasks.
                                     </li>
                                     <li className="rules-list-point">
                                         Tap "Submit" to submit your solution
                                     </li>
                                     <li className="rules-list-point">
                                         Tap on "//"  For commenting a line
-                                    </li>
-                                    <li className="rules-list-point">
-                                        Tap "Continue" to skip the task
                                     </li>
                                 </ul>
                             </p>
@@ -61,7 +92,9 @@ export default function Result({ links, text }) {
                 </div>
 
 
-                <button className="go" onClick={onGo}>Start!</button>
+                {!Boolean(token) && <button className="go" onClick={onGo}>Start!</button>}
+
+                {Boolean(token) && <button className="go" onClick={onContinue}>Continue</button>}
             </div>
         </>
     );

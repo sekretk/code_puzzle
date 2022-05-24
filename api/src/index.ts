@@ -66,8 +66,16 @@ app.get('/polls', function (req, res) {
 
 app.get('/question/:token', function (req, res) {
   res.setHeader('Content-Type', 'application/json');
-  const qId = users.get(req.params["token"])?.toAsk[0];
-  const poll = polls.get(users.get(req.params["token"])?.poll??'');
+  const user = users.get(req.params["token"]);
+
+  if (user === undefined) {
+    res.status(400).send({
+      message: `User for token ${req.params["token"]} not found`
+    });
+    return;
+  }
+
+  const poll = polls.get(user.poll);
 
   if (poll === undefined) {
     res.status(400).send({
@@ -76,9 +84,16 @@ app.get('/question/:token', function (req, res) {
     return;
   }
 
-  const question = poll.find(q => q.id === qId);
+  if (user.toAsk.length === 0) {
+    res.status(400).send({
+      message: `No questions for user token ${req.params["token"]}`
+    });
+    return;
+  }
 
-  res.end(JSON.stringify(question));
+  const question = poll.find(q => q.id === user.toAsk[0]);
+
+  res.end(JSON.stringify({...question, answers: [], result: undefined}));
 });
 
 app.post('/answer/:token', function (req, res) {
@@ -179,4 +194,20 @@ app.get('/auth/:poll', function (req, res) {
   users.set(id, { name: getName(), poll, email: '', answers: [], toAsk: randomQuestions })
 
   res.end(id)
+})
+
+app.get('/id/:token', function (req, res) {
+
+  res.setHeader('Content-Type', 'application/json');
+
+  const user = users.get(req.params["token"])
+
+  if (user === undefined) {
+    res.status(400).send({
+      message: `User for token ${req.params["token"]} not found`
+    });
+    return;
+  }
+
+  res.end(JSON.stringify({token: req.params["token"], name: user.name, email: user.email, questionsLeft: maxQuestions - user.answers.length}));
 })
