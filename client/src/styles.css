@@ -5,7 +5,9 @@
 }
 
 #root {
-  /* padding: 0 2%; */
+  /* padding: 0 2%;
+  #282A36
+  */
 }
 
 html,
@@ -19,6 +21,12 @@ body {
   text-align: center;
   overflow: auto;
   font-size: 14px;
+}
+
+pre{
+  background:#1F1F1F !important;
+  border: none !important;
+  box-shadow: none !important;
 }
 
 ul{
@@ -50,7 +58,8 @@ ul{
 }
 
 .description {
-  text-align: center;
+  text-align: left;
+  margin-bottom: 0;
 }
 
 .content li {
@@ -382,7 +391,7 @@ button.next:before {
   display: none;
 }
 
-button.next:-webkit-details-marker {
+button.next::-webkit-details-marker {
   display: none;
 }
 
