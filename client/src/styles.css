@@ -466,6 +466,10 @@ button.next::-webkit-details-marker {
   align-items: center;
 }
 
+.gowrapper {
+  display: flex;
+}
+
 button {
   cursor: pointer;
 }
@@ -659,6 +663,9 @@ button.comment {
     font-size: 28px;
     font-weight: 500;
     width: 195px;
-    height: 75px;
+  }
+
+  .about .email{
+    color: white;
   }
 }

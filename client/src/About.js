@@ -96,8 +96,8 @@ export default function Result({ poll }) {
 
                 {
                     !Boolean(token) &&
-                    <div>x
-                        <TextField label="Email" variant="outlined" value={email} onChange={(e) => setEmail(e.target.value)} />
+                    <div className='gowrapper'>
+                        <TextField label="Email" variant="filled" value={email} onChange={(e) => setEmail(e.target.value)} />
                         <button className="go" onClick={onGo}>Start!</button>
                     </div>
                 }
