@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, memo } from 'react';
 import { selectMapper } from './utils'
 
 const UngraggableItem = ({ value, onToggle }) => {
@@ -19,21 +19,17 @@ const UngraggableItem = ({ value, onToggle }) => {
     </li>)
 };
 
-export default function NonDraggableList({ items, multiple, onItemsChanged }) {
-
-    const [itemsVal, setItems] = useState(items);
+export const NonDraggableList = memo(({ items, multiple, onItemsChanged }) => {
 
     const onItemToggle = (id) => () => {
-        const result = itemsVal.map((item) => ({ ...item, commented: selectMapper[multiple](item, id) }));
-        setItems(result);
-        console.log(result)
+        const result = items.map((item) => ({ ...item, commented: selectMapper[multiple](item, id) }));
         onItemsChanged(result);
     }
 
     return (
         <ul className={`undraggable ${multiple && 'multiple'}`}>
-            {itemsVal.map(item => (
+            {items.map(item => (
                 <UngraggableItem key={`item-${item.id}`} value={item} onToggle={onItemToggle(item.id)} />))}
         </ul>
     );
-}
+});

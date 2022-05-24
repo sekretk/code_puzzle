@@ -230,6 +230,7 @@ app.get('/status', function (req, res) {
   }));
 })
 
-app.get('/save', function () {
+app.get('/save', function (req, res) {
   saveSession();
+  res.status(200).send();
 })

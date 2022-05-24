@@ -1,5 +1,4 @@
-import React, { Component, useEffect, useState } from 'react';
-import { render } from 'react-dom';
+import React, { memo } from 'react';
 import { sortableContainer, sortableElement } from 'react-sortable-hoc';
 import { arrayMoveImmutable } from 'array-move';
 import { selectMapper } from './utils'
@@ -29,29 +28,26 @@ const SortableContainer = sortableContainer(({ children }) => {
     return <ul>{children}</ul>;
 });
 
-export default function DraggableList({ items, multiple, onItemsChanged }) {
+export const DraggableList = memo(({ items, multiple, onItemsChanged }) => { 
 
-    const [itemsVal, setItems] = useState(items);
 
     const onSortEnd = ({ oldIndex, newIndex }) => {
-        const result = arrayMoveImmutable(itemsVal, oldIndex, newIndex);
-        setItems(result);
+        const result = arrayMoveImmutable(items, oldIndex, newIndex);
         onItemsChanged(result);
     };
 
     const onItemToggle = (id) => () => {
-        const result = itemsVal.map((item) => ({ ...item, commented: selectMapper[multiple](item, id) }));
-        setItems(result);
+        const result = items.map((item) => ({ ...item, commented: selectMapper[multiple](item, id) }));
         onItemsChanged(result);
     }
 
     return (
         <div className={`content ${multiple && 'multiple'}`}>
             <SortableContainer onSortEnd={onSortEnd} useWindowAsScrollContainer={true}>
-                {itemsVal.map((value, index) => (
-                    <SortableItem key={`item-${value.id}`} index={index} value={value} onToggle={onItemToggle(value.id)} />
+                {items.map((value, index) => (
+                    <SortableItem key={`item-${value.id}`} index={index} value={value} onToggle={onItemToggle(value.id)}/>
                 ))}
             </SortableContainer>
         </div>
     );
-}
+});

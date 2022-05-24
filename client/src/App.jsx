@@ -1,14 +1,9 @@
-import DraggableList from './DraggableList'
-import NonDraggableList from './NonDraggableList'
+import { DraggableList } from './DraggableList'
+import { NonDraggableList } from './NonDraggableList'
 import Result from './Result'
 import About from './About'
 import React, { useState, useEffect, useMemo } from 'react';
 import { getAPI, url, postAPI } from './utils';
-
-const listPresenter = {
-  true: (props) => <DraggableList {...props} />,
-  false: (props) => <NonDraggableList {...props} />,
-}
 
 export default function App(params) {
 
@@ -20,26 +15,34 @@ export default function App(params) {
 
   const [showResults, setShowResults] = useState(false);
 
-  const sortable = useMemo(() => question?.sortable ?? false, [])
+  const sortable = useMemo(() => question?.sortable ?? false, [question])
 
-  const items = useMemo(() => (Boolean(question?.multiple)
-    ? question?.blocks?.map(block => ({ ...block, commented: Math.random() < 0.5 }))
-    : question?.blocks?.map(block => ({ ...block, commented: block !== question?.blocks[0] }))) ?? [], [question]);
+  const [items, setItems] = useState([]);
 
   const token = window.localStorage.getItem('token');
 
   const onSubmit = () => {
 
     postAPI('answer/' + token, {
-        question: question?.id,
-        lines: itemsVal.filter(block => !block.commented).map(block => block.id)
-      })
-    .then(() => window.location.reload());
+      question: question?.id,
+      lines: items.filter(block => !block.commented).map(block => block.id)
+    })
+      .then(() => window.location.reload());
   }
 
-  const [itemsVal, setItems] = useState(items.sort(() => (Math.random() > .5) ? 1 : -1));
+  const setQuestionInternal = (question) => {
+    setQuestion(question);
 
-  const list = listPresenter[sortable]({ items, onItemsChanged: setItems, multiple: question?.multiple ?? false });
+    if (Boolean(question)) {
+      const questionBlocks = question.multiple ? question.blocks.map(block => ({ ...block, commented: Math.random() < 0.5 })) : question.blocks.map(block => ({ ...block, commented: block !== question?.blocks[0] }));
+
+      setItems(questionBlocks.sort(() => (Math.random() > .5) ? 1 : -1));
+
+    }
+    else {
+      setItems([]);
+    }
+  }
 
   useEffect(() => {
     if (Boolean(token)) {
@@ -47,9 +50,9 @@ export default function App(params) {
         .then(question => {
           if (Boolean(question.noQuestions)) {
             setShowResults(true);
-            setQuestion(undefined);
+            setQuestionInternal(undefined);
           } else {
-            setQuestion(question);
+            setQuestionInternal(question);
             setShowResults(false);
           }
         })
@@ -100,7 +103,9 @@ export default function App(params) {
               <p className="description multiline">{question?.description}</p>
             </div>
             {
-              list
+              sortable ?
+                <DraggableList items={items} onItemsChanged={setItems} multiple={question?.multiple ?? false} />
+                : <NonDraggableList items={items} onItemsChanged={setItems} multiple={question?.multiple ?? false} />
             }
             <div className="confirm-buttons">
               <button className="submit" onClick={onSubmit}>Submit</button>
