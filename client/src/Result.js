@@ -46,9 +46,7 @@ export default function Result() {
                 ))
             }
 
-            <p>Thanks for participation!</p>
-            <p>Say "Fintech Forever" at Devexperts desk and get a gift!</p>
-            <p>А чтобы принять участие в розыгрыше супер-приза, надо заполнить <a href="https://docs.google.com/forms/d/1_qOo9r05XTCCKvgIGJChXD3FlPAzOBLYdkxjxsJb55U/edit" target="_blank">анкету</a>. <br /> Ватрушки для зимних катаний с горки ждёт победителя! :) Розыгрыш сегодня в 19:00</p>
+            <p>Thank you for participating!</p>
             <button className="go" onClick={onAgain}>Again</button>
         </>
     );
