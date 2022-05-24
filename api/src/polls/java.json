@@ -1,0 +1,452 @@
+[
+  {
+    "description": "Comment idempotent HTTP methods",
+    "blocks": [
+      {
+        "id": 1,
+        "line": "POST"
+      },
+      {
+        "id": 2,
+        "line": "PUT"
+      },
+      {
+        "id": 3,
+        "line": "DELETE"
+      },
+      {
+        "id": 4,
+        "line": "GET"
+      }
+    ],
+    "answers": [
+      [ 1 ]
+    ],
+    "result": {
+      "links": [ ],
+      "text": "An HTTP method is idempotent if an identical request can be made once or several times in a row with the same effect while leaving the server in the same state. Correctly imlemented methods GET, HEAD, PUT and DELETE are idempotent, but not POST."
+    },
+    "sortable": false,
+    "multiple": true
+  },
+  {
+    "description": "What is the result of running the following code segment? \npublic static void main(String... args) {\n System.out.println(2.00 - 1.10);\n}",
+    "blocks": [
+      {
+        "id": 1,
+        "line": "0.8999999999999999"
+      },
+      {
+        "id": 2,
+        "line": "0.9"
+      },
+      {
+        "id": 3,
+        "line": "2.00 - 1.10"
+      },
+      {
+        "id": 4,
+        "line": "StringFormatException "
+      }
+    ],
+    "answers": [
+      [ 1 ]
+    ],
+    "result": {
+      "links": [ ],
+      "text": ""
+    },
+    "sortable": false,
+    "multiple": false
+  },
+  {
+    "description": "What is the result of running the operation \nSystem.out.println(1 + 2 + \"\" + 3 + 4);",
+    "blocks": [
+      {
+        "id": 1,
+        "line": "1234"
+      },
+      {
+        "id": 2,
+        "line": "334"
+      },
+      {
+        "id": 3,
+        "line": "10"
+      },
+      {
+        "id": 4,
+        "line": "37"
+      }
+    ],
+    "answers": [
+      [ 2 ]
+    ],
+    "result": {
+      "links": [ ],
+      "text": "The operation is evaluated from left to right. First, 1 + 2 will be added as integers, and then a string will be added to the final 3, from which 3 will turn into the string \"3\" and the values 3 and 4 will be concatenated to this string"
+    },
+    "sortable": false,
+    "multiple": false
+  },
+  {
+    "description": "Arrange the data types in ascending order of the maximum allowed value (top to bottom)",
+    "blocks": [
+      {
+        "id": 1,
+        "line": "Byte"
+      },
+      {
+        "id": 2,
+        "line": "Short"
+      },
+      {
+        "id": 3,
+        "line": "Integer"
+      },
+      {
+        "id": 4,
+        "line": "Long"
+      },
+      {
+        "id": 5,
+        "line": "BigInteger"
+      },
+      {
+        "id": 6,
+        "line": "Decimal"
+      }
+    ],
+    "answers": [
+      [ 1,2,3,4,5 ]
+    ],
+    "result": {
+      "links": [ ],
+      "text": "Byte - Short - Integer - Long - BigInteger. There is no Decimal in Java!"
+    },
+    "sortable": true,
+    "multiple": true
+  },
+  {
+    "description": "Order access modifiers from most restrictive (top) to most open (bottom)",
+    "blocks": [
+      {
+        "id": 1,
+        "line": "private"
+      },
+      {
+        "id": 2,
+        "line": "default"
+      },
+      {
+        "id": 3,
+        "line": "protected"
+      },
+      {
+        "id": 4,
+        "line": "public"
+      },
+      {
+        "id": 5,
+        "line": "sealed"
+      },
+      {
+        "id": 6,
+        "line": "virtual"
+      }
+    ],
+    "answers": [
+      [ 1,2,3,4 ]
+    ],
+    "result": {
+      "links": [ ],
+      "text": ""
+    },
+    "sortable": true,
+    "multiple": true
+  },
+  {
+    "description": "Rank the algorithms in order of increasing worst-case complexity: from fastest at the top to slowest at the bottom. Comment out irrelevant ones.",
+    "blocks": [
+      {
+        "id": 1,
+        "line": "Get element by index"
+      },
+      {
+        "id": 2,
+        "line": "Binary Search"
+      },
+      {
+        "id": 3,
+        "line": "Counting sort"
+      },
+      {
+        "id": 4,
+        "line": "Merge sort"
+      },
+      {
+        "id": 5,
+        "line": "Insertion sort"
+      },
+      {
+        "id": 6,
+        "line": "Dijkstra's algorithm"
+      }
+    ],
+    "answers": [
+      [ 1,2,3,4,5 ]
+    ],
+    "result": {
+      "links": [ ],
+      "text": ""
+    },
+    "sortable": true,
+    "multiple": true
+  },
+  {
+    "description": "Compose bubble sort code",
+    "blocks": [
+      {
+        "id": 1,
+        "line": "static void bubbleSort(int[] arr) {"
+      },
+      {
+        "id": 2,
+        "line": "for (int i = 0; i < arr.length; i++) {"
+      },
+      {
+        "id": 3,
+        "line": "for (int j = 1; j < (arr.length - i); j++) {"
+      },
+      {
+        "id": 4,
+        "line": "if (arr[j - 1] > arr[j]) {"
+      },
+      {
+        "id": 5,
+        "line": "int temp = arr[j - 1];"
+      },
+      {
+        "id": 6,
+        "line": "arr[j - 1] = arr[j];"
+      },
+      {
+        "id": 7,
+        "line": "arr[j] = temp;"
+      },
+      {
+        "id": 8,
+        "line": "}}}}"
+      },
+      {
+        "id": 9,
+        "line": "for (int j = 0; j < arr.length; j++) {"
+      },
+      {
+        "id": 10,
+        "line": "for (int j = arr.length; j > 0; j--) {"
+      }
+    ],
+    "answers": [
+      [  1,2,3,4,5,6,7,8 ]
+    ],
+    "result": {
+      "links": [ ],
+      "text": ""
+    },
+    "sortable": true,
+    "multiple": true
+  },
+  {
+    "description": "What is the result of running the following code segment? \nbyte a = 100;\byte b = 30;\nbyte c = a + b;\nSystem.out.println(c);",
+    "blocks": [
+      {
+        "id": 1,
+        "line": "130"
+      },
+      {
+        "id": 2,
+        "line": "-125"
+      },
+      {
+        "id": 3,
+        "line": "0"
+      },
+      {
+        "id": 4,
+        "line": "compliation error"
+      }
+    ],
+    "answers": [
+      [ 4 ]
+    ],
+    "result": {
+      "links": [ ],
+      "text": "Binary operations on byte and short always cast to int. There will be a compilation error, because you can't implicitly cast int to short without loss of precision"
+    },
+    "sortable": false,
+    "multiple": false
+  },
+  {
+    "description": "class OutterClass {\n  class InnerClass {\n    public String toString() {\n      return \"Hello from inner class\";\n    }\n  }\n\n  public static void main(String ... args) {\n  ...\n  }\n}",
+    "blocks": [
+      {
+        "id": 1,
+        "line": "OutterClass.InnerClass inner = outter.new InnerClass();"
+      },
+      {
+        "id": 2,
+        "line": "System.out.println(inner);"
+      },
+      {
+        "id": 3,
+        "line": "OutterClass outter = new OutterClass();"
+      },
+      {
+        "id": 4,
+        "line": "System.out.println(InnerClass.toString());"
+      },
+      {
+        "id": 5,
+        "line": "InnerClass inner = new InnerClass();"
+      },
+      {
+        "id": 6,
+        "line": "import static OutterClass.InnerClass;"
+      },
+      {
+        "id": 7,
+        "line": "OutterClass.InnerClass inner = new OutterClass.InnerClass();"
+      }
+    ],
+    "answers": [
+      [ 1,2 ]
+    ],
+    "result": {
+      "links": [ ],
+      "text": ""
+    },
+    "sortable": true,
+    "multiple": true
+  },
+  {
+    "description": "What is the result of running:\nclass MyClass {\n  public static int value = 42;\n}\n\n    class Main {\n  public static void main(String ... args) {\n    MyClass myObj = null;\n    System.out.println(myObj.value);\n  }\n}",
+    "blocks": [
+      {
+        "id": 1,
+        "line": "NullPointerException"
+      },
+      {
+        "id": 2,
+        "line": "0"
+      },
+      {
+        "id": 3,
+        "line": "42"
+      },
+      {
+        "id": 4,
+        "line": "null"
+      }
+    ],
+    "answers": [
+      [ 3 ]
+    ],
+    "result": {
+      "links": [ ],
+      "text": "When accessing a static class member through a variable, the compiler will substitute a call on the class instead of the variable, even if the variable is null. Therefore, this code will return the value of the static member of the class"
+    },
+    "sortable": false,
+    "multiple": false
+  },
+  {
+    "description": "What is the result of running: myMethod():public static int myMethod() throws RuntimeException {\n try {\n    throw new RuntimeException();\n  } catch(Exception e) {\n    return 1;\n  } finally {\n    return 2;\n  }\n}",
+    "blocks": [
+      {
+        "id": 1,
+        "line": "RuntimeException"
+      },
+      {
+        "id": 2,
+        "line": "1"
+      },
+      {
+        "id": 3,
+        "line": "2"
+      },
+      {
+        "id": 4,
+        "line": "Compilation error"
+      }
+    ],
+    "answers": [
+      [ 3 ]
+    ],
+    "result": {
+      "links": [ ],
+      "text": "finally is always called last, so the result given in finally will be returned"
+    },
+    "sortable": false,
+    "multiple": false
+  },
+  {
+    "description": "What is the result of running: class MyClass {\n  public int i = 10;\n\n  public void MyClass() {\n    this.i = 20;\n  }\n\n  public static void main(String ... args) {\n    MyClass a = new MyClass();\n    System.out.println(a.i);\n  }\n}",
+    "blocks": [
+      {
+        "id": 1,
+        "line": "10"
+      },
+      {
+        "id": 2,
+        "line": "20"
+      },
+      {
+        "id": 3,
+        "line": "0"
+      },
+      {
+        "id": 4,
+        "line": "compliation error"
+      }
+    ],
+    "answers": [
+      [ 1 ]
+    ],
+    "result": {
+      "links": [ ],
+      "text": "public void MyClass()  - it's not a constructor, but a normal method that's just named like a class. Therefore, when creating an object a, the default constructor will be executed, which will not change the value of the variable i"
+    },
+    "sortable": false,
+    "multiple": false
+  },
+  {
+    "description": "What is the result of running:\ninterface N {\n  public int f(int arg);\n  public String toString();\n}\npublic class C {\n  public static void call_f(N n) {\n    System.out.println(n.f(2));\n  }\n\n  public static void main(String[] args) {\n    call_f(v -> v << v);\n  }\n}",
+    "blocks": [
+      {
+        "id": 1,
+        "line": "2"
+      },
+      {
+        "id": 2,
+        "line": "4"
+      },
+      {
+        "id": 3,
+        "line": "8"
+      },
+      {
+        "id": 4,
+        "line": "compliation error"
+      }
+    ],
+    "answers": [
+      [ 3 ]
+    ],
+    "result": {
+      "links": [ ],
+      "text": "1. The N interface is a functional interface, because methods of the Object class (in this case, toString()) are not taken into account when defining a functional interface. \n2. The call_f method takes as input the variable n that implements interface N. When calling the call_f method, a lambda that implements interface N is passed as a parameter. Therefore, when n.f(2) is called, a lambda will be called that will perform a binary shift of the passed parameter by two digits to the left (2 << 2), which is equivalent to multiplying by 4. Accordingly, the final version is 8"
+    },
+    "sortable": false,
+    "multiple": false
+  }
+]
