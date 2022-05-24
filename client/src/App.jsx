@@ -35,7 +35,7 @@ export default function App(question) {
 
   const [achieve, setAchieve] = useState(undefined);
 
-  const needAbout = !Boolean(window.localStorage.getItem('acquainted'));
+  const needAbout = !Boolean(window.localStorage.getItem('id'));
 
   const checkForAchieve = () => {
     const lsReasons = Object.keys(JSON.parse(window.localStorage.getItem('reasons')));
@@ -87,10 +87,6 @@ export default function App(question) {
       NotificationManager.success(achieve.description, achieve.text);
     }
   }, achieve);
-
-  const onNext = () => {
-    window.location.reload();
-  }
 
   const items = multiple
     ? blocks.map(block => ({ ...block, commented: Math.random() < 0.5 }))
@@ -165,11 +161,10 @@ export default function App(question) {
         }
         {
           Boolean(needAbout) && <div className="about">
-            <About />
+            <About poll={poll} />
           </div>
         }
         <div className="confirm-buttons">
-          <button className="next" onClick={onNext}>Continue</button>
           <button className="submit" onClick={onSubmit}>Submit</button>
         </div>
         <NotificationContainer />
