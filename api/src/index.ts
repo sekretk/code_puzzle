@@ -85,9 +85,7 @@ app.get('/question/:token', function (req, res) {
   }
 
   if (user.toAsk.length === 0) {
-    res.status(400).send({
-      message: `No questions for user token ${req.params["token"]}`
-    });
+    res.end(JSON.stringify({ noQuestions: true }));
     return;
   }
 

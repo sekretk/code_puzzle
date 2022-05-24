@@ -50,7 +50,7 @@ export default function Result({ poll }) {
                         <a href="https://careers.devexperts.com/vacancies/?country=bg&remote=true" target="_blank">View open positions</a>
                     </div>
                     {Boolean(iam) && <div className="head">
-                        Hello, <span>{iam.name}</span>!
+                        <span>Hello, {iam.name}!</span>
                         <span>{iam.email}</span>
                         {Boolean(token) && <a className='logout' onClick={onExit}>Logout</a>}
                     </div>}

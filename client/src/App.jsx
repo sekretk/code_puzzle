@@ -3,8 +3,7 @@ import NonDraggableList from './NonDraggableList'
 import Result from './Result'
 import About from './About'
 import React, { useState, useEffect, useMemo } from 'react';
-import { getAPI, url } from './utils';
-import { reasons } from './reasons';
+import { getAPI, url, postAPI } from './utils';
 
 const listPresenter = {
   true: (props) => <DraggableList {...props} />,
@@ -21,41 +20,19 @@ export default function App(params) {
 
   const sortable = useMemo(() => question?.sortable ?? false, [])
 
-  const items = useMemo(() => question ? question.multiple
-    ? question.blocks.map(block => ({ ...block, commented: Math.random() < 0.5 }))
-    : question.blocks.map(block => ({ ...block, commented: block !== blocks[0] })) : [], []);
+  const items = useMemo(() => (Boolean(question?.multiple)
+    ? question?.blocks?.map(block => ({ ...block, commented: Math.random() < 0.5 }))
+    : question?.blocks?.map(block => ({ ...block, commented: block !== question?.blocks[0] }))) ?? [], [question]);
 
   const token = window.localStorage.getItem('token');
 
-  const onSubmit = async () => {
+  const onSubmit = () => {
 
-    const rawResponse = await fetch(url + '/result/' + poll, {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        question: id,
+    postAPI('answer/' + token, {
+        question: question?.id,
         lines: itemsVal.filter(block => !block.commented).map(block => block.id)
       })
-    });
-
-    const text = await rawResponse.text();
-
-    const content = Boolean(text) ? JSON.parse(text) : undefined;
-
-    setResult(content);
-
-    setIncorrect(!Boolean(content))
-
-    if (!content) {
-      const reason = reasons[Math.floor(Math.random() * reasons.length)]
-      setReason(reason);
-      addReasonToLocalStorage(reason);
-      checkForAchieve();
-      showAchieve();
-    }
+    .then(() => window.location.reload());
   }
 
   const [itemsVal, setItems] = useState(items.sort(() => (Math.random() > .5) ? 1 : -1));
@@ -65,7 +42,9 @@ export default function App(params) {
   useEffect(() => {
     if (Boolean(token)) {
       getAPI('question/' + token)
-        .then(setQuestion)
+        .then(question => {
+          Boolean(question.noQuestions) ? setQuestion(undefined) : setQuestion(question);
+        })
         .catch((error) => {
           console.log('Fetch QUESTIONS error', error);
           window.localStorage.removeItem('token');
