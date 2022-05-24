@@ -5,6 +5,8 @@ import { Answer, Question, QuestionWithID, User } from '../../shared/dto'
 
 const POLL_DIR = 'polls';
 
+const SESSION_FILE = "session.json";
+
 const PORT = 9999;
 
 const name = {
@@ -25,7 +27,7 @@ app.use(express.urlencoded());
 app.use(express.json());
 
 app.listen(PORT, () => {
-  console.log(`Example app listening at http://localhost:${PORT}`)
+  console.log(`[QUIZ API] listening at ${PORT} port`)
 })
 
 const getName = () => `${name.prefix[Math.floor(Math.random() * (name.prefix.length))]} ${name.suffix[Math.floor(Math.random() * (name.suffix.length))]}`
@@ -33,6 +35,22 @@ const getName = () => `${name.prefix[Math.floor(Math.random() * (name.prefix.len
 const getRandStr = () => Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5);
 
 const users = new Map<string, User>();
+
+if (fs.existsSync(SESSION_FILE)) {
+  try {
+    const rawSession: Array<[string, User]> = JSON.parse(fs.readFileSync(SESSION_FILE, 'utf8'));
+
+    rawSession.forEach(item => users.set(...item));
+
+    console.log(`[QUIZ API] startes with ${rawSession.length} sessions restore`)
+  } catch (err) {
+    console.error(`[QUIZ API] cannot start session`, err);
+  }
+} else {
+  console.log(`[QUIZ API] session file ${SESSION_FILE} doesnt exists, start from scratch`)
+}
+
+const saveSession = () => fs.writeFileSync("session.json", JSON.stringify(Array.from(users.entries())), { encoding: "utf8" });
 
 const parsePoll = (fileName: string) =>
   (JSON.parse(fs.readFileSync(path.join(__dirname, POLL_DIR, fileName), 'utf-8')) as Array<Question>).map(question => ({ ...question, id: getRandStr() }));
@@ -52,7 +70,7 @@ const polls: Map<string, Array<QuestionWithID>> =
   fs.readdirSync(path.join(__dirname, POLL_DIR))
     .reduce((acc, cur) => acc.set(cur.replace('.json', ''), parsePoll(cur)), new Map<string, Array<QuestionWithID>>());
 
-console.log('Started with grabbed polls:', polls);
+console.log('[QUIZ API] Started with polls ', Array.from(polls.keys()).join(', '));
 
 app.get('/polls', function (req, res) {
   res.setHeader('Content-Type', 'application/json');
@@ -86,7 +104,7 @@ app.get('/question/:token', function (req, res) {
 
   const question = poll.find(q => q.id === user.toAsk[0]);
 
-  res.end(JSON.stringify({...question, answers: [], result: undefined}));
+  res.end(JSON.stringify({ ...question, answers: [], result: undefined }));
 });
 
 app.post('/answer/:token', function (req, res) {
@@ -100,7 +118,7 @@ app.post('/answer/:token', function (req, res) {
     return;
   }
 
-  const poll = polls.get(users.get(req.params["token"])?.poll??'');
+  const poll = polls.get(users.get(req.params["token"])?.poll ?? '');
 
   if (poll === undefined) {
     res.status(400).send({
@@ -118,7 +136,7 @@ app.post('/answer/:token', function (req, res) {
     return;
   }
 
-  user.answers.push({...answer, ...question, passed: isCorrect(question, answer) });
+  user.answers.push({ ...answer, ...question, passed: isCorrect(question, answer) });
 
   user.toAsk = user.toAsk.filter(quest => quest !== answer.question);
 
@@ -202,12 +220,16 @@ app.get('/id/:token', function (req, res) {
     return;
   }
 
-  res.end(JSON.stringify({token: req.params["token"], name: user.name, email: user.email, questionsLeft: maxQuestions - user.answers.length}));
+  res.end(JSON.stringify({ token: req.params["token"], name: user.name, email: user.email, questionsLeft: maxQuestions - user.answers.length }));
 })
 
 app.get('/status', function (req, res) {
-  res.end({
+  res.end(JSON.stringify({
     count: Array.from(users.keys()).length,
     all: Array.from(users.entries())
-  })
+  }));
+})
+
+app.get('/save', function () {
+  saveSession();
 })
