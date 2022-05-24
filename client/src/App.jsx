@@ -34,7 +34,9 @@ export default function App(params) {
     setQuestion(question);
 
     if (Boolean(question)) {
-      const questionBlocks = question.multiple ? question.blocks.map(block => ({ ...block, commented: Math.random() < 0.5 })) : question.blocks.map(block => ({ ...block, commented: block !== question?.blocks[0] }));
+      const questionBlocks = (question.multiple 
+        ? question.blocks?.map(block => ({ ...block, commented: Math.random() < 0.5 })) 
+        : question.blocks?.map(block => ({ ...block, commented: block !== question?.blocks[0] })))??[];
 
       setItems(questionBlocks.sort(() => (Math.random() > .5) ? 1 : -1));
 

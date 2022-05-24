@@ -50,7 +50,7 @@ if (fs.existsSync(SESSION_FILE)) {
   console.log(`[QUIZ API] session file ${SESSION_FILE} doesnt exists, start from scratch`)
 }
 
-const saveSession = () => fs.writeFileSync("session.json", JSON.stringify(Array.from(users.entries())), { encoding: "utf8" });
+const saveSession = () => fs.writeFileSync("session.json", JSON.stringify(Array.from(users.entries()), null, 4), { encoding: "utf8" });
 
 const parsePoll = (fileName: string) =>
   (JSON.parse(fs.readFileSync(path.join(__dirname, POLL_DIR, fileName), 'utf-8')) as Array<Question>).map(question => ({ ...question, id: getRandStr() }));
@@ -96,11 +96,13 @@ app.get('/question/:token', function (req, res) {
     });
     return;
   }
-
+   
   if (user.toAsk.length === 0) {
     res.end(JSON.stringify({ noQuestions: true }));
     return;
   }
+
+  console.log('questions, user.toAsk', user.toAsk, poll.find(q => q.id === user.toAsk[0]));
 
   const question = poll.find(q => q.id === user.toAsk[0]);
 
@@ -232,5 +234,5 @@ app.get('/status', function (req, res) {
 
 app.get('/save', function (req, res) {
   saveSession();
-  res.status(200).send();
+  res.status(200).send('Saved');
 })

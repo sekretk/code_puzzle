@@ -1,1 +1,145 @@
-[]
+[
+    [
+        "ppqig",
+        {
+            "name": "defects perfectionist",
+            "poll": "java",
+            "email": "",
+            "answers": [],
+            "toAsk": [
+                "zygdm",
+                "kbimd",
+                "jbsgj",
+                "uljma"
+            ]
+        }
+    ],
+    [
+        "dabxs",
+        {
+            "name": "stackoverflow guru",
+            "poll": "java",
+            "email": "",
+            "answers": [],
+            "toAsk": [
+                "ugflp",
+                "nxymz",
+                "jtqpe",
+                "ktlkq"
+            ]
+        }
+    ],
+    [
+        "kuupg",
+        {
+            "name": "'cant reproduce' sensei",
+            "poll": "java",
+            "email": "",
+            "answers": [],
+            "toAsk": [
+                "kenwj",
+                "awsyl",
+                "xsfcx",
+                "lgad"
+            ]
+        }
+    ],
+    [
+        "mqzfu",
+        {
+            "name": "'cant reproduce' sensei",
+            "poll": "java",
+            "email": "",
+            "answers": [
+                {
+                    "question": "kudph",
+                    "lines": [
+                        1
+                    ],
+                    "description": "What is the result of running: myMethod():public static int myMethod() throws RuntimeException {\n try {\n    throw new RuntimeException();\n  } catch(Exception e) {\n    return 1;\n  } finally {\n    return 2;\n  }\n}",
+                    "blocks": [
+                        {
+                            "id": 1,
+                            "line": "RuntimeException"
+                        },
+                        {
+                            "id": 2,
+                            "line": "1"
+                        },
+                        {
+                            "id": 3,
+                            "line": "2"
+                        },
+                        {
+                            "id": 4,
+                            "line": "Compilation error"
+                        }
+                    ],
+                    "answers": [
+                        [
+                            3
+                        ]
+                    ],
+                    "result": {
+                        "links": [],
+                        "text": "finally is always called last, so the result given in finally will be returned"
+                    },
+                    "sortable": false,
+                    "multiple": false,
+                    "id": "kudph",
+                    "passed": false
+                }
+            ],
+            "toAsk": [
+                "ssumj",
+                "dcyyg",
+                "mkbqf"
+            ]
+        }
+    ],
+    [
+        "foauy",
+        {
+            "name": "stackoverflow master",
+            "poll": "java",
+            "email": "",
+            "answers": [],
+            "toAsk": [
+                "siger",
+                "fdtbl",
+                "rdscl",
+                "zxzre"
+            ]
+        }
+    ],
+    [
+        "icbhf",
+        {
+            "name": "stackoverflow sensei",
+            "poll": "java",
+            "email": "",
+            "answers": [],
+            "toAsk": [
+                "lfdvl",
+                "jsdxo",
+                "scpea",
+                "tdmha"
+            ]
+        }
+    ],
+    [
+        "kdtzg",
+        {
+            "name": "stackoverflow sensei",
+            "poll": "java",
+            "email": "",
+            "answers": [],
+            "toAsk": [
+                "lyhxq",
+                "cxpcq",
+                "aqwju",
+                "orpch"
+            ]
+        }
+    ]
+]
