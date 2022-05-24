@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { getAPI, url } from './utils';
+import TextField from '@mui/material/TextField';
 
 const token = window.localStorage.getItem('token');
 
 export default function Result({ poll }) {
 
     const [iam, setIam] = useState(undefined)
+    const [email, setEmail] = useState(undefined);
 
     window.localStorage.setItem('acquainted', true);
 
     const onGo = async () => {
-        const rawResponse = await fetch(url + '/auth/' + poll);
+        const rawResponse = await fetch(`${url}/auth/${poll}?email=${email}`);
 
         const token = await rawResponse.text();
         window.localStorage.setItem('token', token);
@@ -92,8 +94,13 @@ export default function Result({ poll }) {
                     </div>
                 </div>
 
-
-                {!Boolean(token) && <button className="go" onClick={onGo}>Start!</button>}
+                {
+                    !Boolean(token) &&
+                    <div>x
+                        <TextField label="Email" variant="outlined" value={email} onChange={(e) => setEmail(e.target.value)} />
+                        <button className="go" onClick={onGo}>Start!</button>
+                    </div>
+                }
 
                 {Boolean(token) && <button className="go" onClick={onContinue}>Continue</button>}
             </div>

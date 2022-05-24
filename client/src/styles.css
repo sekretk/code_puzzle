@@ -243,6 +243,7 @@ a.logout {
   flex-direction: column;
   margin-bottom: 10px;
   margin-top: 10px;
+  margin-left: 10px;
 }
 
 .head{

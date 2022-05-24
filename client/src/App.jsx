@@ -38,7 +38,7 @@ export default function App(params) {
     if (Boolean(question)) {
       const questionBlocks = (question.multiple
         ? question.blocks?.map(block => ({ ...block, commented: Math.random() < 0.5 }))
-        : question.blocks?.map(block => ({ ...block, commented: block !== question?.blocks[0] })))??[];
+        : question.blocks?.map(block => ({ ...block, commented: block !== question?.blocks[0] }))) ?? [];
 
       setItems(questionBlocks.sort(() => (Math.random() > .5) ? 1 : -1));
 
@@ -86,6 +86,13 @@ export default function App(params) {
               <div className="task-header">
                 <h3>Task</h3>
                 <div className="badge-block">
+                  {
+                    !Boolean(question?.sortable) && !Boolean(question?.multiple) && <span className="main-badge">
+                      <span className="badge_icon material-icons material-icons-outlined">
+                        rule
+                      </span>
+                    </span>
+                  }
                   {
                     Boolean(question?.sortable) &&
                     <span className="main-badge">

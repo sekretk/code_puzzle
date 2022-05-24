@@ -178,35 +178,24 @@ app.get('/result/:token', function (req, res) {
   res.end(JSON.stringify(user.answers));
 })
 
-app.post('/auth/:token/:email', function (req, res) {
-
-  const user = users.get(req.params["token"])
-
-  if (user === undefined) {
-    res.status(400).send({
-      message: `User for token ${req.params["token"]} not found`
-    });
-    return;
-  }
-
-  if (!Boolean(req.params["email"])) {
-    res.status(400).send({
-      message: `Email is not provided`
-    });
-    return;
-  }
-
-  user.email = req.params["email"];
-})
-
 app.get('/auth/:poll', function (req, res) {
 
   const poll = req.params["poll"];
+  console.log('Auth', req.query);
   const id = getRandStr()
   const randomQuestions: Array<string> = [];
 
+  const currentPoll = polls.get(poll);
+
+  if (currentPoll === undefined || currentPoll.length === 0) {
+    res.status(400).send({
+      message: `No questions for #{poll},`
+    });
+    return;
+  }
+
   while (randomQuestions.length < maxQuestions) {
-    const newQuestion = polls.get(poll)?.[Math.floor(Math.random() * (polls.get(poll)?.length ?? 0))];
+    const newQuestion = currentPoll[Math.floor(Math.random() * (currentPoll.length ?? 0))];
 
     if (newQuestion && !randomQuestions.includes(newQuestion?.id)) {
       randomQuestions.push(newQuestion.id);
@@ -216,7 +205,7 @@ app.get('/auth/:poll', function (req, res) {
 
   }
 
-  users.set(id, { name: getName(), poll, email: '', answers: [], toAsk: randomQuestions })
+  users.set(id, { name: getName(), poll, email: String(req.query.email), answers: [], toAsk: randomQuestions })
 
   res.end(id)
 })
