@@ -30,7 +30,8 @@
     "multiple": true
   },
   {
-    "description": "What is the result of running the following code segment? \npublic static void main(String... args) {\n System.out.println(2.00 - 1.10);\n}",
+    "description": "What is the result of running the following code segment?",
+    "code": "\npublic static void main(String... args) {\n System.out.println(2.00 - 1.10);\n}",
     "blocks": [
       {
         "id": 1,
@@ -60,7 +61,8 @@
     "multiple": false
   },
   {
-    "description": "What is the result of running the operation \nSystem.out.println(1 + 2 + \"\" + 3 + 4);",
+    "description": "What is the result of running the operation?",
+    "code": " \nSystem.out.println(1 + 2 + \"\" + 3 + 4);",
     "blocks": [
       {
         "id": 1,
@@ -258,7 +260,8 @@
     "multiple": true
   },
   {
-    "description": "What is the result of running the following code segment? \nbyte a = 100;\byte b = 30;\nbyte c = a + b;\nSystem.out.println(c);",
+    "description": "What is the result of running the following code segment?",
+    "code": "byte a = 100;\byte b = 30;\nbyte c = a + b;\nSystem.out.println(c);",
     "blocks": [
       {
         "id": 1,
@@ -288,7 +291,8 @@
     "multiple": false
   },
   {
-    "description": "class OutterClass {\n  class InnerClass {\n    public String toString() {\n      return \"Hello from inner class\";\n    }\n  }\n\n  public static void main(String ... args) {\n  ...\n  }\n}",
+    "description": "Constract compilable code",
+    "code": "class OutterClass {\n  class InnerClass {\n    public String toString() {\n      return \"Hello from inner class\";\n    }\n  }\n\n  public static void main(String ... args) {\n  ...\n  }\n}",
     "blocks": [
       {
         "id": 1,
@@ -330,7 +334,8 @@
     "multiple": true
   },
   {
-    "description": "What is the result of running:\nclass MyClass {\n  public static int value = 42;\n}\n\n    class Main {\n  public static void main(String ... args) {\n    MyClass myObj = null;\n    System.out.println(myObj.value);\n  }\n}",
+    "description": "What is the result of running following snippet?",
+    "code": "class MyClass {\n  public static int value = 42;\n}\n\n    class Main {\n  public static void main(String ... args) {\n    MyClass myObj = null;\n    System.out.println(myObj.value);\n  }\n}",
     "blocks": [
       {
         "id": 1,
@@ -390,7 +395,8 @@
     "multiple": false
   },
   {
-    "description": "What is the result of running: class MyClass {\n  public int i = 10;\n\n  public void MyClass() {\n    this.i = 20;\n  }\n\n  public static void main(String ... args) {\n    MyClass a = new MyClass();\n    System.out.println(a.i);\n  }\n}",
+    "description": "What is the result of running?",
+    "code": "class MyClass {\n  public int i = 10;\n\n  public void MyClass() {\n    this.i = 20;\n  }\n\n  public static void main(String ... args) {\n    MyClass a = new MyClass();\n    System.out.println(a.i);\n  }\n}",
     "blocks": [
       {
         "id": 1,
@@ -420,7 +426,8 @@
     "multiple": false
   },
   {
-    "description": "What is the result of running:\ninterface N {\n  public int f(int arg);\n  public String toString();\n}\npublic class C {\n  public static void call_f(N n) {\n    System.out.println(n.f(2));\n  }\n\n  public static void main(String[] args) {\n    call_f(v -> v << v);\n  }\n}",
+    "description": "What is the result of running?",
+    "code": "interface N {\n  public int f(int arg);\n  public String toString();\n}\npublic class C {\n  public static void call_f(N n) {\n    System.out.println(n.f(2));\n  }\n\n  public static void main(String[] args) {\n    call_f(v -> v << v);\n  }\n}",
     "blocks": [
       {
         "id": 1,
