@@ -1,120 +1,70 @@
-import DraggableList from './DraggableList'
-import NonDraggableList from './NonDraggableList'
+import { DraggableList } from './DraggableList'
+import { NonDraggableList } from './NonDraggableList'
 import Result from './Result'
 import About from './About'
-import React, { useState, useEffect } from 'react';
-import { url } from './utils';
-import { reasons } from './reasons';
-import { NotificationContainer, NotificationManager } from 'react-notifications';
+import React, { useState, useEffect, useMemo } from 'react';
+import { getAPI, url, postAPI } from './utils';
 
-import 'react-notifications/dist/react-notifications.css';
+export default function App(params) {
 
-const listPresenter = {
-  true: (props) => <DraggableList {...props} />,
-  false: (props) => <NonDraggableList {...props} />,
-}
+  const { poll } = params;
 
-const addReasonToLocalStorage = reason => window.localStorage.setItem('reasons', JSON.stringify({ ...JSON.parse(window.localStorage.getItem('reasons')), [reason]: 1 }));
+  const [question, setQuestion] = useState(undefined);
 
-export default function App(question) {
+  const [aboutPresent, setAboutPresent] = useState(false);
 
-  const {
-    poll,
-    description,
-    blocks,
-    multiple,
-    sortable,
-    id
-  } = question;
+  const [showResults, setShowResults] = useState(false);
 
-  const [result, setResult] = useState(undefined);
+  const sortable = useMemo(() => question?.sortable ?? false, [question])
 
-  const [incorrect, setIncorrect] = useState(false);
+  const [items, setItems] = useState([]);
 
-  const [reason, setReason] = useState(undefined);
+  const token = window.localStorage.getItem('token');
 
-  const [achieve, setAchieve] = useState(undefined);
+  const onSubmit = () => {
 
-  const needAbout = !Boolean(window.localStorage.getItem('acquainted'));
+    postAPI('answer/' + token, {
+      question: question?.id,
+      lines: items.filter(block => !block.commented).map(block => block.id)
+    })
+      .then(() => window.location.reload());
+  }
 
-  const checkForAchieve = () => {
-    const lsReasons = Object.keys(JSON.parse(window.localStorage.getItem('reasons')));
-    if (lsReasons.length === reasons.length && !window.localStorage.getItem('achieve')) {
-      window.localStorage.setItem('achieve', '1');
+  const setQuestionInternal = (question) => {
+    setQuestion(question);
+
+    if (Boolean(question)) {
+      const questionBlocks = question.multiple ? question.blocks.map(block => ({ ...block, commented: Math.random() < 0.5 })) : question.blocks.map(block => ({ ...block, commented: block !== question?.blocks[0] }));
+
+      setItems(questionBlocks.sort(() => (Math.random() > .5) ? 1 : -1));
+
     }
-  };
-
-  const showAchieve = () => {
-    if (window.localStorage.getItem('achieve') === '1') {
-      setAchieve({ text: 'Упорство', description: 'Тебе удалось раздобыть все сообщения о неправильных ответах' })
-      window.localStorage.setItem('achieve', '0');
-    }
-  };
-
-  const onSubmit = async () => {
-
-    const rawResponse = await fetch(url + '/result/' + poll, {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        question: id,
-        lines: itemsVal.filter(block => !block.commented).map(block => block.id)
-      })
-    });
-
-    const text = await rawResponse.text();
-
-    const content = Boolean(text) ? JSON.parse(text) : undefined;
-
-    setResult(content);
-
-    setIncorrect(!Boolean(content))
-
-    if (!content) {
-      const reason = reasons[Math.floor(Math.random() * reasons.length)]
-      setReason(reason);
-      addReasonToLocalStorage(reason);
-      checkForAchieve();
-      showAchieve();
+    else {
+      setItems([]);
     }
   }
 
   useEffect(() => {
-    if (achieve) {
-      NotificationManager.success(achieve.description, achieve.text);
+    if (Boolean(token)) {
+      getAPI('question/' + token)
+        .then(question => {
+          if (Boolean(question.noQuestions)) {
+            setShowResults(true);
+            setQuestionInternal(undefined);
+          } else {
+            setQuestionInternal(question);
+            setShowResults(false);
+          }
+        })
+        .catch((error) => {
+          console.log('Fetch QUESTIONS error', error);
+          window.localStorage.removeItem('token');
+          window.location.reload();
+        });
+    } else {
+      setAboutPresent(true);
     }
-  }, achieve);
-
-  const onNext = () => {
-    window.location.reload();
-  }
-
-  const items = multiple
-    ? blocks.map(block => ({ ...block, commented: Math.random() < 0.5 }))
-    : blocks.map(block => ({ ...block, commented: block !== blocks[0] }));
-
-  const [itemsVal, setItems] = useState(items.sort(() => (Math.random() > .5) ? 1 : -1));
-
-  const list = listPresenter[sortable]({ items, onItemsChanged: setItems, multiple });
-
-  const onNeedAbout = () => {
-    window.localStorage.removeItem('acquainted');
-    window.location.reload();
-  }
-
-  useEffect(() => {
-    if (incorrect) {
-      const timeout = setTimeout(() => {
-        setIncorrect(false);
-      }, 1000);
-
-      return () => clearTimeout(timeout)
-    }
-  }
-    , [incorrect]);
+  }, []);
 
   return (
     <div className="main-app">
@@ -122,57 +72,56 @@ export default function App(question) {
         <div className="head app-head">
           <a href="https://www.devexperts.com/" target="_blank">
             <img alt="devexperts.com" src="/static/logo.svg"
-                 width="150" height="30" />
+              width="150" height="30" />
           </a>
-          <button className="help" onClick={onNeedAbout}>Rules</button>
+          <button className="help" onClick={() => setAboutPresent(true)}>Rules</button>
         </div>
-
-        <div className={`alert ${incorrect ? 'alert-shown' : 'alert-hidden'}`}>
-          <strong>{reason}</strong>
-        </div>
-        <div className="task-description">
-          <div className="task-header">
-            <h3>Task</h3>
-            <div className="badge-block">
-              {
-                  Boolean(sortable) &&
-                  <span className="main-badge">
-                  <span className="badge_icon material-icons material-icons-outlined">
-                    sort
-                  </span>
-                </span>
-              }
-              {
-                  Boolean(multiple) &&
-                  <span className="main-badge">
-                  <span className="badge_icon material-icons material-icons-outlined">
-                    checklist_rtl
-                  </span>
-                </span>
-              }
+        {
+          Boolean(question) && <>
+            <div className="task-description">
+              <div className="task-header">
+                <h3>Task</h3>
+                <div className="badge-block">
+                  {
+                    Boolean(question?.sortable) &&
+                    <span className="main-badge">
+                      <span className="badge_icon material-icons material-icons-outlined">
+                        sort
+                      </span>
+                    </span>
+                  }
+                  {
+                    Boolean(question?.multiple) &&
+                    <span className="main-badge">
+                      <span className="badge_icon material-icons material-icons-outlined">
+                        checklist_rtl
+                      </span>
+                    </span>
+                  }
+                </div>
+              </div>
+              <p className="description multiline">{question?.description}</p>
             </div>
-          </div>
-          <p className="description multiline">{description}</p>
-        </div>
-        {
-          list
+            {
+              sortable ?
+                <DraggableList items={items} onItemsChanged={setItems} multiple={question?.multiple ?? false} />
+                : <NonDraggableList items={items} onItemsChanged={setItems} multiple={question?.multiple ?? false} />
+            }
+            <div className="confirm-buttons">
+              <button className="submit" onClick={onSubmit}>Submit</button>
+            </div>
+          </>
         }
         {
-          Boolean(result) && <div className="result">
-            <button className="next" onClick={onNext}>Next</button>
-            <Result {...result} />
+          showResults && <div className="result">
+            <Result />
           </div>
         }
         {
-          Boolean(needAbout) && <div className="about">
-            <About />
+          aboutPresent && <div className="about">
+            <About poll={poll} />
           </div>
         }
-        <div className="confirm-buttons">
-          <button className="next" onClick={onNext}>Continue</button>
-          <button className="submit" onClick={onSubmit}>Submit</button>
-        </div>
-        <NotificationContainer />
       </div>
     </div>)
 }

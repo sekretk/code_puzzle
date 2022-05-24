@@ -24,12 +24,6 @@ export const swapInArray = (arr, idx1, idx2) => {
     return
   }
 
-  const fetchedQuestion = await fetch(url + '/rndpoll/'+poll);
-
-  let question = await fetchedQuestion.json();
-
-  question = {...question, poll};
-
-  render(<App {...question}/>, document.getElementById('root'))
+  render(<App poll={poll}/>, document.getElementById('root'))
 
 })();
