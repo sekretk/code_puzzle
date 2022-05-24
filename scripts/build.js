@@ -42,6 +42,7 @@ if (execSync('git pull').toString().includes('Already up to date')) {
     return;
 }
 
+run('pm2 stop quiz')
 chdir(path.join(__dirname, '../api'));
 run('npm i');
 run('npm run build');

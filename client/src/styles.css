@@ -126,6 +126,11 @@ a{
   color:#DAD8D3;
 }
 
+a.logout {
+  cursor: pointer;
+  border-bottom: 1px solid #EF734B;
+}
+
 .result {
   background: #1F1F1F;
   width: 100%;
