@@ -50,10 +50,24 @@ if (fs.existsSync(SESSION_FILE)) {
   console.log(`[QUIZ API] session file ${SESSION_FILE} doesnt exists, start from scratch`)
 }
 
+const strHash = (str: string): string => {
+  let hash = 0, i, chr;
+  if (str.length === 0) return hash.toString().padStart(20, '0');
+  for (i = 0; i < str.length; i++) {
+    chr   = str.charCodeAt(i);
+    hash  = ((hash << 5) - hash) + chr;
+    hash |= 0;
+  }
+
+  hash = Math.abs(hash)
+  
+  return hash.toString().padStart(20, '0');
+};
+
 const saveSession = () => fs.writeFileSync("session.json", JSON.stringify(Array.from(users.entries()), null, 4), { encoding: "utf8" });
 
 const parsePoll = (fileName: string) =>
-  (JSON.parse(fs.readFileSync(path.join(__dirname, POLL_DIR, fileName), 'utf-8')) as Array<Question>).map(question => ({ ...question, id: getRandStr() }));
+  (JSON.parse(fs.readFileSync(path.join(__dirname, POLL_DIR, fileName), 'utf-8')) as Array<Question>).map(question => ({ ...question, id: strHash(JSON.stringify(question)) }));
 
 const isRightArray = (sortable: boolean) => (attempt: number[]) => (answer: number[]) =>
   sortable
@@ -101,8 +115,6 @@ app.get('/question/:token', function (req, res) {
     res.end(JSON.stringify({ noQuestions: true }));
     return;
   }
-
-  console.log('questions, user.toAsk', user.toAsk, poll.find(q => q.id === user.toAsk[0]));
 
   const question = poll.find(q => q.id === user.toAsk[0]);
 

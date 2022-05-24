@@ -3,8 +3,8 @@ export const selectMapper = {
   false: (item, id) => item.id !== id
 }
 
-export const url = 'http://boysthings.top:9999';
-//export const url = 'http://localhost:9999';
+//export const url = 'http://boysthings.top:9999';
+export const url = 'http://localhost:9999';
 
 export const getAPI = (path) => fetch(url + '/' + path)
   .then((response) => {
