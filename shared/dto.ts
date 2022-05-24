@@ -38,6 +38,7 @@ export type Result = {
 
 export type Question = {
     description: string,
+    code: string,
     blocks: Array<Line>,
     answers: Array<Array<number>>,
     result: Result,
