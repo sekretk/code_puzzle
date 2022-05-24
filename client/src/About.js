@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { getAPI, url } from './utils';
 
+const token = window.localStorage.getItem('token');
+
 export default function Result({ poll }) {
 
     const [iam, setIam] = useState(undefined)
-
-    const token = window.localStorage.getItem('token');
 
     window.localStorage.setItem('acquainted', true);
 
@@ -52,6 +52,7 @@ export default function Result({ poll }) {
                     {Boolean(iam) && <div className="head">
                         <span>Hello, {iam.name}!</span>
                         <span>{iam.email}</span>
+                        <span>left: {iam.questionsLeft}</span>
                         {Boolean(token) && <a className='logout' onClick={onExit}>Logout</a>}
                     </div>}
                     <div className="general-rules">

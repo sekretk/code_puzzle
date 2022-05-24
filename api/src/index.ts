@@ -45,11 +45,6 @@ const isRightArray = (sortable: boolean) => (attempt: number[]) => (answer: numb
 const checkAnswers = (sortable: boolean) => (attempt: number[]) => (answers: number[][]) =>
   answers.some(isRightArray(sortable)(attempt));
 
-const findAnswer =
-  (attempt: Answer) =>
-    (question: QuestionWithID) =>
-      question.id === attempt.question && checkAnswers(question.sortable)(attempt.lines)(question.answers);
-
 const isCorrect = (question: Question, answer: Answer): boolean =>
   checkAnswers(question.sortable)(answer.lines)(question.answers)
 

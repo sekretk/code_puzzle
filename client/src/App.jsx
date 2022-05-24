@@ -18,6 +18,8 @@ export default function App(params) {
 
   const [aboutPresent, setAboutPresent] = useState(false);
 
+  const [showResults, setShowResults] = useState(false);
+
   const sortable = useMemo(() => question?.sortable ?? false, [])
 
   const items = useMemo(() => (Boolean(question?.multiple)
@@ -43,7 +45,13 @@ export default function App(params) {
     if (Boolean(token)) {
       getAPI('question/' + token)
         .then(question => {
-          Boolean(question.noQuestions) ? setQuestion(undefined) : setQuestion(question);
+          if (Boolean(question.noQuestions)) {
+            setShowResults(true);
+            setQuestion(undefined);
+          } else {
+            setQuestion(question);
+            setShowResults(false);
+          }
         })
         .catch((error) => {
           console.log('Fetch QUESTIONS error', error);
@@ -98,6 +106,11 @@ export default function App(params) {
               <button className="submit" onClick={onSubmit}>Submit</button>
             </div>
           </>
+        }
+        {
+          showResults && <div className="result">
+            <Result />
+          </div>
         }
         {
           aboutPresent && <div className="about">
