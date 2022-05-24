@@ -26,7 +26,7 @@ export default function Result({ links, text }) {
                             <p className="rules-text">
                                 <ul className="rules-list">
                                     <li className="rules-list-point">
-                                        We propose you to resolve a bucnh of tasks.
+                                        We propose you to resolve a bunch of tasks.
                                     </li>
                                     <li className="rules-list-point">
                                         Tap "Submit" to submit your solution
