@@ -140,6 +140,7 @@ a{
 a.logout {
   cursor: pointer;
   border-bottom: 1px solid #EF734B;
+  margin: 0 5px;
 }
 
 .result {
@@ -248,9 +249,6 @@ a.logout {
 
 .head{
   width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   margin-bottom: 25%;
 }
 
@@ -665,7 +663,7 @@ button.comment {
     width: 195px;
   }
 
-  .about .email{
-    color: white;
+  .email label{
+      color: white;
   }
 }

@@ -12,7 +12,7 @@ export default function Result({ poll }) {
     window.localStorage.setItem('acquainted', true);
 
     const onGo = async () => {
-        const rawResponse = await fetch(`${url}/auth/${poll}?email=${email}`);
+        const rawResponse = await fetch(`${url}/auth/${poll}?email=${email ?? ''}`);
 
         const token = await rawResponse.text();
         window.localStorage.setItem('token', token);
@@ -39,6 +39,12 @@ export default function Result({ poll }) {
 
     }, [])
 
+    const styles = theme => ({
+        multilineColor: {
+            color: 'red'
+        }
+    });
+
     return (
         <>
             <div className="wrapper">
@@ -52,10 +58,13 @@ export default function Result({ poll }) {
                         <a href="https://careers.devexperts.com/vacancies/?country=bg&remote=true" target="_blank">View open positions</a>
                     </div>
                     {Boolean(iam) && <div className="head">
-                        <span>Hello, {iam.name}!</span>
-                        <span>{iam.email}</span>
-                        <span>left: {iam.questionsLeft}</span>
-                        {Boolean(token) && <a className='logout' onClick={onExit}>Logout</a>}
+                        <div>
+                            <span>Hello, {iam.name}!</span>
+                        </div>
+                        <div>
+                            <span>Questions left: {iam.questionsLeft}</span>
+                            {Boolean(token) && <a className='logout' onClick={onExit}>Logout</a>}
+                        </div>
                     </div>}
                     <div className="general-rules">
                         <div className="about-rules">
@@ -104,7 +113,7 @@ export default function Result({ poll }) {
                 {
                     !Boolean(token) &&
                     <div className='gowrapper'>
-                        <TextField label="Email" variant="filled" value={email} onChange={(e) => setEmail(e.target.value)} />
+                        <TextField sx={{ root: { width: '100px' }, label: { color: 'lightgrey' }, input: { color: 'white' } }} label="Email" variant="filled" value={email} onChange={(e) => setEmail(e.target.value)} />
                         <button className="go" onClick={onGo}>Start!</button>
                     </div>
                 }
