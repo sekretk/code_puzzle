@@ -3,7 +3,7 @@ import { selectMapper } from './utils'
 
 const UngraggableItem = ({ value, onToggle }) => {
     const { line, commented } = value;
-    return (<li className={commented ? 'commented' : ''}>
+    return (<li className={commented ? 'commented' : 'uncommented'}>
         <div className="item">
             <button className="comment" onMouseDown={onToggle}>//</button>
             {

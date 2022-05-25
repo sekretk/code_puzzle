@@ -5,7 +5,7 @@ import { selectMapper } from './utils'
 
 const SortableItem = sortableElement(({ value, onToggle }) => {
     const { line, commented } = value;
-    return (<li className={commented ? 'commented' : ''}>
+    return (<li className={commented ? 'commented' : 'uncommented'}>
         <div className="item content__item">
             <button className="comment code" onMouseDown={onToggle}>//</button>
             {
@@ -25,10 +25,10 @@ const SortableItem = sortableElement(({ value, onToggle }) => {
 });
 
 const SortableContainer = sortableContainer(({ children }) => {
-    return <ul>{children}</ul>;
+    return <ul className={"sortable-container"}>{children}</ul>;
 });
 
-export const DraggableList = memo(({ items, multiple, onItemsChanged }) => { 
+export const DraggableList = memo(({ items, multiple, onItemsChanged }) => {
 
 
     const onSortEnd = ({ oldIndex, newIndex }) => {

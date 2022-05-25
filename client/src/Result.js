@@ -28,7 +28,10 @@ export default function Result() {
         result.length > 0 &&
         <>
             <h1 className={"s"}>Your results</h1>
-            <p className="multiline">Passed: {result.filter(_ => _.passed)?.length??0} out of {result.length??0}</p>
+            <p className="multiline">
+                Passed: {result.filter(_ => _.passed)?.length??0} out of {result.length??0} <br />
+                Say "Fintech Forever" at Devexperts desk and get a gift!
+            </p>
             {
                 result.map(resItem => (
                     <div className="question-result">
