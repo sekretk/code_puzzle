@@ -299,6 +299,7 @@ a.logout {
   display: flex;
   justify-content: center;
   width: 97vw;
+  margin-left: 10px;
 }
 
 .task{
