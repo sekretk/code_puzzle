@@ -365,7 +365,8 @@
     "multiple": false
   },
   {
-    "description": "What is the result of running: myMethod():public static int myMethod() throws RuntimeException {\n try {\n    throw new RuntimeException();\n  } catch(Exception e) {\n    return 1;\n  } finally {\n    return 2;\n  }\n}",
+    "description": "What is the result of running:",
+    "code": "myMethod():public static int myMethod() throws RuntimeException {\n try {\n    throw new RuntimeException();\n  } catch(Exception e) {\n    return 1;\n  } finally {\n    return 2;\n  }\n}",
     "blocks": [
       {
         "id": 1,

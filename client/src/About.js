@@ -113,7 +113,17 @@ export default function Result({ poll }) {
                 {
                     !Boolean(token) &&
                     <div className='gowrapper'>
-                        <TextField sx={{ root: { width: '100px' }, label: { color: 'lightgrey' }, input: { color: 'white' } }} label="Email" variant="filled" value={email} onChange={(e) => setEmail(e.target.value)} />
+                        {/*<TextField sx={{
+                        root: { width: '100px' },
+                        label: { color: 'lightgrey' },
+                        input: { color: 'white' } }}
+                        label="Email" variant="filled"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)} />*/}
+                        <input className="email-input"
+                               placeholder="email"
+                               value={email}
+                               onChange={(e) => setEmail(e.target.value)}/>
                         <button className="go" onClick={onGo}>Start!</button>
                     </div>
                 }
