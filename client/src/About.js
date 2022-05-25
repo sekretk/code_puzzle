@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { getAPI, url } from './utils';
+import Checkbox from '@mui/material/Checkbox';
 import TextField from '@mui/material/TextField';
 
 const token = window.localStorage.getItem('token');
@@ -8,6 +9,7 @@ export default function Result({ poll }) {
 
     const [iam, setIam] = useState(undefined)
     const [email, setEmail] = useState(undefined);
+    const [checked, setChecked] = useState(false);
 
     window.localStorage.setItem('acquainted', true);
 
@@ -112,19 +114,23 @@ export default function Result({ poll }) {
 
                 {
                     !Boolean(token) &&
-                    <div className='gowrapper'>
-                        {/*<TextField sx={{
-                        root: { width: '100px' },
-                        label: { color: 'lightgrey' },
-                        input: { color: 'white' } }}
-                        label="Email" variant="filled"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)} />*/}
-                        <input className="email-input"
-                               placeholder="email"
-                               value={email}
-                               onChange={(e) => setEmail(e.target.value)}/>
-                        <button className="go" onClick={onGo}>Start!</button>
+                    <div className="about-buttons">
+                        <label className="checkbox-approvement">
+                            <Checkbox
+                                className="checkbox-mui"
+                                checked={checked}
+                                onChange={() => setChecked(!checked)}
+                            />
+                            <span> I want to receive email newsletters from Devexperts</span>
+                        </label>
+                        <div className='gowrapper'>
+                            <input className="email-input"
+                                   disabled={!checked}
+                                   placeholder="email"
+                                   value={email}
+                                   onChange={(e) => setEmail(e.target.value)}/>
+                            <button className="go" onClick={onGo}>Start!</button>
+                        </div>
                     </div>
                 }
 

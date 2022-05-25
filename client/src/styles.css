@@ -52,6 +52,25 @@ ul{
   background: #f0f0f0;
 }
 
+.checkbox-approvement{
+  width: 100%;
+  margin-bottom: 2.5%;
+}
+
+.about-buttons{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.checkbox-mui{
+  color: #DC9444 !important;
+  height: 40px !important;
+  width: 40px !important;
+}
+
 .content {
   position: relative;
   margin-left: 10px;
